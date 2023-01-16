@@ -1,0 +1,99 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "amzn/amazon-pay-sdk-php": "^3.7",
+        "anhskohbo/no-captcha": "^3.3",
+        "axlon/laravel-postal-code-validation": "^3.3",
+        "barryvdh/laravel-dompdf": "0.9.0",
+        "fideloper/proxy": "^4.4",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.5",
+        "jorenvanhocht/laravel-share": "^4.0",
+        "laravel/framework": "^8.12",
+        "laravel/socialite": "^5.5",
+        "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.2",
+        "maatwebsite/excel": "^3.1",
+        "paypal/rest-api-sdk-php": "^1.14",
+        "silamoney/php-sdk": "0.2.30-rc",
+        "smalot/pdfparser": "^0.18.2",
+        "spatie/laravel-cookie-consent": "^2.12",
+        "stripe/stripe-php": "^7.77",
+        "tomorrow-ideas/plaid-sdk-php": "^1.0",
+        "twilio/sdk": "^6.35",
+        "tymon/jwt-auth": "^1.0"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.3.3"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/",
+
+            "Piplmodules\\Core\\": "packages/piplmodules/core/src",
+            "Piplmodules\\Users\\": "packages/piplmodules/users/src",
+            "Piplmodules\\Permissions\\": "packages/piplmodules/permissions/src",
+            "Piplmodules\\Roles\\": "packages/piplmodules/roles/src",
+            "Piplmodules\\Settings\\": "packages/piplmodules/settings/src",
+            "Piplmodules\\Media\\": "packages/piplmodules/media/src",
+            "Piplmodules\\Pages\\": "packages/piplmodules/pages/src",
+            "Piplmodules\\Emailtemplates\\": "packages/piplmodules/emailtemplates/src",
+            "Piplmodules\\Contactus\\": "packages/piplmodules/contactus/src",
+            "Piplmodules\\Banners\\": "packages/piplmodules/banners/src",
+            "Piplmodules\\Faq\\": "packages/piplmodules/faq/src",
+            "Piplmodules\\PaymentMethod\\": "packages/piplmodules/paymentmethod/src",
+            "Piplmodules\\ReceivingCountry\\": "packages/piplmodules/receivingcountry/src",
+            "Piplmodules\\SendingCountry\\": "packages/piplmodules/sendingcountry/src",
+            "Piplmodules\\Testimonial\\": "packages/piplmodules/testimonial/src",
+            "Piplmodules\\Transactionhistory\\": "packages/piplmodules/transactionhistory/src",
+            "Piplmodules\\Sendinglimits\\": "packages/piplmodules/sendinglimits/src",
+            "Piplmodules\\Earnings\\": "packages/piplmodules/earnings/src",
+            "Piplmodules\\Notifications\\": "packages/piplmodules/notifications/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "piplmodules/users",
+    "description": "Manage Piplmodules framework users",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Piplmodules\\Users\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

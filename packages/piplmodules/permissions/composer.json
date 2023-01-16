@@ -1,0 +1,17 @@
+{
+    "name": "piplmodules/permissions",
+    "description": "Manage Piplmodules framework permissions",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Piplmodules\\Permissions\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

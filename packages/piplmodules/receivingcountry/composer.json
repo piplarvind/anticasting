@@ -1,0 +1,17 @@
+{
+    "name": "piplmodules/receivingcountry",
+    "description": "Manage Piplmodules framework sendingcountry",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Arvind Kumar",
+            "email": "akumar@katalysttech.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Piplmodules\\ReceivingCountry\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

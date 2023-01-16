@@ -1,0 +1,18 @@
+{
+    "name": "piplmodules/contactus",
+    "description": "Contact Us",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "swati",
+            "email": "rsingh2@katalysttech.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "Piplmodules\\Contactus\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

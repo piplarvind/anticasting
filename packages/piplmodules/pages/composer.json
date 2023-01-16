@@ -1,0 +1,23 @@
+{
+    "name": "piplmodules/pages",
+    "description": "Manage piplmodules framework pages",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "me@piplmodules.com"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:piplmodules/pages.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Piplmodules\\Pages\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

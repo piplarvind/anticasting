@@ -1,0 +1,23 @@
+{
+    "name": "piplmodules/emailtemplates",
+    "description": "Manage piplmodules framework emailtemplates",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "me@piplmodules.com"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:piplmodules/emailtemplates.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Piplmodules\\Emailtemplates\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

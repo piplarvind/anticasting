@@ -1,0 +1,17 @@
+{
+    "name": "piplmodules/media",
+    "description": "Manage Piplmodules framework media",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Piplmodules\\Media\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

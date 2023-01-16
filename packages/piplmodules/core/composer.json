@@ -1,0 +1,17 @@
+{
+    "name": "piplmodules/core",
+    "description": "Manage Piplmodules framework core",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Piplmodules\\Core\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

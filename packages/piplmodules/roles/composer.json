@@ -1,0 +1,17 @@
+{
+    "name": "piplmodules/roles",
+    "description": "Manage Piplmodules framework roles",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Piplmodules\\Roles\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
