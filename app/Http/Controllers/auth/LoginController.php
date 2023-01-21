@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
 //use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
@@ -37,7 +38,7 @@ class LoginController extends Controller
          return redirect()->back()->with('error', 'email and password incorrect.');
     }
     public function logout(){
-        \Auth::logout();
+        Auth::logout();
         return redirect()->route('users.login');
     }
 }

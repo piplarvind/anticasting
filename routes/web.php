@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 
+
 /*
 User Register And Login Routing
 */

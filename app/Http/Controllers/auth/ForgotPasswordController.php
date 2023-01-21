@@ -24,7 +24,14 @@ class ForgotPasswordController extends Controller
 
         $request->validate([
             'email' => 'required|email|exists:users',
-        ]);
+        ],[
+
+            'email.required'=>"Please enter your email address",
+            'email.exists'=>"Could not found email address in our database",
+            
+        ]
+    
+    );
         $token = mt_rand(00000000,99999999);
         $email = $request->email;
         // dd($token);
@@ -54,7 +61,12 @@ class ForgotPasswordController extends Controller
           
             'password' => 'required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
             'confirm_password' => 'required|same:password'
-        ]);
+        ],[
+            'password.required'=>'Please enter password',
+            'password.regex'=>'Please enter password at least one small '
+        ]
+    
+      );
 
         $updatePassword = DB::table('password_resets')->where('token',$request->token)->first();
          
