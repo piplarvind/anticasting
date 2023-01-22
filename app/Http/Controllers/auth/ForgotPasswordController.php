@@ -62,8 +62,10 @@ class ForgotPasswordController extends Controller
             'password' => 'required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
             'confirm_password' => 'required|same:password'
         ],[
-            'password.required'=>'Please enter password',
-            'password.regex'=>'Please enter password at least one small '
+            'password.regex'=>'Password must be at least one specific symbols,one number and one capital letter,one small letter',
+            'confirm_password.regex'=>'Confirm password must be at least one specific,one number symbols and one capital letter,one small letter',
+            'password.min'=>'Password must be at least 8 character',
+            'confirm_password.min'=>'Confirm Password must be at least 8 character',
         ]
     
       );

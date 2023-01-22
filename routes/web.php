@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,3 +66,32 @@ Route::group(['prefix' => 'users'], function () {
         ->name('users.changepassword-post');
 
 });
+
+/*
+   Admin Login 
+*/
+Route::get('/admin', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])
+    ->name('admin.login');
+Route::post('/admin-post', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'loginSubmit'])
+    ->name('admin.loginPost');  
+Route::get('/admin/logout',[\App\Http\Controllers\Admin\Auth\LoginController::class,'logoutAdmin'])
+->name('admin.logout');
+
+Route::get('/dashboard',[\App\Http\Controllers\Admin\DashboardController::class,'dashboard'])
+->name('admin.dashboard');
+
+/*Admin Forgot Password */
+Route::get('/admin/forgotpassword', [\App\Http\Controllers\Admin\Auth\ForgotPasswordController::class, 'showForgotPassword'])
+    ->name('admin.forgot-password');
+
+  Route::post('/admin/forgotpassword-post', [\App\Http\Controllers\Admin\Auth\ForgotPasswordController::class, 'submitForgotPassword'])
+    ->name('admin.forgotpassword-post');
+
+/**
+ *  Admin Reset Password
+ */
+Route::get('/admin/resetpassword/{token}/{email}', [\App\Http\Controllers\Admin\Auth\ForgotPasswordController::class, 'ResetPassword'])
+->name('admin.reset-password');
+
+Route::post('/admin/resetpassword-post', [\App\Http\Controllers\Admin\Auth\ForgotPasswordController::class, 'submitResetPassword'])
+->name('admin.resetpasswordpost');
