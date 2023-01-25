@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/auth/toastr.min.css') }}">
         <script src="{{ asset('assets/auth/toastr.min.js') }}"></script>
     </head>
-    <body class="bg-primary">
+    <body >
         <br/>
         <br/>
         <div id="layoutAuthentication">
@@ -29,24 +29,37 @@
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
+                            
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Forgot Your Password</h3></div>
+                                     <div class="card-body">
+                                         <div class="border-0">
+                                               <span class="lead text-muted" >
+                                                  Please enter your  email address. You will receive an email message with instructions on how to reset your password.
+                                               </span>
+                                         </div>
+                                    </div>
+                                  
+                                </div>
+                                <div class="card shadow-lg border-0 rounded-lg mt-3">
+                                  
                                     <div class="card-body">
                                         <form action="{{ route('users.forgotpassword-post') }}" method="post">
                                             @csrf
-                                            <div class="form-floating mb-3">
+                                            <div class="form mb-3">
+                                                <label for="email" class="text-muted" >Email Address</label>
+                                                <br/>
                                                 <input class="form-control" id="Email" name="email" type="email" placeholder="Enter a email" />
-                                                <label for="email">Email address</label>
+                                               
                                                 @error('email')
                                                   <span class="text-danger"><b>{{ $message }}</b></span>  
                                                 @enderror
                                             </div>
                                            
                                            
-                                           <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                           <div  style="margin-left:280px;" class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                
-                                            <button type="submit" class="form-control btn btn-primary">Send Password Reset Link</button>
+                                            <button type="submit" class="btn-sm btn btn-primary active">Get New Password</button>
                                             </div>
                                         </form>
                                     </div>

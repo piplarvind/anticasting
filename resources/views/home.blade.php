@@ -18,6 +18,7 @@
     <h1>Home</h1>
    
     <a href="{{ route('users.change-password') }}">ChangePassword</a>
+    <a href="{{ route('users.submitProfile') }}">SubmitProfile</a>
     <a href="{{ route('users.logout') }}">Logout</a>
 </body>
 </html>

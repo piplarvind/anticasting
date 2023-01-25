@@ -44,13 +44,16 @@
                                                 <i class="ti-lock"></i>
                                                 <span>Lock Screen</span>
                                             </a>
-                                        </li>--}}
+                                        </li>
                                         <li>
-                                            <a href="{{ route('admin.logout') }}">
+                                            <a  onClick="window.location.reload()" href="{{route('admin.logout') }}">
                                                 <i class="ti-power-off"></i>
                                                 <span>Logout</span>
+                                              
                                             </a>
+                                            
                                         </li>
+                                        --}}
                                     </ul>
                                 </div>
                             </div>

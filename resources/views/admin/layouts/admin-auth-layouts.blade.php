@@ -15,7 +15,7 @@
   
 </head>
 
-<body class="bg-primary">
+<body>
 <div class="unix-login">
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -23,7 +23,7 @@
                 <div class="login-content">
               
                     <div class="login-logo">
-                        <a href="{{ url('/') }}"><span>Anticasting</span></a>
+                        <a href="{{ url('/') }}"><span class="text-warning" >Anticasting</span></a>
                     </div>
                     <div class="login-form">
                         @yield('content')

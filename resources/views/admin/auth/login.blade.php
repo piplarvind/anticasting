@@ -3,7 +3,7 @@
     Login
 @endsection
 @section('content')
-    <h4>Administratior Login</h4>
+    <h4 class="text-danger">Administratior Login</h4>
     <form action="{{ route('admin.loginPost') }}" method="POST">
         @csrf
         <div class="form-group">
@@ -36,9 +36,9 @@
             </label>
 
         </div> --}}
-        <button type="submit" class="btn btn-primary btn-flat m-b-10 m-t-10">Sign in</button>
+        <button type="submit" class="btn btn-danger btn-flat m-b-10 m-t-10">Sign in</button>
        <div class="register-link m-t-10 text-center">
-            <p><a href="{{ route('admin.forgot-password') }}">Forgot password</a></p>
+            <b><a class="text-danger" href="{{ route('admin.forgot-password') }}">Forgot password</a></b>
         </div> 
     </form>
 @endsection

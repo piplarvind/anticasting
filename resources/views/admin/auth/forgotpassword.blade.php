@@ -15,7 +15,7 @@
          toastr.error("{{ Session::get('error') }}");
      @endif
   </script>
-    <h4>Administratior Forgot Password</h4>
+    <h4 class="text-danger">Administratior Forgot Password</h4>
     <form action="{{ route('admin.forgotpassword-post') }}" method="POST">
         @csrf
         <div class="form-group">
@@ -38,11 +38,11 @@
             </label>
 
         </div> --}}
-        <button type="submit" class="btn btn-primary btn-flat m-b-10 m-t-10">Send Password Reset Link</button>
+        <button type="submit" class="btn-sm btn btn-danger">Get Reset Link</button>
         {{-- 
-       <div class="register-link m-t-10 text-center">
+        <div class="register-link m-t-10 text-center">
             <p><a href="">Forgot password</a></p>
-        </div> 
+         </div> 
          --}}
     </form>
 @endsection

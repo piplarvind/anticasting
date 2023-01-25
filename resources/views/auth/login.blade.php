@@ -13,10 +13,11 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/auth/toastr.min.css') }}">
         <script src="{{ asset('assets/auth/toastr.min.js') }}"></script>
     </head>
-    <body class="bg-primary">
+    <body>
         <br/>
         <br/>
         <div id="layoutAuthentication">
+            {{-- <img src="{{ asset('assets/website/images/anticasting-banner.png') }}" /> --}}
             <div id="layoutAuthentication_content">
              
               <script>
@@ -24,6 +25,8 @@
                     toastr.success("{{ Session::get('message') }}");
                     @elseif (Session::has('error'))
                       toastr.error("{{ Session::get('error') }}");
+                      @elseif (Session::has('success'))
+                      toastr.success("{{ Session::get('success') }}");
                   @endif
               </script>
                 <main>
@@ -31,8 +34,9 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                    
                                     <div class="card-body">
+                                        <h3 class="text-center font-weight-light my-3 text-danger">Login</h3>
                                         <form action="{{ route('users.loginpost') }}" method="post">
                                             @csrf
                                             <div class="form-floating mb-3">
@@ -49,15 +53,35 @@
                                                   <span class="text-danger"><b>{{ $message }}</b></span>  
                                                 @enderror
                                             </div>
-                                           
+
+                                            <div class="form-floating mb-3">
+                                              
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="remeber_me">
+                                                        <label class="form-check-label" for="gridCheck">
+                                                          Remeber Me
+                                                        </label>
+                                                      </div>
+                                              
+                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="{{ route('users.forgot-password') }}">Forgot Password?</a>
-                                                <button type="submit" class="btn btn-primary">Login</button>
+                                              
+                                                <button type="submit" class=" form-control btn btn-danger">Contune</button>
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="{{ route('users.register') }}">Need an account? Sign up!</a></div>
+                                    <div class="row">
+                                        <div class="col-md-1">
+
+                                        </div>
+                                        <div class="col-md-4" style="margin-left:0px;">
+                                            <a class="small text-danger" href="{{ route('users.forgot-password') }}"><b>Forgot Password?</b></a>
+                                        </div>
+                                        <div class="col-md-6" style="margin-left:35px;">
+                                            <a  class="small text-danger" href="{{ route('users.register') }}"><b>Need an account? Sign up!</b></a>
+                                        </div>
+                                      <br/>
+                                      <br/>
                                     </div>
                                 </div>
                             </div>

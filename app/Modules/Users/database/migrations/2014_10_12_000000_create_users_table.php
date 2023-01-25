@@ -20,8 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
+            $table->string('mobile_verified')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('gender')->nullable();
+            $table->string('activation_code')->nullable();
             $table->boolean('status')->default(0)
             ->comment('0=>INACTIVE,1=>ACTIVE');
             $table->string('img')->nullable();

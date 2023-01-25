@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/auth/toastr.min.css') }}">
         <script src="{{ asset('assets/auth/toastr.min.js') }}"></script>
     </head>
-    <body class="bg-primary">
+    <body>
         <br/>
         <br/>
         <div id="layoutAuthentication">
@@ -31,9 +31,10 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Reset Your Password</h3></div>
+                                  
                                     <div class="card-body">
                                         <form action="{{ route('users.resetpasswordpost') }}" method="post">
+                                            <h3 class="text-center font-weight-light my-4 text-danger">Reset Your Password</h3>
                                             @csrf
                                               <input type="hidden" name="token" value="{{$token}}"/>
                                               <input type="hidden" name="email" value="{{$email}}"/>
@@ -55,7 +56,7 @@
                                            
                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                
-                                               <button type="submit" class="form-control btn btn-primary">Reset Password</button>
+                                               <button type="submit" class="form-control btn btn-danger">Reset Password</button>
                                             </div>
                                         </form>
                                     </div>
