@@ -59,7 +59,7 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" name="remeber_me">
                                                         <label class="form-check-label" for="gridCheck">
-                                                          Remeber Me
+                                                          Remember Me
                                                         </label>
                                                       </div>
                                               

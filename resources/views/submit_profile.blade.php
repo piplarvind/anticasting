@@ -20,7 +20,16 @@
 </style>
 <br />
 <br />
+<script src="{{ asset('assets/auth/jquery-3.6.0.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/auth/toastr.min.css') }}">
+<script src="{{ asset('assets/auth/toastr.min.js') }}"></script>
 <section class="container">
+	   
+	   <script>
+        @if(Session::has('message'))
+           toastr.success("{{ Session::get('message') }}");
+         @endif
+     </script>
 	<div class="container">
 		<!-- [ Main Content ] start -->
 		<div class="row">
@@ -35,23 +44,30 @@
 					<div class="card-body">
 
 
-						<form>
+						<form method="post" action="{{route('users.submitProfile.store')}}" enctype="multipart/form-data" >
+							  @csrf
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="form-label" for="exampleInputEmail1"><b>Name</b>&nbsp;<span
+										<label class="form-label" for="exampleInputName"><b>Name</b>&nbsp;<span
 												style="color:red;">*</span></label>
-										<input type="email" class="form-control" id="exampleInputEmail1"
-											aria-describedby="emailHelp" placeholder="Enter email">
-
+										<input type="text" name="name"  class="form-control" id="exampleInputName"
+											aria-describedby="emailHelp" placeholder="Enter name">
+                                              @error('name')
+											    <span style="color:red;"><b>{{ $message }}</b></span>
+											  @enderror
+											
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="form-label" for="exampleInputEmail1"><b>Date Of
+										<label class="form-label" for="exampleDateOfBirth"><b>Date Of
 												Birth</b>&nbsp;<span style="color:red;">*</span></label>
-										<input type="date" style="color:red;" class="form-control"
-											id="exampleInputPassword1" placeholder="Enter date of birth">
+										<input type="date" name="date_of_birth" style="color:red;" class="form-control"
+											id="exampleDateOfBirth" placeholder="Enter date of birth">
+											@error('date_of_birth')
+											<span style="color:red;"><b>{{ $message }}</b></span>
+										   @enderror
 									</div>
 								</div>
 							</div>
@@ -103,7 +119,9 @@
 											<option value="Uttarakhand" style="color:red;">Uttarakhand</option>
 											<option value="West Bengal" style="color:red;">West Bengal</option>
 										</select>
-
+										@error('ethnicity')
+										<span style="color:red;"><b>{{ $message }}</b></span>
+									   @enderror
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -116,7 +134,9 @@
 											<option value="female" style="color:red;">Female</option>
 											<option value="prefernottosay" style="color:red;">Prefer not to say</option>
 										</select>
-
+								        @error('gender')
+										<span style="color:red;"><b>{{ $message }}</b></span>
+										@enderror
 									</div>
 								</div>
 							</div>
@@ -126,7 +146,7 @@
 										</b><span style="color:red;">*</span>
 									</label>
 									<div class="input-group mb-3">
-										<select name="" id="contact_select" class="form-control"
+										<select name="contact" id="contact_select" class="form-control"
 											style="width:30%">
 											<option data-countrycode="IN" value="91" selected="" style="color:red;">India
 												(+91)</option>
@@ -515,9 +535,14 @@
 												</option>
 											</optgroup>
 										</select>
-
-										<input type="text" class="form-control" name="contact" placeholder="Mobile number" aria-label="Mobile Number">
-									   
+										@error('contact')
+										<span style="color:red;"><b>{{ $message }}</b></span>
+										@enderror
+										<input type="text" class="form-control" name="mobile_no" placeholder="Mobile number">
+										<br/>
+										@error('mobile_no')
+										<span style="color:red;"><b>{{ $message }}</b></span>
+										@enderror
 										<span id="mobile_status" style="color:red; font-size:14px"></span>
 									</div>
 
@@ -529,8 +554,11 @@
 									<div class="form-group">
 										<label class="form-label" for="exampleInputEmail"><b>Email-ID
 											</b>&nbsp;<span style="color:red;">*</span></label>
-										<input type="email" style="color:red;" class="form-control"
+										<input type="email" name="email" style="color:red;" class="form-control"
 											id="exampleInputEmail" placeholder="Enter email">
+											@error('email')
+										     <span style="color:red;"><b>{{ $message }}</b></span>
+										    @enderror
 									</div>
 								</div>
 
@@ -538,8 +566,11 @@
 									<div class="form-group">
 										<label class="form-label" for="LocationInput"><b>Current Location
 											</b>&nbsp;<span style="color:red;">*</span></label>
-										<input type="location" style="color:red;" class="form-control"
+										<input type="location" name="current_location" style="color:red;" class="form-control"
 											id="LocationInput" placeholder="Enter current location">
+											@error('current_location')
+											<span style="color:red;"><b>{{ $message }}</b></span>
+										   @enderror
 									</div>
 								</div>
 							</div>
@@ -564,14 +595,26 @@
 												$('#sample_headshot').show();
 											});
 										</script>
-										<img id="sample_headshot" {{-- class="visually-hidden" --}}
-											src="https://www.shutterstock.com/image-photo/man-hands-holding-global-network-260nw-1801568002.jpg"
-											style="max-width:20%;height:auto;"><br>
-										<input type="file" id="headshot_image" name="headshot_image"
-											class="" style="color:red;" accept="image/*">
+										 @if (isset($userProfileImage))
+											@forelse ($userProfileImage as $image )
+											<img id="sample_headshot" {{-- class="visually-hidden" --}}
+											src="{{ asset('upload/profile/'.$image->profile_images )}}"
+											style="max-width:10%;height:auto;"><br>
+											@empty
+												<p style="color:red;">No Image</p>
+											@endforelse
+										 @endif
+									
+										<input type="file" id="headshot_image" name="headshot_image[]"
+											class="" style="color:red;"  multiple="multiple">
+											@error('headshot_image')
+											<span style="color:red;"><b>{{ $message }}</b></span>
+										    @enderror
+											<br/>
 										<span id="uploaded_image1" style="display:none;"></span><span
 											style="color:red;"><b>Extension
-												(gif,png,jpg,jpeg) size 5kb to 2mb</b></span>
+												(gif,png,jpg,jpeg) size 5kb to 2mb</b>
+										</span>
 									</div>
 								</div>
 
@@ -591,12 +634,15 @@
 										<span style="color:red;"><b>Show sample intro video</b></span>
 										<br />
 										<div id="sample_intro" class="hide">
-											<select onchange="newSrc(this.value)" class="form-control">
+											<select name="choose_language" onchange="newSrc(this.value)" class="form-control">
 												<option value="videos/sample_video_english.mp4">Intro in English
 												</option>
 												<option value="videos/sample_video_hindi.mp4">Intro in Hindi
 												</option>
 											</select>
+											@error('choose_language')
+											<span style="color:red;"><b>{{ $message }}</b></span>
+										   @enderror
 											<br />
 											<br />
 											<video id="iframe_sample_intro" style="max-width:50%;height:50%;"

@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
             'last_name'=>'Admin',
             'email'=>'admin@gmail.com',
             'password'=> bcrypt('Admin@10'),
-            'date_of_birth'=> Carbon::now()->format('Y-m-d H:i:s'),
+           
           //  'gender	'=>'Male',
             'status'=>1,
             'user_type'=>'1',
@@ -43,7 +43,7 @@ class UsersTableSeeder extends Seeder
             'last_name'=>'Admin',
             'email'=>'admin@2023gmail.com',
             'password'=> bcrypt('Admin@10'),
-           'date_of_birth'=> Carbon::now()->format('Y-m-d H:i:s'),
+          
            // 'gender	'=>'Female',
             'status'=>1,
             'user_type'=>'1',
@@ -59,7 +59,7 @@ class UsersTableSeeder extends Seeder
             'last_name'=>'Kumar Singh',
             'email'=>'maheshkrs@2023gmail.com',
             'password'=> bcrypt('Pass@123'),
-            'date_of_birth'=> Carbon::now()->format('Y-m-d H:i:s'),
+          
            // 'gender	'=>'Male',
             'status'=>1,
             'user_type'=>'0',

@@ -67,8 +67,9 @@ Route::group(['prefix' => 'users','middleware'=>['web','user']], function () {
         ->name('users.changepassword-post');
        
         /* Submit Profile */
-    Route::get('/submitProfile', [\App\Http\Controllers\ProfileController::class, 'submitProfile'])
-    ->name('users.submitProfile');
+    Route::get('/submitProfile', [\App\Http\Controllers\ProfileController::class, 'submitProfile'])->name('users.submitProfile');
+    Route::post('submitProfile-store', [\App\Http\Controllers\ProfileController::class, 'submitProfileStore'])
+    ->name('users.submitProfile.store');
 
 });
 
@@ -114,7 +115,7 @@ Route::group(['prefix'=>'admin','middleware'=>['web','admin']],function(){
  Route::get('/dashboard',[\App\Http\Controllers\Admin\DashboardController::class,'dashboard'])
  ->name('admin.dashboard');
 
-    Route::get('/setting',[]);
+   
 
 });
 
