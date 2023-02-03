@@ -35,7 +35,7 @@ class LoginController extends Controller
             if (auth()?->user()?->user_type == '0') {
               
                 return redirect()
-                    ->route('users.home')
+                    ->route('users.dashboard')
                     ->with('message', 'Login successfully.');
             }
         }

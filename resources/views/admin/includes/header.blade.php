@@ -1,3 +1,4 @@
+<script src="{{ asset('assets/auth/jquery-3.6.0.js') }}"></script>
 <div class="header">
     <div class="container-fluid">
         <div class="row">
@@ -26,12 +27,13 @@
                                             </a>
                                         </li>
 
-                                        {{--<li>
-                                            <a href="#">
-                                                <i class="ti-email"></i>
-                                                <span>Inbox</span>
+                                        <li>
+                                            <a href="{{ route('admin.changePassword')}}">
+                                                <i class="ti-user"></i>
+                                                <span>Change Password</span>
                                             </a>
                                         </li>
+                                        {{--
                                         <li>
                                             <a href="#">
                                                 <i class="ti-settings"></i>
@@ -45,15 +47,16 @@
                                                 <span>Lock Screen</span>
                                             </a>
                                         </li>
+                                             --}}
                                         <li>
-                                            <a  onClick="window.location.reload()" href="{{route('admin.logout') }}">
+                                            <a href="{{route('admin.logout') }}">
                                                 <i class="ti-power-off"></i>
                                                 <span>Logout</span>
                                               
                                             </a>
                                             
                                         </li>
-                                        --}}
+                                   
                                     </ul>
                                 </div>
                             </div>

@@ -27,7 +27,7 @@ class RedirectIfAuthenticated
                // return redirect(RouteServiceProvider::HOME);
                 if(auth()?->user()?->user_type=='0'){
                    // dd('Mahesh');
-                    return redirect()->route('users.home');
+                    return redirect()->route('users.dashboard');
                 }
                 else if(auth()?->user()?->user_type=='1')
                 {

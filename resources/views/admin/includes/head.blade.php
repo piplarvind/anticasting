@@ -13,6 +13,7 @@
 <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
 <!-- Standard iPhone Touch Icon-->
 <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+
 <!-- Styles -->
 <link href="{{ asset('assets/admin/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/admin/css/lib/chartist/chartist.min.css') }}" rel="stylesheet">

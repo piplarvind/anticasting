@@ -81,7 +81,7 @@ class RegisterController extends Controller
             $message->subject('Anticasting');
        
         });
-        
+      //  dd("Registeration");
         // return redirect()
         //     ->route('users.login')
         //     ->with('message', 'Register successfully done.');

@@ -3,7 +3,17 @@
    Dashboard
 @endsection
 @section('content')
+<script src="{{ asset('assets/auth/jquery-3.6.0.js') }}"></script>
+<script src="{{ asset('assets/auth/toastr.min.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/auth/toastr.min.css') }}">
 <div class="main">
+    <script>
+        @if(Session::has('message'))
+           toastr.success("{{ Session::get('message') }}");
+           @elseif (Session::has('error'))
+             toastr.error("{{ Session::get('error') }}");
+         @endif
+     </script>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 p-r-0 title-margin-right">
@@ -77,6 +87,7 @@
                     </div>
                 </div>
             </div>
+        
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card">
@@ -99,6 +110,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="row">
                 <div class="col-lg-4">
                     <div class="row">
@@ -343,6 +355,7 @@
                 </div>
                 <!-- /# column -->
             </div>
+           
             <!-- /# row -->
             <div class="row">
                 <div class="col-lg-3">
@@ -398,6 +411,7 @@
                     </div>
                 </div>
             </div>
+         
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card">
@@ -560,8 +574,9 @@
                     <!-- /# card -->
                 </div>
             </div>
+           
             <!-- /# row -->
-
+       
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card">

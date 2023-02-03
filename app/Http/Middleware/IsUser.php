@@ -16,15 +16,10 @@ class IsUser
      */
     public function handle(Request $request, Closure $next)
     {
-       
-            
-            if(auth()?->user()?->user_type=='0')
-            {
-               // dd('Logged In');
-                return $next($request);
-            }
-          return redirect()->route('users.login');
-          
-       
+        if (auth()?->user()?->user_type == '0') {
+            // dd('Logged In');
+            return $next($request);
+        }
+        return redirect()->route('users.login');
     }
 }
