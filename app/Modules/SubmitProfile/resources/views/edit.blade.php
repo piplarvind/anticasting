@@ -10,6 +10,7 @@
 
         color: #aaa;
     }
+   
 </style>
 
 @section('content')
@@ -51,7 +52,7 @@
                     </div>
                     <hr />
                     <div class="card-body">
-                        <form action="{{ route('admin.submitprofile.store', $userProfile->id) }}" method="post">
+                        <form action="{{ route('admin.submitprofile.store',["profileId"=>$userProfile->id,"userId"=> $userProfile->user_id]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -418,7 +419,7 @@
                                             </optgroup>
                                         </select>
                                         @error('countryCode')
-                                            <style="color:red;"><b>{{ $message }}</b></style=>
+                                            <span style="color:red;"><b>{{ $message }}</b></span>
                                             @enderror
                                             <input type="text" class="form-control" name="mobile_no"
                                                 placeholder="Mobile number" value="{{ old('mobile_no',$userProfile->mobile_no) }}">
@@ -542,8 +543,30 @@
                                     </div>
                                 </div>
                             </div>
-
+                             
                             <div class="row">
+                                 
+                                <div class="col-md-6 col-lg-6 col-sm-6">
+                                    <label class="form-label" for="status"><b>Image</b>&nbsp;<span
+                                            style="color:red;">*
+                                    </label>
+                                    <br />
+                                    <input type="file" name="headshot_image[]" 
+                                     id="headshot_image" multiple="multiple" class="form-control"
+                                     accept="image/*"
+                                     />
+                                     @if(isset($userImage->images))
+                                  
+                                     @foreach ( $userImage->images as $image)
+                                       
+                                           <img src="{{ asset('upload/profile/'.$image->profile_images) }}" alt=" " width="100" height="100"/> 
+                                         
+                                           <a class="delete-btn" href="{{ route('') }}">Remove</a>
+                                     @endforeach
+                                 
+                                   @endif
+                                   
+                                </div>
                                
                                 <div class="col-md-6 col-lg-6 col-sm-6">
                                     <label class="form-label" for="status"><b>Status</b>&nbsp;<span
@@ -558,6 +581,7 @@
 
                                 </div>
                             </div>
+                           
                             <center>
                                 <input type="submit" class="btn btn-success" value="Update" />
                             </center>

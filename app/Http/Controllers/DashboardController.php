@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         $profile = UserProfile::where('user_id', auth()->user()->id)->first();
      
-        if ($profile == null) {
+        if (!isset($profile)) {
             return redirect()->route('users.submitProfile');
         }
         return view('dashboard');

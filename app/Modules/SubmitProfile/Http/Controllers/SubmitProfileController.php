@@ -4,7 +4,7 @@ namespace App\Modules\SubmitProfile\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{UserProfile, User};
+use App\Models\{UserProfile, UserProfileImage, User};
 
 class SubmitProfileController extends Controller
 {
@@ -24,9 +24,20 @@ class SubmitProfileController extends Controller
     public function edit($id)
     {
         $userProfile = UserProfile::where('id', $id)->first();
-        return view('SubmitProfile::edit',compact('userProfile'));
+        $userImage = User::where('id', $userProfile->user_id)
+        ->with([
+            'images' => function ($image) {
+                $image
+                    ->offset(0)
+                    ->orderBy('id', 'ASC')
+                    ->limit(10);
+            },
+        ])
+        ->first();
+      
+        return view('SubmitProfile::edit',compact('userProfile','userImage'));
     }
-    public function Update(Request $request,$id){
+    public function Update(Request $request,$profileId,$userId){
          
           // dd($request);
         // $request->validate(
@@ -74,10 +85,13 @@ class SubmitProfileController extends Controller
         //         'headshot_image.required' => 'Image should be jpeg,png,jpg,gif',
         //     ],
         // );
-        $userId = auth()->user()->id;
-        $user_profile = UserProfile::findOrFail($id);
+        //$userId = auth()->user()->id;
+      
         if (auth()->user()) {
+
             $user = User::find($userId);
+            $user_profile = UserProfile::findOrFail($profileId);
+
             $user->name = $request->name;
             $user->save();
             $user_profile->date_of_birth = $request->date_of_birth;
@@ -93,12 +107,24 @@ class SubmitProfileController extends Controller
             $user_profile->countryCode = $request->countryCode;
             $user_profile->user_id = $userId;
             $user_profile->status = $request->status == 1 ? 1 : 0;
-
             $user_profile->email = $request->email;
             $user_profile->save();
+           
+            if ($request->file('headshot_image')) {
+                $images = $request->file('headshot_image');
+                
+                foreach ($images as $image) {
 
+                    $filename = $image->getClientOriginalName();
+                    $image_name = time() . '-' . $filename;
+                    $profile_image = new UserProfileImage();
+                    $profile_image->profile_images = $image_name;
+                    $ImagePath = $image->move('upload/profile', $image_name);
+                    $profile_image->user_id = $userId;
+                    $profile_image->save();
+                }
 
-
+            }
             return redirect()->route('admin.submitprofile');
                
 
@@ -107,6 +133,12 @@ class SubmitProfileController extends Controller
         }
       
     }
+     public function deleteImage($id){
+
+        $Image = UserProfileImage::findOrFail($id);
+        dd($Image);
+       // return 
+     }
     public function manageUserProfile($id)
     {
         $user = User::where('id', $id)->first();
