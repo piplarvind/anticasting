@@ -24,8 +24,9 @@ class CreateUsersTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('mobile_verified')->nullable();
             $table->string('activation_code')->nullable();
-           
+            $table->string('countryCode')->nullable();
             $table->string('mobile_no')->nullable();
+         
             $table->boolean('status')->default(0)
             ->comment('0=>INACTIVE,1=>ACTIVE');
             $table->string('image')->nullable();

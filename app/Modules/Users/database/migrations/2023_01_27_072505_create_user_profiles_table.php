@@ -19,12 +19,13 @@ class CreateUserProfilesTable extends Migration
             $table->string('email')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('gender')->nullable();
-            $table->string('countryCode')->nullable();
-            $table->string('mobile_no')->nullable();
+           
+            $table->string('height')->nullable();
+            $table->string('complexions')->nullable();
             $table->text('current_location')->nullable();
 
             $table->string('choose_language')->nullable();
-           
+
             $table->string('intro_video_link')->nullable();
             $table->string('work_reel1')->nullable();
             $table->string('work_reel2')->nullable();
@@ -60,7 +61,7 @@ class CreateUserProfilesTable extends Migration
 
         Schema::create('user_profiles_image', function (Blueprint $table) {
             $table->id();
-            $table->string('profile_images')->nullable();
+            $table->string('image')->nullable();
             $table
                 ->unsignedBigInteger('user_id')
                 ->unsigned()

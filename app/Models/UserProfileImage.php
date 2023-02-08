@@ -9,7 +9,11 @@ use App\Models\User;
 class UserProfileImage extends Model
 {
     use HasFactory;
-    protected $table = "user_profiles_image";
-    protected $fillable = ['profile_images','user_id'];
+    protected $table = 'user_profiles_image';
+    protected $fillable = ['user_id', 'image'];
 
+    public function getImageAttribute()
+    {
+        return asset('upload/profile/' . $this->attributes['image']);
+    }
 }

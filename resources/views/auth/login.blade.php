@@ -12,6 +12,13 @@
         <script src="{{ asset('assets/auth/jquery-3.6.0.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/auth/toastr.min.css') }}">
         <script src="{{ asset('assets/auth/toastr.min.js') }}"></script>
+        <style>
+    
+            .input-group-addon{
+            background-color:hsl(0, 2%, 72%);
+            padding: 9px;
+         }
+          </style>
     </head>
     <body>
         <br/>
@@ -39,16 +46,28 @@
                                         <h3 class="text-center font-weight-light my-3 text-danger">Login</h3>
                                         <form action="{{ route('users.loginpost') }}" method="post">
                                             @csrf
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" name="email" type="email" placeholder="name@example.com" />
+                                            <div class="mb-3">
                                                 <label for="inputEmail">Email address</label>
+                                                <input class="form-control" id="inputEmail" name="email" type="email" placeholder="Enter a email" />
+                                               
                                                 @error('email')
                                                   <span class="text-danger"><b>{{ $message }}</b></span>  
                                                 @enderror
                                             </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" name="password" type="password" placeholder="Password" />
-                                                <label for="inputPassword">Password</label>
+                                            <div class=" mb-3">
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <div class="input-group" id="show_hide_password">
+                                                       <div class="input-group-addon">
+                                                           <i class="fas fa-eye-slash"
+                                                                    aria-hidden="true" id="eye">
+                                                                </i>
+                                                            </div>
+                                                        <input class="form-control" placeholder="Enter  password"
+                                                            type="password"  id="password" name="password" >
+                                                       
+                                                    </div>
+                                                </div>
                                                 @error('password')
                                                   <span class="text-danger"><b>{{ $message }}</b></span>  
                                                 @enderror
@@ -93,5 +112,39 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('assets/auth/js/scripts.js') }}"></script>
+      
+        <script type="text/javascript">
+        // $(function () {
+        //     $("#togglePassword").click(function () {
+        //         $(this).toggleClass("fa fa-eye-slash");
+              
+        //        var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
+        //         $("#password").attr("type", type);
+        //     });
+        // });
+        $(function(){
+  
+   $('#eye').click(function(){
+       
+        if($(this).hasClass('fa-eye-slash')){
+           
+          $(this).removeClass('fa-eye-slash');
+          
+          $(this).addClass('fa-eye');
+          
+          $('#password').attr('type','text');
+        
+        }else{
+            alert('eye false')
+          $(this).removeClass('fa-eye');
+          
+          $(this).addClass('fa-eye-slash');  
+          
+          $('#password').attr('type','password');
+        }
+    });
+});
+    </script>
+       
     </body>
 </html>

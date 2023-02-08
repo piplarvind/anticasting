@@ -11,12 +11,12 @@
     @yield('header')
 </head>
 
-<body style="background-color:white;">
+<body>
     <!-- ======= Header ======= -->
     @include('include.header')
     <!-- ======= End Header ======= -->
     <!-- ======= Hero ======= -->
-    @include('include.hero')
+    {{-- @include('include.hero') --}}
     <!-- ======= End Hero ======= -->
 
     <!-- ======= Footer ======= -->
@@ -36,4 +36,5 @@
     <script src="{{ asset('assets/users/assets/js/main.js') }}"></script>
     @yield('footer')
 </body>
+
 </html>

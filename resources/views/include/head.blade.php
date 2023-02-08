@@ -17,5 +17,5 @@
  <link rel="stylesheet" type="text/css" href="{{ asset('assets/auth/toastr.min.css') }}">
  <!-- Template Main CSS File -->
  <link href="{{ asset('assets/users/assets/css/main.css') }}" rel="stylesheet">
- <script src="{{ asset('assets/auth/jquery-3.6.0.js') }}"></script>
- <script src="{{ asset('assets/auth/toastr.min.js') }}"></script>
+ {{-- <script src="{{ asset('assets/auth/jquery-3.6.0.js') }}"></script>
+ <script src="{{ asset('assets/auth/toastr.min.js') }}"></script> --}}

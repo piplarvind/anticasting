@@ -6,12 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Helpers\GeneralHelper;
-use App\Models\{User,Otp};
+use App\Models\{User, Otp};
 use Carbon\Carbon;
 use Hash;
 use Mail;
 use Session;
-
 
 class RegisterController extends Controller
 {
@@ -20,15 +19,40 @@ class RegisterController extends Controller
     {
         return view('auth.register');
     }
+
+    public function validateUserEmail(Request $request)
+    {
+        $user = User::where('email', $request->email)->first('email');
+        if ($user) {
+            $return = false;
+        } else {
+            $return = true;
+        }
+        echo json_encode($return);
+        exit();
+    }
+
+    public function validateUserMobileNumber(Request $request)
+    {
+     
+        $user = User::where('mobile_no', $request->mobile_no)->first('mobile_no');
+        if ($user) {
+            $return = false;
+        } else {
+            $return = true;
+        }
+        echo json_encode($return);
+        exit();
+    }
     public function submitRegister(Request $request)
     {
-        // dd($request);
+      
         $request->validate(
             [
                 'first_name' => ['required'],
                 'last_name' => ['required'],
                 'email' => ['required', 'email', 'unique:users'],
-                'moblie_number' => ['required'],
+                'mobile_no' => ['required'],
                 // 'password'=>['required','string','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/','min:8'],
                 'password' => [
                     'required',
@@ -40,13 +64,12 @@ class RegisterController extends Controller
                     'regex:/[@$!%*#?&]/', // must contain a special character
                 ],
                 'confirm_password' => ['required', 'string', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/', 'min:8', 'same:password'],
-              
             ],
             [
                 'first_name.required' => 'Please enter first name',
                 'last_name.required' => 'Please enter last name',
                 'email.required' => 'Please enter email',
-                'moblie_number.required' => 'Please enter mobile number',
+                'mobile_no.required' => 'Please enter mobile number',
                 'password.required' => 'Please enter password',
                 'confirm_password.required' => 'Please enter confirm password',
                 // 'password.regex' => 'Password must be at least one specific symbols,one number and one capital letter,one small letter',
@@ -56,11 +79,13 @@ class RegisterController extends Controller
             ],
         );
         $activation_code = GeneralHelper::generateReferenceNumber();
+        $mobileNumber = str_replace(' ', '', $request->mobile_no);
         $user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->password = Hash::make($request->password);
-        $user->mobile_no = $request->moblie_number;
+        $user->mobile_no = $mobileNumber;
+        $user->countryCode =  $request->countryCode;
         $user->activation_code = $activation_code;
         $user->email = $request->email;
         $user->status = 1;
@@ -69,53 +94,61 @@ class RegisterController extends Controller
 
         /* Otp */
         $digits = 4;
-        $otp =  rand(pow(10, $digits-1), pow(10, $digits)-1);
+        $otp = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
         $user_otp = new Otp();
-        $user_otp->mobile_code = "91";
-        $user_otp->mobile_no = $request->moblie_number;
+        $user_otp->mobile_code = '91';
+        $user_otp->mobile_no = $mobileNumber;
         $user_otp->otp = $otp;
         $user_otp->expiry_date = Carbon::now()->addMinutes(10);
         $user_otp->save();
-        Mail::send('emails.email_show_otp', ['Firstname' =>$user->first_name,'Lastname' =>$user->last_name,'email'=>  $user->email,'otp'=> $user_otp->otp ], function ($message) use ($request) {
+        Mail::send('emails.email_show_otp', ['Firstname' => $user->first_name, 'Lastname' => $user->last_name, 'email' => $user->email, 'otp' => $user_otp->otp], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Anticasting');
-       
         });
-      //  dd("Registeration");
+        //  dd("Registeration");
         // return redirect()
         //     ->route('users.login')
         //     ->with('message', 'Register successfully done.');
         return redirect('/showotp/');
     }
-    public function showOtp(Request $request){
-        
+    public function showOtp(Request $request)
+    {
         return view('auth.otp');
     }
-    public function VerifyOtp(Request $request){
-        $request->validate([
-            'otp' => 'required',
-        ],
-        [
-            'otp.required'=>'Please enter valid otp.'
-        ]
-      );
+    public function VerifyOtp(Request $request)
+    {
+        $request->validate(
+            [
+                'otp' => 'required',
+            ],
+            [
+                'otp.required' => 'Please enter valid otp.',
+            ],
+        );
         $otp = $request->otp;
 
         $current_datetime = now();
-        $otp_data = Otp::where(['otp'=>$otp])->orderBy('id', 'desc')->first();
-        if($otp_data==null){
-            return redirect()->back()->with('invalid','Otp Invalid.');
+        $otp_data = Otp::where(['otp' => $otp])
+            ->orderBy('id', 'desc')
+            ->first();
+        if ($otp_data == null) {
+            return redirect()
+                ->back()
+                ->with('invalid', 'Otp Invalid.');
         }
-        if(strtotime($otp_data->expiry_date)<strtotime($current_datetime)){
-
-            return redirect()->back()->with('expire','Otp Expired.');
+        if (strtotime($otp_data->expiry_date) < strtotime($current_datetime)) {
+            return redirect()
+                ->back()
+                ->with('expire', 'Otp Expired.');
         }
         $user_info = User::where(['mobile_no' => $otp_data->mobile_no])->first();
-      
-        Session::put('user_id', $user_info->id);
+
+        // Session::put('user_id', $user_info->id);
 
         $user_info->mobile_verified = 1;
         $user_info->save();
-        return redirect()->route('users.login')->with('success','Otp Verified Successful.');
+        return redirect()
+            ->route('users.login')
+            ->with('success', 'Otp Verified Successful.');
     }
 }

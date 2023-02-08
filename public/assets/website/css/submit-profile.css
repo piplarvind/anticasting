@@ -55,6 +55,12 @@ output{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
 
+  .image-info {
+    float: right;
+    background: #fff;
+    /* border-radius: 50%; */
+    cursor: pointer;
+  }
   /**
   * Work reel
   */
