@@ -4,7 +4,7 @@ namespace App\Modules\SubmitProfile\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{UserProfile, UserProfileImage, User};
+use App\Models\{UserProfile, UserProfileImage, User, State};
 
 class SubmitProfileController extends Controller
 {
@@ -16,30 +16,33 @@ class SubmitProfileController extends Controller
     public function index(Request $request)
     {
         $items = UserProfile::filterName()
+            ->with('profileImage')
             ->filterStatus()
             ->paginate(10);
-        return view('SubmitProfile::index', compact('items'));
+            // dd($items);
+        $state = State::all();
+        return view('SubmitProfile::index', compact('items', 'state'));
     }
 
     public function edit($id)
     {
         $userProfile = UserProfile::where('id', $id)->first();
         $userImage = User::where('id', $userProfile->user_id)
-        ->with([
-            'images' => function ($image) {
-                $image
-                    ->offset(0)
-                    ->orderBy('id', 'ASC')
-                    ->limit(10);
-            },
-        ])
-        ->first();
-      
-        return view('SubmitProfile::edit',compact('userProfile','userImage'));
+            ->with([
+                'images' => function ($image) {
+                    $image
+                        ->offset(0)
+                        ->orderBy('id', 'ASC')
+                        ->limit(10);
+                },
+            ])
+            ->first();
+
+        return view('SubmitProfile::edit', compact('userProfile', 'userImage'));
     }
-    public function Update(Request $request,$profileId,$userId){
-         
-          // dd($request);
+    public function Update(Request $request, $profileId, $userId)
+    {
+        // dd($request);
         // $request->validate(
         //     [
         //         'name' => 'required',
@@ -86,9 +89,8 @@ class SubmitProfileController extends Controller
         //     ],
         // );
         //$userId = auth()->user()->id;
-      
-        if (auth()->user()) {
 
+        if (auth()->user()) {
             $user = User::find($userId);
             $user_profile = UserProfile::findOrFail($profileId);
 
@@ -109,12 +111,11 @@ class SubmitProfileController extends Controller
             $user_profile->status = $request->status == 1 ? 1 : 0;
             $user_profile->email = $request->email;
             $user_profile->save();
-           
+
             if ($request->file('headshot_image')) {
                 $images = $request->file('headshot_image');
-                
-                foreach ($images as $image) {
 
+                foreach ($images as $image) {
                     $filename = $image->getClientOriginalName();
                     $image_name = time() . '-' . $filename;
                     $profile_image = new UserProfileImage();
@@ -123,30 +124,26 @@ class SubmitProfileController extends Controller
                     $profile_image->user_id = $userId;
                     $profile_image->save();
                 }
-
             }
             return redirect()->route('admin.submitprofile');
-               
-
         } else {
             return redirect()->route('users.login');
         }
-      
     }
-     public function deleteImage($id){
-
+    public function deleteImage($id)
+    {
         $Image = UserProfileImage::findOrFail($id);
         dd($Image);
-       // return 
-     }
+        // return
+    }
     public function manageUserProfile($id)
     {
         $user = User::where('id', $id)->first();
 
         return view('SubmitProfile::manage-user', compact('user'));
     }
-    public function manageUserProfileStore(Request $request,$id){
-
+    public function manageUserProfileStore(Request $request, $id)
+    {
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->first_name = $request->firstname;
@@ -155,6 +152,5 @@ class SubmitProfileController extends Controller
         $user->mobile_no = $request->mobile_no;
         $user->save();
         return redirect()->route('admin.submitprofile');
-        
     }
 }

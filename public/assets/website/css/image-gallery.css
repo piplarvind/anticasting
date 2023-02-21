@@ -29,6 +29,7 @@
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
+	border: 2px ridge  black;
 }
 
 /* Main Styles */
@@ -70,3 +71,7 @@
 .move-btn.left  { cursor: w-resize; }
 .move-btn.right { cursor: e-resize; }
 
+/*Work reels*/
+#work_reel1_img{
+	margin-top: 30px;
+}

@@ -15,17 +15,16 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->longText('message')->nullable();
+            $table->longText('msg')->nullable();
             $table->boolean('status')->default(0)->comment('0=>Inactive,1=>Active');
             $table->timestamps();
         });
         Schema::create('message_reply', function (Blueprint $table) {
-
             $table->id();
             $table->longText('reply_msg')->nullable();
-            $table->unsignedBigInteger('msg_id')->unsigned()->index()->nullable();
-            $table->unsignedBigInteger('user_id')->unsigned()->index()->nullable();
-            $table->foreign('msg_id')->references('id')->on('message')->onDelete('cascade');
+            $table->unsignedBigInteger('msg_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('msg_id')->references('id')->on('messages')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
@@ -39,5 +38,6 @@ class CreateMessagesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('messages');
+        Schema::dropIfExists('reply_msg');
     }
 };

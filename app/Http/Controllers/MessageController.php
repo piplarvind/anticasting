@@ -12,12 +12,12 @@ class MessageController extends Controller
      {      
            $userid = auth()->user()->id;
            $message_reply = new MessageReply();
-        if(auth()->check()){
+          if(auth()->check()){
 
              $message_reply->reply_msg = $request->reply_msg;
              $message_reply->user_id=$userid;
              $message_reply->save();
-            return redirect()->back()->with('message','Message successfully saved.');
+             return redirect()->back()->with('message','Message successfully saved.');
          
         }
         else{

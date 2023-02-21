@@ -3,6 +3,13 @@ $(document).ready (function () {
         debug: false,
         errorClass: 'text-danger',
         errorElement: "span",
+        errorPlacement: function (error, element) {
+            if (element.parent().hasClass('input-group')) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        },
         rules: {
              first_name:{
               required: true,
@@ -16,12 +23,13 @@ $(document).ready (function () {
             email: {
             required: true,
             email: true,
-            remote:'/validate-email',
+            remote: url+'/validate-email',
           
           },
           mobile_no:{
             required: true,
-            minlength: 10,
+            intlTelNumber: true
+            // minlength: 10,
             //remote:'/validate-mobile'
           },
           password: {
@@ -58,8 +66,14 @@ $(document).ready (function () {
             minlength: 'Password must be at least 8 characters long'
           }
         },
-        highlight: function(element, errorClass) {
-            $(element).removeClass(errorClass);
+        // highlight: function(element, errorClass) {
+        //     $(element).removeClass(errorClass);
+        // },
+        highlight: function(element) {
+            $(element).parent().addClass("field-error");
+        },
+        unhighlight: function(element) {
+            $(element).parent().removeClass("field-error");
         },
         submitHandler: function(form) {
           form.submit();
@@ -96,5 +110,10 @@ $(document).ready (function () {
     $.validator.addMethod("lettersonly", function(value, element) {
         return this.optional(element) || /^[a-z\s]+$/i.test(value);
         }, "Only alphabetical characters");
+
+    // create a custom phone number rule called 'intlTelNumber'
+    $.validator.addMethod("intlTelNumber", function(value, element) {
+        return this.optional(element) || $(element).intlTelInput("isValidNumber");
+    }, "Please enter a valid phone number");
    
 });

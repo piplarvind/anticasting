@@ -16,4 +16,5 @@ class UserProfileImage extends Model
     {
         return asset('upload/profile/' . $this->attributes['image']);
     }
+   
 }

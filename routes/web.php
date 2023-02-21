@@ -7,7 +7,8 @@ use App\Http\Controllers\{
     HomeController,
     AboutUsController, 
     ContactUsController,
-    MessageController
+    MessageController,
+    
  };
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ChangePasswordController;
@@ -71,7 +72,10 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'user']], function ()
     /* Message*/
     Route::post('message-post',[MessageController::class, 'storeMessage'])->name('users.message');
    // Route::get('/message-show',[MessageController::class, 'showMessage'])->name('users.message.show');
-    Route::post('/userimage', [\App\Http\Controllers\ProfileController::class,'uploadUserImage'])->name('users.uploadimage');
+    Route::post('/userimage', [\App\Http\Controllers\ProfileController::class,'uploadUserImage'])->name('users.uploadImages');
+    Route::post('/userworkreel', [\App\Http\Controllers\ProfileController::class,'submitWorkReel'])->name('users.userworkreel');
+    Route::post('/userintrovideo', [\App\Http\Controllers\ProfileController::class,'IntroVideo'])->name('users.introvideos');
+
 });
 
 /*

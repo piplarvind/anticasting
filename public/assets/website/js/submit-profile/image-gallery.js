@@ -17,11 +17,26 @@ function selectItem(e) {
 	if (e.target.classList.contains('active')) return;
 	// console.log('e.target', e.target.style.backgroundImage);
 	if (e.target.style.backgroundImage == 'url("undefined")') {
+		
 		e.target.addEventListener("click", function() {
 			$('#upload-image-modal').modal('show');
 			$('#upload-image-modal').appendTo('body');
 		});
-	} else {
+	}
+	// else if(e.target.style.backgroundImage != 'url("undefined")'){
+		
+	// 	e.target.addEventListener("click", function() {
+	// 		$('#upload-image-modal-update').modal('show');
+	// 		$('#upload-image-modal-update').appendTo('body');
+	// 	});
+	// 	featured.style.backgroundImage = e.target.style.backgroundImage;
+	// 	for (var i = 0; i < galleryItems.length; i++) {
+	// 		if (galleryItems[i].classList.contains('active'))
+	// 			galleryItems[i].classList.remove('active');
+	// 	}
+	// 	e.target.classList.add('active');
+	// }
+	 else {
 		featured.style.backgroundImage = e.target.style.backgroundImage;
 		for (var i = 0; i < galleryItems.length; i++) {
 			if (galleryItems[i].classList.contains('active'))
@@ -125,3 +140,6 @@ function stopMovement() {
 		galleryItems[i].addEventListener('mouseover', selectItem);
 	}
 })();
+
+
+

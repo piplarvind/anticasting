@@ -19,18 +19,15 @@ class CreateUserProfilesTable extends Migration
             $table->string('email')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('gender')->nullable();
-           
             $table->string('height')->nullable();
+            $table->string('weight')->nullable();
             $table->string('complexions')->nullable();
             $table->text('current_location')->nullable();
-
             $table->string('choose_language')->nullable();
-
-            $table->string('intro_video_link')->nullable();
             $table->string('work_reel1')->nullable();
             $table->string('work_reel2')->nullable();
             $table->string('work_reel3')->nullable();
-
+            $table->string('image')->nullable();
             $table
                 ->boolean('status')
                 ->default(0)
@@ -45,17 +42,7 @@ class CreateUserProfilesTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table
-                ->unsignedBigInteger('user_profile_image_id')
-                ->unsigned()
-                ->index()
-                ->nullable();
-            $table
-                ->foreign('user_profile_image_id')
-                ->references('id')
-                ->on('user_profiles_image')
-                ->onDelete('cascade');
-
+          
             $table->timestamps();
         });
 

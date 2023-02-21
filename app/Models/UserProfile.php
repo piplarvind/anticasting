@@ -10,15 +10,15 @@ class UserProfile extends Model
 {
     use HasFactory;
     protected $table = 'user_profiles';
-    protected $fillable = ['ethnicity', 'date_of_birth', 'gender', 'contact', 'current_location', 'choose_language', 'profile_image', 'user_id', 'email', 'status', 'user_profile_image_id'];
+    protected $fillable = ['ethnicity', 'date_of_birth', 'gender', 'contact', 'current_location', 'choose_language', 'image', 'user_id', 'email', 'status',];
     // protected $with = ['profileImage'];
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id')->select(['name' => 'name']);
+        return $this->belongsTo(User::class, 'user_id', 'id')->select(['first_name' => 'first_name','last_name'=>'last_name','mobile_no'=>'mobile_no','countryCode'=>'countryCode','email'=>'email']);
     }
-    public function imageprofile()
+    public function profileImage()
     {
-        return $this->belongsTo(UserProfileImage::class, 'user_profile_image_id', 'id');
+        return $this->hasOne(UserProfileImage::class, 'user_id', 'user_id');
     }
 
     public function scopeFilterName($query)

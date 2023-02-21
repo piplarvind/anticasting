@@ -5,8 +5,8 @@
     
     if (request()->is('*/submitProfile/edit/*')) {
         $submitButton = 'Update';
-        $method = 'PUT';
-        $action = route('users.submitProfile.update', $userProfileUpdate->id);
+        // $method = 'PUT';
+        //$action = route('users.submitProfile.update', $userProfile->id);
     }
 @endphp
 
@@ -58,7 +58,9 @@
             text-align: center;
             padding-top: 8px;
         }
-        .text-countryCode{
+
+        .text-countryCode {
+            max-width: 55px;
             text-align: center;
         }
     </style>
@@ -93,9 +95,10 @@
 
                 <div class="col-md-3">
                     @include('submit-profile.left-section')
+
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="card">
                         <div class="card-header">
                             <div class="submit-header" @if (!Request::is('*/edit/*')) style="display: flex;" @endif>
@@ -104,6 +107,7 @@
                                 </div>
                                 @if (isset($userProfile) && $userProfile->id != null)
                                     <div class="edit-btn">
+
                                         <a href="{{ route('users.submitProfile.edit', $userProfile->id) }}"
                                             style="margin-left:12px;" class="text-right btn btn-secondary">
                                             <span class="fa fa-pencil" aria-hidden="true"></span>
@@ -160,14 +164,9 @@
                                             </b><span style="color:red;">*</span>
                                         </label>
                                         <div class="input-group">
-                                            <input 
-                                            type="text" 
-                                            id="code" 
-                                            name="countryCode"
-                                            class="text-countryCode form-control" 
-                                            readonly
-                                            value="{{ old('countryCode', isset($userInfo->countryCode) ? $userInfo->countryCode : '')}}"
-                                            />
+                                            <input type="text" id="code" name="countryCode"
+                                                class="text-countryCode form-control" readonly
+                                                value="{{ old('countryCode', isset($userInfo->countryCode) ? $userInfo->countryCode : '') }}" />
                                             {{-- <input type="text" class="form-control" name="mobile_no"
                                                 placeholder="Mobile number" 
                                                 value="{{ old('mobile_no', $userInfo->mobile_no) }}"> --}}
@@ -175,8 +174,7 @@
                                             value="{{ old('mobile_no', isset($userInfo->countryCode) ? $userInfo->countryCode : '91'+ $userInfo->mobile_no) }}" /> --}}
                                             <input type="text" class="form-control" name="mobile_no"
                                                 placeholder="Mobile number"
-                                                value="{{ old('mobile_no', isset($userInfo->mobile_no) ? $userInfo->mobile_no : '') }}"
-                                                readonly />
+                                                value="{{ old('mobile_no', isset($userInfo->mobile_no) ? $userInfo->mobile_no : '') }}" />
                                             <br />
                                             @error('mobile_no')
                                                 <span style="color:red;"><b>{{ $message }}</b></span>
@@ -206,252 +204,19 @@
                                             <label class="form-label text-secondary text-gradient"
                                                 for="ethnicity"><b>Ethnicity</b>&nbsp;<span
                                                     style="color:red;">*</span></label>
-                                            <select name="ethnicity" class="form-control" id="ethnicity">
-                                                <option selected>Please Select</option>
-
-                                                <option value="Andhra Pradesh"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Andhra Pradesh') selected
-                                                     @elseif(isset($userProfile) && $userProfile->ethnicity == 'Andhra Pradesh')
-                                                   
-                                                      selected
-                                                      @else @endif>
-                                                    Andhra Pradesh
-                                                </option>
-                                                <option value="Andaman &amp; Nicobar"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Andaman & Nicobar') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Andaman & Nicobar')
-                                               
-                                                  selected @endif>
-                                                    Andaman &amp;
-                                                    Nicobar </option>
-                                                <option value="Arunachal Pradesh"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Arunachal Pradesh') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Arunachal Pradesh')
-                                               
-                                                  selected @endif>
-                                                    Arunachal Pradesh
-                                                </option>
-                                                <option value="Assam"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Assam') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Assam')
-                                               
-                                                  selected @endif>
-                                                    Assam
-                                                </option>
-                                                <option value="Bihar"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Bihar') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Bihar')
-                                               
-                                                  selected @endif>
-                                                    Bihar
-                                                </option>
-                                                <option value="Chandigarh"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Chandigarh') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Chandigarh')
-                                               
-                                                  selected @endif>
-                                                    Chandigarh</option>
-                                                <option value="Chhattisgarh"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Chhattisgarh') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Chhattisgarh')
-                                               
-                                                  selected @endif>
-                                                    Chhattisgarh
-                                                </option>
-                                                <option value="Dadar &amp; Nagar Haveli"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Dadar & Nagar Haveli') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Dadar & Nagar Haveli')
-                                               
-                                                  selected @endif>
-                                                    Dadar &amp;
-                                                    Nagar Haveli
-                                                </option>
-                                                <option value="Daman &amp; Diu"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Daman & Diu') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Daman & Diu')
-                                               
-                                                  selected @endif>
-                                                    Daman &amp; Diu
-                                                </option>
-                                                <option value="Delhi"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Delhi') selected
-                                                  @elseif(isset($userProfile) && $userProfile->ethnicity == 'Delhi')
-                                               
-                                                  selected @endif>
-                                                    Delhi
-                                                </option>
-                                                <option value="Lakshadweep"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Lakshadweep') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Lakshadweep')
-                                               
-                                                  selected @endif>
-                                                    Lakshadweep</option>
-                                                <option value="Puducherry"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Puducherry') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Puducherry')
-                                               
-                                                  selected @endif>
-                                                    Puducherry
-
-                                                </option>
-                                                <option value="Goa"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Goa') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Goa')
-                                               
-                                                  selected @endif>
-                                                    Goa
-                                                </option>
-                                                <option value="Gujarat"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Gujarat') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Gujarat')
-                                               
-                                                  selected @endif>
-                                                    Gujarat
-                                                </option>
-                                                <option value="Haryana"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Haryana') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Haryana')
-                                               
-                                                  selected @endif>
-                                                    Haryana</option>
-                                                <option value="Himachal Pradesh"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Himachal Pradesh') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Himachal Pradesh')
-                                               
-                                                  selected @endif>
-                                                    Himachal Pradesh
-                                                </option>
-                                                <option value="Jammu &amp; Kashmir"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Jammu & Kashmir') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Jammu & Kashmir')
-                                               
-                                                  selected @endif>
-                                                    Jammu &amp; Kashmir
-                                                </option>
-                                                <option value="Jharkhand"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Jharkhand') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Jharkhand')
-                                               
-                                                  selected @endif>
-                                                    Jharkhand</option>
-                                                <option value="Karnataka"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Karnataka') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Karnataka')
-                                               
-                                                  selected @endif>
-                                                    Karnataka</option>
-                                                <option value="Kerala"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Kerala') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Kerala')
-                                               
-                                                  selected @endif>
-                                                    Kerala</option>
-                                                <option value="Madhya Pradesh"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Madhya Pradesh') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Madhya Pradesh')
-                                               
-                                                  selected @endif>
-                                                    Madhya Pradesh
-                                                </option>
-                                                <option value="Maharashtra"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Maharashtra') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Maharashtra')
-                                               
-                                                  selected @endif>
-                                                    Maharashtra</option>
-                                                <option value="Manipur"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Manipur') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Manipur')
-                                               
-                                                  selected @endif>
-                                                    Manipur</option>
-                                                <option value="Meghalaya"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Meghalaya') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Meghalaya')
-                                               
-                                                  selected @endif>
-                                                    Meghalaya</option>
-                                                <option value="Mizoram"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Mizoram') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Mizoram')
-                                               
-                                                  selected @endif>
-                                                    Mizoram</option>
-                                                <option value="Nagaland"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Nagaland') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Nagaland')
-                                               
-                                                  selected @endif>
-                                                    Nagaland</option>
-                                                <option value="Odisha"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Odisha') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Odisha')
-                                               
-                                                  selected @endif>
-                                                    Odisha</option>
-                                                <option value="Other"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Other') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Other')
-                                               
-                                                  selected @endif>
-                                                    Other
-                                                </option>
-                                                <option value="Punjab"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Punjab') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Punjab')
-                                               
-                                                  selected @endif>
-                                                    Punjab</option>
-                                                <option value="Rajasthan"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Rajasthan') selected
-                                                     @elseif(isset($userProfile) && $userProfile->ethnicity == 'Rajasthan')
-                                                   
-                                                      selected @endif>
-                                                    Rajasthan</option>
-                                                <option value="Sikkim"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Sikkim') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Sikkim')
-                                               
-                                                  selected @endif>
-                                                    Sikkim</option>
-                                                <option value="Tamil Nadu"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Tamil Nadu') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Tamil Nadu')
-                                               
-                                                  selected @endif>
-                                                    Tamil Nadu</option>
-                                                <option value="Telangana"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Telangana') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Telangana')
-                                               
-                                                  selected @endif>
-                                                    Telangana</option>
-                                                <option value="Tripura"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Tripura') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Tripura')
-                                               
-                                                  selected @endif>
-                                                    Tripura</option>
-                                                <option value="Uttar Pradesh"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Uttar Pradesh') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Uttar Pradesh')
-                                               
-                                                  selected @endif>
-                                                    Uttar Pradesh
-                                                </option>
-                                                <option value="Uttarakhand"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'Uttarakhand') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'Uttarakhand')
-                                               
-                                                  selected @endif>
-                                                    Uttarakhand</option>
-                                                <option value="West Bengal"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->ethnicity == 'West Bengal') selected
-                                                 @elseif(isset($userProfile) && $userProfile->ethnicity == 'West Bengal')
-                                               
-                                                  selected @endif>
-                                                    West Bengal</option>
-                                            </select>
+                                                    <select name="ethnicity"  class="form-control" id="ethnicity">
+                                                        <option selected >Please Select</option>
+                                                        @if(isset($states))
+                                                           @foreach ($states as $item)
+                                                           <option value="{{$item->value}}"
+                                                              @if(isset($userProfile) && $userProfile->ethnicity ==$item->value) 
+                                                                 selected
+                                                                 @endif
+                                                                >
+                                                             {{$item->name}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
                                             @error('ethnicity')
                                                 <span style="color:red;"><b>{{ $message }}</b></span>
                                             @enderror
@@ -465,20 +230,20 @@
                                             <select name="gender" class="form-control" id="">
                                                 <option value="">Please Select</option>
                                                 <option value="male"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->gender == 'male') selected 
+                                                    @if (isset($userProfile) && $userProfile->gender == 'male') selected 
                                                       @elseif(isset($userProfile) && $userProfile->gender == 'male')
                                                      
                                                       selected @endif>
                                                     Male</option>
                                                 <option value="female"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->gender == 'female') selected 
+                                                    @if (isset($userProfile) && $userProfile->gender == 'female') selected 
                                                  @elseif(isset($userProfile) && $userProfile->gender == 'female')
                                                 
                                                  selected @endif>
                                                     Female
                                                 </option>
                                                 <option value="prefernottosay"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->gender == 'prefernottosay') selected 
+                                                    @if (isset($userProfile) && $userProfile->gender == 'prefernottosay') selected 
                                                  @elseif(isset($userProfile) && $userProfile->gender == 'prefernottosay')
                                                  selected @endif>
                                                     Prefer not to say
@@ -490,6 +255,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -500,10 +266,10 @@
                                                 <input type="date" id="date_of_birth" name="date_of_birth"
                                                     class="form-control"
                                                     value="{{ old('date_of_birth', isset($userProfile->date_of_birth) ? $userProfile->date_of_birth : '') }}">
-                                            @elseif(isset($userProfileUpdate->date_of_birth) != null)
+                                            @elseif(isset($userProfile->date_of_birth) != null)
                                                 <input type="date" id="date_of_birth" name="date_of_birth"
                                                     class="form-control"
-                                                    value="{{ old('date_of_birth', isset($userProfileUpdate->date_of_birth) ? $userProfileUpdate->date_of_birth : '') }}">
+                                                    value="{{ old('date_of_birth', isset($userProfile->date_of_birth) ? $userProfile->date_of_birth : '') }}">
                                             @else
                                                 <input type="date" id="date_of_birth" name="date_of_birth"
                                                     class="form-control" value="{{ old('date_of_birth') }}">
@@ -522,10 +288,10 @@
                                                 <input type="text" id="current_location" name="current_location"
                                                     class="form-control" placeholder="Enter a current loaction"
                                                     value="{{ old('current_location', isset($userProfile->current_location) ? $userProfile->current_location : '') }}">
-                                            @elseif(isset($userProfileUpdate->current_location) != null)
+                                            @elseif(isset($userProfile->current_location) != null)
                                                 <input type="text" id="current_location" name="current_location"
                                                     class="form-control" placeholder="Enter a current loaction"
-                                                    value="{{ old('current_location', isset($userProfileUpdate->current_location) ? $userProfileUpdate->current_location : '') }}">
+                                                    value="{{ old('current_location', isset($userProfile->current_location) ? $userProfile->current_location : '') }}">
                                             @else
                                                 <input type="text" id="current_location" name="current_location"
                                                     class="form-control" value="{{ old('current_location') }}"
@@ -547,10 +313,10 @@
                                                 <input type="text" id="height" name="height" class="form-control"
                                                     placeholder="Enter your height"
                                                     value="{{ old('height', isset($userProfile->height) ? $userProfile->height : '') }}">
-                                            @elseif(isset($userProfileUpdate->current_location) != null)
+                                            @elseif(isset($userProfile->current_location) != null)
                                                 <input type="text" id="height" name="height" class="form-control"
                                                     placeholder="Enter your height"
-                                                    value="{{ old('height', isset($userProfileUpdate->height) ? $userProfileUpdate->height : '') }}">
+                                                    value="{{ old('height', isset($userProfile->height) ? $userProfile->height : '') }}">
                                             @else
                                                 <input type="text" id="height" name="height"
                                                     placeholder="Enter your height" class="form-control"
@@ -569,40 +335,40 @@
                                             <select name="complexions" class="form-control" id="">
                                                 <option value="">Please Select</option>
                                                 <option value="fair"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->complexions == 'fair') selected 
+                                                    @if (isset($userProfile) && $userProfile->complexions == 'fair') selected 
                                                  @elseif(isset($userProfile) && $userProfile->complexions == 'fair')
                                                 
                                                  selected @endif>
                                                     Fair
                                                 </option>
                                                 <option value="medium"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->complexions == 'medium') selected 
+                                                    @if (isset($userProfile) && $userProfile->complexions == 'medium') selected 
                                                  @elseif(isset($userProfile) && $userProfile->complexions == 'medium')
                                                 
                                                  selected @endif>
                                                     Medium
                                                 </option>
                                                 <option value="olive"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->complexions == 'olive') selected 
+                                                    @if (isset($userProfile) && $userProfile->complexions == 'olive') selected 
                                                  @elseif(isset($userProfile) && $userProfile->complexions == 'olive')
                                                 
                                                  selected @endif>
                                                     Olive</option>
                                                 <option value="brown"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->complexions == 'brown') selected 
+                                                    @if (isset($userProfile) && $userProfile->complexions == 'brown') selected 
                                                  @elseif(isset($userProfile) && $userProfile->complexions == 'brown')
                                                 
                                                  selected @endif>
                                                     Brown
                                                 </option>
                                                 <option value="black"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->complexions == 'black') selected 
+                                                    @if (isset($userProfile) && $userProfile->complexions == 'black') selected 
                                                  @elseif(isset($userProfile) && $userProfile->complexions == 'black')
                                                  selected @endif>
                                                     Black
                                                 </option>
                                                 <option value="extremely &amp; fair"
-                                                    @if (isset($userProfileUpdate) && $userProfileUpdate->complexions == 'extremely & fair') selected 
+                                                    @if (isset($userProfile) && $userProfile->complexions == 'extremely & fair') selected 
                                                  @elseif(isset($userProfile) && $userProfile->complexions == 'extremely & fair')
                                                 
                                                  selected @endif>
@@ -676,7 +442,7 @@
                                                     class="form-control">
                                                     <option value=" ">Choose language</option>
                                                     <option value="videos/sample_video_english.mp4"
-                                                        @if (isset($userProfileUpdate) && $userProfileUpdate->choose_language == 'videos/sample_video_english.mp4') selected 
+                                                        @if (isset($userProfile) && $userProfile->choose_language == 'videos/sample_video_english.mp4') selected 
                                                      @elseif(isset($userProfile) && $userProfile->choose_language == 'videos/sample_video_english.mp4')
                                                    
                                                      selected @endif>
@@ -684,7 +450,7 @@
 
                                                     </option>
                                                     <option value="videos/sample_video_hindi.mp4"
-                                                        @if (isset($userProfileUpdate) && $userProfileUpdate->choose_language == 'videos/sample_video_hindi.mp4') selected 
+                                                        @if (isset($userProfile) && $userProfile->choose_language == 'videos/sample_video_hindi.mp4') selected 
                                                      @elseif(isset($userProfile) && $userProfile->choose_language == 'videos/sample_video_hindi.mp4')
                                                   
                                                      selected @endif>
@@ -712,10 +478,10 @@
                                                 <input type="text" id="intro_video_link" name="intro_video_link"
                                                     class="form-control" placeholder="Enter intro video link"
                                                     value="{{ old('intro_video_link', isset($userProfile->intro_video_link) ? $userProfile->intro_video_link : '') }}">
-                                            @elseif(isset($userProfileUpdate->intro_video_link) != null)
+                                            @elseif(isset($userProfile->intro_video_link) != null)
                                                 <input type="text" id="intro_video_link" name="intro_video_link"
                                                     class="form-control" placeholder="Enter intro video link"
-                                                    value="{{ old('intro_video_link', isset($userProfileUpdate->intro_video_link) ? $userProfileUpdate->intro_video_link : '') }}">
+                                                    value="{{ old('intro_video_link', isset($userProfile->intro_video_link) ? $userProfile->intro_video_link : '') }}">
                                             @else
                                                 <input type="text" id="intro_video_link" name="intro_video_link"
                                                     class="form-control" placeholder="Enter intro video link"
@@ -728,6 +494,7 @@
                                     </div>
                                 </div>
                                 <br />
+                                {{--  
                                 <div class="row">
                                     <div class="col-md-4 col-lg-4 col-sm-4">
                                         <div class="form-group text-secondary text-gradient">
@@ -740,11 +507,11 @@
                                                     </iframe>
 
                                                 </div>
-                                            @elseif (isset($userProfileUpdate) && $userProfileUpdate->work_reel1 != null)
+                                            @elseif (isset($userProfile) && $userProfile->work_reel1 != null)
                                                 <div id="" class="yt-video">
                                                     <iframe id="" style="max-width:100%;height:100%;"
                                                         type="video/mp4"
-                                                        src="{{ $userProfileUpdate->work_reel1 }}?&autoplay=1"frameborder="0"
+                                                        src="{{ $userProfile->work_reel1 }}?&autoplay=1"frameborder="0"
                                                         allowfullscreen>
                                                     </iframe>
 
@@ -753,7 +520,7 @@
                                                     for="WorkReels"><b>Work Reel 1</b></label>
                                                 <input type="text" placeholder="Work Reel" class="form-control "
                                                     name="work_reel1" id="work_reel1"
-                                                    value="{{ old('work_reel1', isset($userProfileUpdate->work_reel1) ? $userProfileUpdate->work_reel1 : ' ') }}">
+                                                    value="{{ old('work_reel1', isset($userProfile->work_reel1) ? $userProfile->work_reel1 : ' ') }}">
                                             @else
                                                 <img src="{{ asset('assets/website/images/stop_youtube_icon.jfif') }}"
                                                     style="max-width:50%;height:50%;" id="work_reel1_img"
@@ -763,7 +530,7 @@
                                                     for="WorkReels"><b>Work Reel 1</b></label>
                                                 <input type="text" placeholder="Work Reel" class="form-control reel"
                                                     name="work_reel1" id="work_reel1"
-                                                    value="{{ old('work_reel1', isset($userProfileUpdate->work_reel1) ? $userProfileUpdate->work_reel1 : '') }}">
+                                                    value="{{ old('work_reel1', isset($userProfile->work_reel1) ? $userProfile->work_reel1 : '') }}">
                                                 @error('work_reel1')
                                                     <span style="color:red;"><b>{{ $message }}</b></span>
                                                 @enderror
@@ -781,11 +548,11 @@
                                                     </iframe>
 
                                                 </div>
-                                            @elseif (isset($userProfileUpdate) && $userProfileUpdate->work_reel2 != null)
+                                            @elseif (isset($userProfile) && $userProfile->work_reel2 != null)
                                                 <div id="" class="yt-video">
                                                     <iframe id="" style="max-width:100%;height:100%;"
                                                         type="video/mp4"
-                                                        src="{{ $userProfileUpdate->work_reel2 }}?&autoplay=1"frameborder="0"
+                                                        src="{{ $userProfile->work_reel2 }}?&autoplay=1"frameborder="0"
                                                         allowfullscreen>
                                                     </iframe>
 
@@ -794,7 +561,7 @@
                                                     for="WorkReels"><b>Work Reel 2</b></label>
                                                 <input placeholder="Work Reel" class="form-control " type="text"
                                                     name="work_reel2" id="work_reel2"
-                                                    value="{{ old('work_reel2', isset($userProfileUpdate->work_reel2) ? $userProfileUpdate->work_reel2 : ' ') }}">
+                                                    value="{{ old('work_reel2', isset($userProfile->work_reel2) ? $userProfile->work_reel2 : ' ') }}">
                                             @else
                                                 <img src="{{ asset('assets/website/images/stop_youtube_icon.jfif') }}"
                                                     style="max-width:50%;height:50%;" id="work_reel2_img"
@@ -804,7 +571,7 @@
                                                     for="WorkReels"><b>Work Reel 2</b></label>
                                                 <input placeholder="Work Reel" class="form-control reel" type="text"
                                                     name="work_reel2" id="work_reel2"
-                                                    value="{{ old('work_reel2', isset($userProfileUpdate->work_reel2) ? $userProfileUpdate->work_reel2 : ' ') }}" />
+                                                    value="{{ old('work_reel2', isset($userProfile->work_reel2) ? $userProfile->work_reel2 : ' ') }}" />
                                                 @error('work_reel2')
                                                     <span style="color:red;"><b>{{ $message }}</b></span>
                                                 @enderror
@@ -821,11 +588,11 @@
                                                     </iframe>
 
                                                 </div>
-                                            @elseif (isset($userProfileUpdate) && $userProfileUpdate->work_reel3 != null)
+                                            @elseif (isset($userProfile) && $userProfile->work_reel3 != null)
                                                 <div id="" class="yt-video">
                                                     <iframe id="" style="max-width:100%;height:100%;"
                                                         type="video/mp4"
-                                                        src="{{ $userProfileUpdate->work_reel3 }}?&autoplay=1"frameborder="0"
+                                                        src="{{ $userProfile->work_reel3 }}?&autoplay=1"frameborder="0"
                                                         allowfullscreen>
                                                     </iframe>
 
@@ -834,7 +601,7 @@
                                                     for="WorkReels"><b>Work Reel 3</b></label>
                                                 <input placeholder="Work Reel" class="form-control " type="text"
                                                     name="work_reel3" id="work_reel3"
-                                                    value="{{ old('work_reel3', isset($userProfileUpdate->work_reel3) ? $userProfileUpdate->work_reel3 : ' ') }}">
+                                                    value="{{ old('work_reel3', isset($userProfile->work_reel3) ? $userProfile->work_reel3 : ' ') }}">
                                             @else
                                                 <img src="{{ asset('assets/website/images/stop_youtube_icon.jfif') }}"
                                                     style="max-width:50%;height:50%;" id="work_reel3_img"
@@ -844,7 +611,7 @@
                                                     for="WorkReels"><b>Work Reel 3</b></label>
                                                 <input placeholder="Work Reel" class="form-control reel" type="text"
                                                     name="work_reel3" id="work_reel3"
-                                                    value="{{ old('work_reel3', isset($userProfileUpdate->work_reel3) ? $userProfileUpdate->work_reel3 : ' ') }}" />
+                                                    value="{{ old('work_reel3', isset($userProfile->work_reel3) ? $userProfile->work_reel3 : ' ') }}" />
                                                 @error('work_reel3')
                                                     <span style="color:red;"><b>{{ $message }}</b></span>
                                                 @enderror
@@ -852,9 +619,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                --}}
                                 <center>
                                     <br />
-                                    @if ($submitButton == 'Submit' && $userProfile == null )
+                                    @if ($submitButton == 'Submit')
                                         <button type="submit" style="background:red;" class="btn btn-danger"
                                             id="btnPlay">{{ $submitButton }}</button>
                                     @elseif($submitButton == 'Update')
@@ -867,7 +635,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     @include('submit-profile.right-section')
                 </div>
             </div>
@@ -881,6 +649,13 @@
     {{-- @laravelTelInputScripts --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/intlTelInput.js"></script> --}}
     <script src="{{ asset('assets/website/js/submit-profile/submit-profile.js') }}"></script>
-    <script async defer src="{{ asset('assets/website/js/submit-profile/image-gallery.js') }}"></script>
-   
+     
+   // <script async defer src="{{ asset('assets/website/js/submit-profile/image-gallery.js') }}"></script>
+    <script src="{{ asset('assets/website/js/submit-profile/workreel-video-gallery.js') }}"></script>
+    <script>
+        $('#SubmitMessage').on('click', function(e) {
+            $('.input-hide').hide();
+
+        })
+    </script>
 @endsection
