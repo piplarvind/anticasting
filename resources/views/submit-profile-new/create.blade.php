@@ -63,9 +63,9 @@
                                         <div class="mb-3">
                                             <label class="form-label">Phone number</label>
                                             <div class="input-group">
-                                                <span class="input-group-text"
-                                                    id="basic-addon1">+{{ $userInfo->countryCode}}</span>
-                                                <input type="text" class="form-control w-85" name="mobile_no" readonly
+                                                <input type="text" class="form-control d-flex justify-content-end" name="countryCode" readonly
+                                                value="{{ old('countryCode', $userInfo->countryCode) }}" />
+                                                <input type="text" class="form-control w-50 d-flex text-left" name="mobile_no" readonly
                                                     value="{{ old('mobile_no', $userInfo->mobile_no) }}" />
                                             </div>
                                         </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\{User, UserProfile, UserProfileImage, State};
+use App\Models\{User, UserProfile, UserProfileImage,IntroVideo,State};
 use App\Helpers\GeneralHelper;
 use App\Modules\Message\Models\{MessageReply, Message};
 
@@ -24,12 +24,13 @@ class ProfileController extends Controller
             ])
             ->first();
         $userProfile = UserProfile::where('user_id', $userid)->first();
+        $userIntroVideo = IntroVideo::where('user_id', $userid)->first();
         //    dd($userProfile);
         $userInfo = User::where('id', $userid)->first();
         $states = State::all();
       
      
-        return view('submit-profile-new.create', compact('user', 'userProfile', 'userInfo', 'states'));
+        return view('submit-profile-new.create', compact('user', 'userProfile', 'userInfo', 'states','userIntroVideo'));
     }
     public function submitProfileStore(Request $request)
     {
@@ -172,21 +173,44 @@ class ProfileController extends Controller
         }
     }
     public function IntroVideo(Request $request){
+       
         $request->validate(
             [
-            'intro_video' => [
-                'required',
+            'intro_video_hindi' => [
                 'url',
                 function ($attribute, $requesturl, $failed) {
                     if (!preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $requesturl)) {
-                        $failed(trans('Intro video link should be youtube url', ['name' => trans('general.url')]));
+                        $failed(trans('Intro hindi video link should be youtube url', ['name' => trans('general.url')]));
+                    }
+                },
+            ],
+            'intro_video_english' => [
+                'url',
+                function ($attribute, $requesturl, $failed) {
+                    if (!preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $requesturl)) {
+                        $failed(trans('Intro english video link should be youtube url', ['name' => trans('general.url')]));
                     }
                 },
             ],
         ],
         [
-           'intro_video.required' => 'Please enter a intro video url',
-           'intro_video.url' => 'The intro video link must be a valid URL.',
+           'intro_video_english.url' => 'The intro english video link must be a valid URL.',
+           'intro_video_hindi.url' => 'The intro hindi video link must be a valid URL.',
         ]);
+       
+        $user_introvideo = IntroVideo::where('user_id', auth()->user()->id)->first();
+       if(!isset($user_introvideo)){
+            $user_introvideo = new IntroVideo();
+        }
+        $user_introvideo->user_id=auth()->user()->id;
+        if ($request->has('intro_video_hindi')) {
+            $user_introvideo->hindi_video = GeneralHelper::getYoutubeEmbedUrl($request->intro_video_hindi);
+        }
+        $user_introvideo->user_id=auth()->user()->id;
+        if ($request->has('intro_video_english')) {
+            $user_introvideo->english_video = GeneralHelper::getYoutubeEmbedUrl($request->intro_video_english);
+        }
+        $user_introvideo->save();
+        return redirect()->back();
     }
 }

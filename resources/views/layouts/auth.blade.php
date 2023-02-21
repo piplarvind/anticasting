@@ -8,10 +8,12 @@
     <meta name="author" content="" />
     <title>Anticasting | Register</title>
     <link href="{{ asset('assets/website/css/style.css') }}" rel="stylesheet" />
-
-    <link href="{{ asset('assets/auth/css/styles.css') }}" rel="stylesheet" />
+    {{-- Header and footer css --}}
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/style.css') }}" />
+    {{-- Register form page and Login form page css --}}
+    <link href="{{ asset('assets/auth/css/styles.css') }}" rel="stylesheet" />{{--  --}}
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    
+
     @yield('header')
     <script>
         var url = "{{ url('/') }}";
@@ -25,9 +27,14 @@
 </style>
 
 <body>
-    <div id="layoutAuthentication_content">
+   <div id="layoutAuthentication_content">
+      
         <main>
+            {{-- Header Start --}}
+            @include('include.submitprofile.header')
+            {{-- Header End --}}
             <div class="container">
+             
                     @yield('content')
 
                 </div>

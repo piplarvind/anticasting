@@ -122,6 +122,8 @@
     </div>
 @endsection
 @section('footer')
+ <!--Footer of Submit profile css -->
+@include('include.submitprofile.footer')
     <script src="{{ asset('assets/website/js/jquery.validate.min.js') }}"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script> --}}

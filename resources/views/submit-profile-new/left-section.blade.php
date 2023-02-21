@@ -3,8 +3,9 @@
     <div class="card-body">
         <div class="d-flex justify-content-between">
             <h3 class="h6">Headshot Images</h3>
-            <div class="info"  style="cursor: pointer;">
-                <a tabindex="0"  data-bs-placement="top" data-bs-toggle="popover" data-bs-content-id="popover-content" data-bs-trigger="focus" title="Headshot Image">
+            <div class="info" style="cursor: pointer;">
+                <a tabindex="0" data-bs-placement="top" data-bs-toggle="popover" data-bs-content-id="popover-content"
+                    data-bs-trigger="focus" title="Headshot Image">
                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                 </a>
             </div>
@@ -66,14 +67,59 @@
                 </div>
             </div>
             <div class="sample-yt-video mt-2">
-                <iframe id="hindi_video" class="video" style="width:100%;"
-                    src="https://www.youtube.com/embed/dpu3O3LdjJs">
-                </iframe>
-                <iframe id="english_video" class="video" style="width:100%;"
-                    src="https://www.youtube.com/embed/Tj1w86bw4EM">
-                </iframe>
+                <form action="{{ route('users.introvideos') }}" method="post">
+                    @csrf
+                    <div id="hindi_video">
+                        @if (isset($userIntroVideo) && $userIntroVideo->hindi_video != null)
+                            <iframe class="video" style="width:100%;" src="{{ $userIntroVideo->hindi_video }}">
+                            </iframe>
+                        @else
+                            <iframe class="video" style="width:100%;" src="https://www.youtube.com/embed/dpu3O3LdjJs">
+                            </iframe>
+                        @endif
+                        <div class="input-group mt-3">
+                            <input type="text" name="intro_video_hindi" class="form-control"
+                                placeholder="Enter hindi video link" />
+                            @error('intro_video_hindi')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mt-3">
+                            <input type="submit" style="background-color: #ff5b00;" class="btn btn-sm" id="btn"
+                                value="Save" tabindex="75" />
+                        </div>
+                    </div>
+                </form>
+                <form action="{{ route('users.introvideos') }}" method="post">
+                    @csrf
+                    <div id="english_video">
+                        @if (isset($userIntroVideo) && $userIntroVideo->english_video != null)
+                            <iframe class="video" style="width:100%;" src="{{ $userIntroVideo->english_video }}">
+                            </iframe>
+                        @else
+                            <iframe class="video" style="width:100%;" src="https://www.youtube.com/embed/Tj1w86bw4EM">
+                            </iframe>
+                        @endif
+                        <div class="input-group mt-3">
+                            <input type="text" name="intro_video_english" class="form-control"
+                                placeholder="Enter english video link" />
+                            @error('intro_video_english')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mt-3">
+                            <input type="submit" style="background-color: #ff5b00;" class="btn btn-sm"
+                                id="btn" value="Save" tabindex="75" />
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
+        {{-- 
         <form action="{{route('users.introvideos')}}" method="post">
             @csrf
             <div class="video-input mb-2">
@@ -89,7 +135,8 @@
                 
             </div>
         </form>
-         <iframe style="width: 100%;" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+         --}}
+        <iframe style="width: 100%;" src="https://www.youtube.com/embed/tgbNymZ7vqY">
         </iframe>
     </div>
 </div>
