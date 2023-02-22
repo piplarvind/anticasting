@@ -8,7 +8,7 @@
             </div>
             <ul class="breadcrumb-nav">
               <li>
-                <a href="index.html">Home</a>
+                <a href="{{ route('users.home') }}">Home</a>
               </li>
               <li>Service Details</li>
             </ul>

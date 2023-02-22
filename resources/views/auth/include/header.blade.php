@@ -19,19 +19,8 @@
                         <div class="collapse navbar-collapse sub-menu-bar justify-content-end"
                             id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <a href="{{ url('/') }}">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('/about') }}">About Us</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="services.html">Our Work</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('/contact') }}">Contact</a>
-                                </li>
-                                  @auth
+
+                                @auth
                                     <li class="nav-item">
                                         <a class="active" href="{{ route('users.submitProfile') }}">Submit Profile</a>
                                     </li>
@@ -39,36 +28,40 @@
                                         <a href="{{ route('users.logout') }}">Logout</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#">{{ auth()->user()->first_name ." ". auth()->user()->last_name}}</a>
+                                        <a
+                                            href="#">{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</a>
                                     </li>
                                 @else
+                                    <li class="nav-item">
+                                        <a href="{{ route('users.register') }}">Register</a>
+                                    </li>
                                     <li class="nav-item">
                                         <a href="{{ route('users.login') }}">Login</a>
                                     </li>
                                 @endauth
                                 <!-- <li class="nav-item">
-                    <a href="#">Pages</a>
-                    <ul class="sub-menu">
-                      <li>
-                        <a href="about-us.html">About Us</a>
-                      </li>
-                      <li>
-                        <a href="pricing.html">Our Pricing</a>
-                      </li>
-                      <li>
-                        <a href="404.html">404 Error</a>
-                      </li>
-                      <li>
-                        <a href="mail-success.html">Mail Success</a>
-                      </li>
-                    </ul>
-                  </li> -->
+                  <a href="#">Pages</a>
+                  <ul class="sub-menu">
+                    <li>
+                      <a href="about-us.html">About Us</a>
+                    </li>
+                    <li>
+                      <a href="pricing.html">Our Pricing</a>
+                    </li>
+                    <li>
+                      <a href="404.html">404 Error</a>
+                    </li>
+                    <li>
+                      <a href="mail-success.html">Mail Success</a>
+                    </li>
+                  </ul>
+                </li> -->
 
                             </ul>
                         </div>
                         <!-- <div class="button">
-                <a href="contact.html" class="btn">Get it now</a>
-              </div> -->
+              <a href="contact.html" class="btn">Get it now</a>
+            </div> -->
                     </nav>
                 </div>
             </div>

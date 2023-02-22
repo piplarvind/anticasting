@@ -6,23 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\{User, UserProfile, UserProfileImage,IntroVideo,State};
 use App\Helpers\GeneralHelper;
-use App\Modules\Message\Models\{MessageReply, Message};
-
 class ProfileController extends Controller
 {
     public function submitProfile()
     {
         $userid = auth()->user()->id;
-        $user = User::where('id', $userid)
-            ->with([
-                'images' => function ($image) {
-                    $image
-                        ->offset(0)
-                        ->orderBy('id', 'ASC')
-                        ->limit(2);
-                },
-            ])
-            ->first();
+        // $user = User::where('id', $userid)
+        //     ->with([
+        //         'images' => function ($image) {
+        //             $image
+        //                 ->offset(0)
+        //                 ->orderBy('id', 'ASC')
+        //                 ->limit(2);
+        //         },
+        //     ])
+        //     ->first();
         $userProfile = UserProfile::where('user_id', $userid)->first();
         $userIntroVideo = IntroVideo::where('user_id', $userid)->first();
         //    dd($userProfile);
@@ -30,7 +28,7 @@ class ProfileController extends Controller
         $states = State::all();
       
      
-        return view('submit-profile-new.create', compact('user', 'userProfile', 'userInfo', 'states','userIntroVideo'));
+        return view('submit-profile-new.create', compact( 'userProfile', 'userInfo', 'states','userIntroVideo'));
     }
     public function submitProfileStore(Request $request)
     {
@@ -103,10 +101,7 @@ class ProfileController extends Controller
             $user->last_name = $request->last_name;
             $user->countryCode = $request->countryCode;
             $user->mobile_no = str_replace(' ', '', $request->mobile_no);
-            // $user->email = $request->email;
-            // $user->mobile_no = $request->mobile_no;
             $user->save();
-
             $user_profile = UserProfile::where('user_id', auth()->user()->id)->first();
             if (!isset($user_profile)) {
                 $user_profile = new UserProfile();
@@ -132,26 +127,26 @@ class ProfileController extends Controller
             return redirect()->route('users.login');
         }
     }
-    public function submitWorkReel(Request $request)
-    {
-        //  dd($request->all());
-        $user_profile = UserProfile::where('user_id', auth()->user()->id)->first();
-        if (!isset($user_profile)) {
-            $user_profile = new UserProfile();
-        }
-        $user_profile->user_id = auth()->user()->id;
-        if ($request->has('work_reel1')) {
-            $user_profile->work_reel1 = GeneralHelper::getYoutubeEmbedUrl($request->work_reel1);
-        }
-        if ($request->has('work_reel2')) {
-            $user_profile->work_reel2 = GeneralHelper::getYoutubeEmbedUrl($request->work_reel2);
-        }
-        if ($request->has('work_reel3')) {
-            $user_profile->work_reel3 = GeneralHelper::getYoutubeEmbedUrl($request->work_reel3);
-        }
-        $user_profile->save();
-        return redirect()->back();
-    }
+    // public function submitWorkReel(Request $request)
+    // {
+    //     //  dd($request->all());
+    //     $user_profile = UserProfile::where('user_id', auth()->user()->id)->first();
+    //     if (!isset($user_profile)) {
+    //         $user_profile = new UserProfile();
+    //     }
+    //     $user_profile->user_id = auth()->user()->id;
+    //     if ($request->has('work_reel1')) {
+    //         $user_profile->work_reel1 = GeneralHelper::getYoutubeEmbedUrl($request->work_reel1);
+    //     }
+    //     if ($request->has('work_reel2')) {
+    //         $user_profile->work_reel2 = GeneralHelper::getYoutubeEmbedUrl($request->work_reel2);
+    //     }
+    //     if ($request->has('work_reel3')) {
+    //         $user_profile->work_reel3 = GeneralHelper::getYoutubeEmbedUrl($request->work_reel3);
+    //     }
+    //     $user_profile->save();
+    //     return redirect()->back();
+    // }
 
     public function uploadUserImage(Request $request)
     {
@@ -211,6 +206,6 @@ class ProfileController extends Controller
             $user_introvideo->english_video = GeneralHelper::getYoutubeEmbedUrl($request->intro_video_english);
         }
         $user_introvideo->save();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Your intro video saved.');
     }
 }

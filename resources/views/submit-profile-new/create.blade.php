@@ -2,18 +2,19 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/website/css/image-gallery.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/auth/toastr.min.css') }}" />
+    <link rel="stylesheet" href="{{asset('assets/website/css/alertbox.css')}}"/>
 @endsection
 @section('header')
     @include('include.submitprofile.image-header')
 @endsection
 @section('content')
-    <section id="contact-us" class="contact-us section">
-        <script>
-            @if (Session::has('message'))
-                 alert("{{ Session::get('message') }}");
-               
-            @endif
-        </script>
+ <section id="contact-us" class="contact-us section">
+
+        @if (Session::has('message'))
+            <div id="success" title="Success">
+                <p>{{ Session::get('message') }}</p>
+            </div>
+        @endif
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-12">
@@ -62,11 +63,17 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label">Phone number</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control d-flex justify-content-end" name="countryCode" readonly
-                                                value="{{ old('countryCode', $userInfo->countryCode) }}" />
-                                                <input type="text" class="form-control w-50 d-flex text-left" name="mobile_no" readonly
+                                            <div class="input-group mb-3">
+                                                <!--
+                                                            <span class="input-group-text" style="width:10px;">+</span>
+                                                            -->
+                                                <input type="text" class="form-control" name="countryCode" readonly
+                                                    style="width:15px;"
+                                                    value="{{ old('countryCode', $userInfo->countryCode) }}" />
+                                                <input type="text" class="form-control d-flex text-left" name="mobile_no"
+                                                    readonly style="width:248px;"
                                                     value="{{ old('mobile_no', $userInfo->mobile_no) }}" />
+
                                             </div>
                                         </div>
                                     </div>
@@ -254,8 +261,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" style="background-color: #ff5b00;" class="btn btn-sm" id="btn" value="Submit"
-                            tabindex="75">
+                        <input type="submit" style="background-color: #ff5b00;" class="btn btn-sm" id="btn"
+                            value="Submit" tabindex="75">
                     </form>
                 </div>
                 <div class="col-lg-4 col-12">
@@ -266,10 +273,50 @@
     </section>
 @endsection
 @section('footer')
-    @include('include.submitprofile.footer')
     <script>
         var images = @json($userInfo?->images?->pluck('image')?->toArray());
     </script>
-    
     <script src="{{ asset('assets/website/js/submit-profile/image-gallery.js') }}"></script>
+    <script>
+        $(function() {
+            $("#success").dialog({
+                autoOpen: true,
+                modal: true,
+                width: 350,
+                height: 150,
+                  buttons: [
+                    // {
+                    //     text: 'Yes, proceed!',
+                    //     open: function() {
+                    //         $(this).addClass('yescls')
+                    //     },
+                    //     click: function() {
+                    //         $(this).dialog("close")
+                    //     }
+                    // },
+                    {
+                        text: "OK",
+                        open: function() {
+                            $(this).addClass('okcls')
+                        },
+                        click: function() {
+                            $(this).dialog("close")
+                        }
+                    }
+                ],
+                show: {
+                    effect: "bounce",
+                    duration: 1500
+                },
+                hide: {
+                    effect: "fade",
+                    duration: 1000
+                },
+                open: function(event, ui) {
+                    $(".ui-dialog-titlebar", $(this).parent())
+                        .hide();
+                }
+            });
+        });
+    </script>
 @endsection

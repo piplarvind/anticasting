@@ -71,10 +71,12 @@
                     @csrf
                     <div id="hindi_video">
                         @if (isset($userIntroVideo) && $userIntroVideo->hindi_video != null)
-                            <iframe class="video" style="width:100%;" src="{{ $userIntroVideo->hindi_video }}">
+                            <iframe class="video" style="width:100%;" src="{{ $userIntroVideo->hindi_video }}"
+                             allowfullscreen="true">
                             </iframe>
                         @else
-                            <iframe class="video" style="width:100%;" src="https://www.youtube.com/embed/dpu3O3LdjJs">
+                            <iframe class="video" style="width:100%;" src="https://www.youtube.com/embed/dpu3O3LdjJs"
+                            allowfullscreen="true">
                             </iframe>
                         @endif
                         <div class="input-group mt-3">
@@ -96,10 +98,12 @@
                     @csrf
                     <div id="english_video">
                         @if (isset($userIntroVideo) && $userIntroVideo->english_video != null)
-                            <iframe class="video" style="width:100%;" src="{{ $userIntroVideo->english_video }}">
+                            <iframe class="video" style="width:100%;" src="{{ $userIntroVideo->english_video }}"
+                                allowfullscreen="true">
                             </iframe>
                         @else
-                            <iframe class="video" style="width:100%;" src="https://www.youtube.com/embed/Tj1w86bw4EM">
+                            <iframe class="video" style="width:100%;" src="https://www.youtube.com/embed/Tj1w86bw4EM"
+                            allowfullscreen="true">
                             </iframe>
                         @endif
                         <div class="input-group mt-3">
