@@ -2,13 +2,12 @@
 @section('content')
     <section id="contact-us" class="contact-us section">
         @if (Session::has('message'))
-            <script></script>
 
-            <div id="dialog" title="Error">
+            <div id="success" title="Success">
                 <p>{{ Session::get('message') }}</p>
             </div>
         @elseif (Session::has('error'))
-            <div id="dialog" title="Error">
+            <div id="error" title="Error">
                 <p>{{ Session::get('error') }}</p>
             </div>
         @endif
@@ -63,11 +62,11 @@
                             </form>
                         </div>
                         <div class="row">
-                            <div class="col-lg-5 col-md-4 col-sm-2" style="margin-left:0px;">
+                            <div class="col-lg-5 col-md-4 col-sm-2  mb-1  ms-3">
                                 <a class="small text-danger" href="{{ route('users.forgot-password') }}"><b>Forgot
                                         Password?</b></a>
                             </div>
-                            <div class="col-md-6 mb-5">
+                            <div class="col-md-6 mb-5 ms-3">
                                 <a class="small text-danger" href="{{ route('users.register') }}"><b>Need an
                                         account? Sign up!</b></a>
                             </div>
@@ -83,14 +82,12 @@
 @endsection
 @section('footer')
     <script src="{{ asset('assets/website/js/jquery.validate.min.js') }}"></script>
-
-    <script src="{{ asset('assets/auth/js/scripts.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>
     <script type="text/javascript">
         $(function() {
-            $("#dialog").dialog({
+            $("#error").dialog({
                 autoOpen: true,
                 modal: true,
                 buttons: [
@@ -112,6 +109,36 @@
                             $(this).dialog("close")
                         }
                     }
+                ],
+                show: {
+                    effect: "bounce",
+                    duration: 1500
+                },
+                hide: {
+                    effect: "fade",
+                    duration: 1000
+                },
+                open: function(event, ui) {
+                    $(".ui-dialog-titlebar", $(this).parent())
+                        .hide();
+                }
+            });
+        });
+        $(function() {
+            $("#success").dialog({
+                autoOpen: true,
+                modal: true,
+                buttons: [
+                    {
+                        text: 'Yes, proceed!',
+                        open: function() {
+                            $(this).addClass('yescls')
+                        },
+                        click: function() {
+                            $(this).dialog("close")
+                        }
+                    },
+                   
                 ],
                 show: {
                     effect: "bounce",

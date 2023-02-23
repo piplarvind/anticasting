@@ -46,14 +46,14 @@
     -ms-touch-action: none;
     touch-action: none;
 }
-/* .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .yescls
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .yescls
 {
     font-size:15px;
     color: #FFFFFF;
     width: 150px;
     background: #90C93E;
     
-} */
+}
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .okcls
 {
     font-size:15px;

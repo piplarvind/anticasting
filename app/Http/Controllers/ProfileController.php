@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\{User, UserProfile, UserProfileImage,IntroVideo,State};
+use App\Models\{User, UserProfile, UserProfileImage, IntroVideo, State};
 use App\Helpers\GeneralHelper;
 class ProfileController extends Controller
 {
@@ -26,9 +26,8 @@ class ProfileController extends Controller
         //    dd($userProfile);
         $userInfo = User::where('id', $userid)->first();
         $states = State::all();
-      
-     
-        return view('submit-profile-new.create', compact( 'userProfile', 'userInfo', 'states','userIntroVideo'));
+
+        return view('submit-profile-new.create', compact('userProfile', 'userInfo', 'states', 'userIntroVideo'));
     }
     public function submitProfileStore(Request $request)
     {
@@ -44,7 +43,7 @@ class ProfileController extends Controller
                 'height' => 'required',
                 'weight' => 'required',
                 'complexions' => 'required',
-                
+
                 'work_reel1' => [
                     'required',
                     'url',
@@ -72,7 +71,6 @@ class ProfileController extends Controller
                         }
                     },
                 ],
-                
             ],
             [
                 'first_name.required' => 'Please enter a firstname',
@@ -150,62 +148,78 @@ class ProfileController extends Controller
 
     public function uploadUserImage(Request $request)
     {
+        
+        // $request->validate(
+        //     [
+        //         'picture' => 'required',
+        //     ],
+        //     [
+        //         'picture.required' => 'Please select an image.',
+        //     ],
+        // );
+       // dd($request->all());
         $userId = auth()->user()->id;
-        $profile_image = new UserProfileImage();
-        if (auth()->user()) {
-            if ($request->file('picture')) {
-                $images = $request->file('picture');
-                $filename = $images->getClientOriginalName();
-                $image_name = time() . '-' . $filename;
-                $profile_image->image = $image_name;
-                $ImagePath = $images->move('upload/profile', $image_name);
-                $profile_image->user_id = $userId;
-                $profile_image->save();
-                return redirect()->back();
+        if ($request->file('picture')) {
+            $profile_image = new UserProfileImage();
+            if ($request->has('old_image') && $request->old_image != 'undefined') {
+                $fileinfo = pathinfo($request->old_image);
+                $oldFilename = $fileinfo['basename'];
+                $profile_image = UserProfileImage::where('user_id', $userId)
+                    ->where('image', $oldFilename)
+                    ->first();
             }
-        } else {
-            return redirect()->route('users.login');
+            $images = $request->file('picture');
+            $filename = $images->getClientOriginalName();
+            $image_name = time() . '-' . $filename;
+            $profile_image->image = $image_name;
+            $ImagePath = $images->move('upload/profile', $image_name);
+            $profile_image->user_id = $userId;
+            $profile_image->save();
+            return redirect()->back();
         }
     }
-    public function IntroVideo(Request $request){
-       
+    public function IntroVideo(Request $request)
+    {
         $request->validate(
             [
-            'intro_video_hindi' => [
-                'url',
-                function ($attribute, $requesturl, $failed) {
-                    if (!preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $requesturl)) {
-                        $failed(trans('Intro hindi video link should be youtube url', ['name' => trans('general.url')]));
-                    }
-                },
+                'intro_video_hindi' => [
+                    'url',
+                    function ($attribute, $requesturl, $failed) {
+                        if (!preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $requesturl)) {
+                            $failed(trans('Intro hindi video link should be youtube url', ['name' => trans('general.url')]));
+                        }
+                    },
+                ],
+                'intro_video_english' => [
+                    'url',
+                    function ($attribute, $requesturl, $failed) {
+                        if (!preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $requesturl)) {
+                            $failed(trans('Intro english video link should be youtube url', ['name' => trans('general.url')]));
+                        }
+                    },
+                ],
             ],
-            'intro_video_english' => [
-                'url',
-                function ($attribute, $requesturl, $failed) {
-                    if (!preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $requesturl)) {
-                        $failed(trans('Intro english video link should be youtube url', ['name' => trans('general.url')]));
-                    }
-                },
+            [
+                'intro_video_english.url' => 'The intro english video link must be a valid URL.',
+                'intro_video_hindi.url' => 'The intro hindi video link must be a valid URL.',
             ],
-        ],
-        [
-           'intro_video_english.url' => 'The intro english video link must be a valid URL.',
-           'intro_video_hindi.url' => 'The intro hindi video link must be a valid URL.',
-        ]);
-       
+        );
+
         $user_introvideo = IntroVideo::where('user_id', auth()->user()->id)->first();
-       if(!isset($user_introvideo)){
+        if (!isset($user_introvideo)) {
             $user_introvideo = new IntroVideo();
         }
-        $user_introvideo->user_id=auth()->user()->id;
+        $user_introvideo->user_id = auth()->user()->id;
         if ($request->has('intro_video_hindi')) {
             $user_introvideo->hindi_video = GeneralHelper::getYoutubeEmbedUrl($request->intro_video_hindi);
         }
-        $user_introvideo->user_id=auth()->user()->id;
+        $user_introvideo->user_id = auth()->user()->id;
         if ($request->has('intro_video_english')) {
             $user_introvideo->english_video = GeneralHelper::getYoutubeEmbedUrl($request->intro_video_english);
         }
         $user_introvideo->save();
-        return redirect()->back()->with('message', 'Your intro video saved.');
+        return redirect()
+            ->back()
+            ->with('message', 'Your intro video saved.');
     }
 }

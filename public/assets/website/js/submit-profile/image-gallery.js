@@ -14,14 +14,14 @@ var scrollRate = 0.2;
 var left;
 
 function selectItem(e) {
-	if (e.target.classList.contains('active')) return;
-	// console.log('e.target', e.target.style.backgroundImage);
-	if (e.target.style.backgroundImage == 'url("undefined")') {
-		
-		e.target.addEventListener("click", function() {
-			$('#upload-image-modal').modal('show');
-			$('#upload-image-modal').appendTo('body');
-		});
+	if (e.target.classList.contains('active')) {
+		// if (e.target.style.backgroundImage == 'url("undefined")') {
+			e.target.addEventListener("click", function() {
+				$('#old_image').val(e.target.getAttribute("data-fileurl"));
+				$('#upload-image-modal').modal('show');
+				$('#upload-image-modal').appendTo('body');
+			});
+		// }
 	}
 	// else if(e.target.style.backgroundImage != 'url("undefined")'){
 		
@@ -126,6 +126,7 @@ function stopMovement() {
 	//Set Images for Gallery and Add Event Listeners
 	for (var i = 0; i < galleryItems.length; i++) {
 		galleryItems[i].style.backgroundImage = 'url(' + images[i] + ')';
+		galleryItems[i].setAttribute('data-fileurl', images[i]);
 		galleryItems[i].addEventListener('click', selectItem);
 		
 		// galleryItems[i].addEventListener('click', function() {

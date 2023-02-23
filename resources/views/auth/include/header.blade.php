@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand logo" href="index.html">
+                        <a class="navbar-brand logo" href="{{route('users.home')}}">
                             <!-- <img class=logo1 src="assets/images/logo/logo.svg" alt=Logo data-pagespeed-url-hash=1728553520 onload="pagespeed.CriticalImages.checkImageForCriticality(this);" /> -->
                             <img src="https://anticasting.in/wp-content/uploads/2022/06/Anti-Casting-Logo-120x81.jpg"
                                 class="logo1" alt="Anti Casting" style="height:69px;" />
@@ -32,12 +32,17 @@
                                             href="#">{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</a>
                                     </li>
                                 @else
-                                    <li class="nav-item">
-                                        <a href="{{ route('users.register') }}">Register</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('users.login') }}">Login</a>
-                                    </li>
+                                    @if (URL::current() == url('/forgotpassword'))
+                                    @elseif(Route::is('users.reset-password'))
+                                    @else
+                                        <li class="nav-item">
+                                            <a href="{{ route('users.register') }}">Register</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('users.login') }}">Login</a>
+                                        </li>
+                                    @endif
+
                                 @endauth
                                 <!-- <li class="nav-item">
                   <a href="#">Pages</a>

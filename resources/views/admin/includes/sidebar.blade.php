@@ -30,7 +30,7 @@
                 <li><a href="{{ route('admin.message') }}"><i class="ti-user"></i>Message</a></li>
                 <li><a href="{{ route('admin.manageuser') }}"><i class="ti-user"></i>Manage User</a></li>
                 
-                <li><a href="{{ route('admin.submitprofile') }}"><i class="ti-user"></i>Submit Profile</a></li>
+                <li><a href="{{ route('admin.list-actors') }}"><i class="ti-user"></i>Actor</a></li>
                 <li><a href="{{ route('admin.changePassword') }}"><i class="ti-user"></i> Change Password</a></li>
                 <li><a href="{{ route('admin.logout') }} "><i class="ti-close"></i> Logout</a></li>
             </ul>

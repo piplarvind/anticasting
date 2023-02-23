@@ -72,11 +72,11 @@
                     <div id="hindi_video">
                         @if (isset($userIntroVideo) && $userIntroVideo->hindi_video != null)
                             <iframe class="video" style="width:100%;" src="{{ $userIntroVideo->hindi_video }}"
-                             allowfullscreen="true">
+                                allowfullscreen="true">
                             </iframe>
                         @else
                             <iframe class="video" style="width:100%;" src="https://www.youtube.com/embed/dpu3O3LdjJs"
-                            allowfullscreen="true">
+                                allowfullscreen="true">
                             </iframe>
                         @endif
                         <div class="input-group mt-3">
@@ -103,7 +103,7 @@
                             </iframe>
                         @else
                             <iframe class="video" style="width:100%;" src="https://www.youtube.com/embed/Tj1w86bw4EM"
-                            allowfullscreen="true">
+                                allowfullscreen="true">
                             </iframe>
                         @endif
                         <div class="input-group mt-3">
@@ -185,4 +185,62 @@
         }
         new bootstrap.Popover(el, opts);
     })
+    /*Image Size Validation*/
+    $('.pictureCls').prop("disabled", true);
+    var a = 0;
+    //binds to onchange event of your input field
+    $('.image').bind('change', function() {
+        if ($('input:submit').attr('disabled', false)) {
+            $('input:submit').attr('disabled', true);
+        }
+        var ext = $('#picture').val().split('.').pop().toLowerCase();
+        if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg',]) == -1) {
+            $('#error1').slideDown("slow");
+            $('#error2').slideUp("slow");
+            a = 0;
+        } else {
+            const fi = document.getElementById('picture');
+            if (fi.files.length > 0) {
+                for (const i = 0; i <= fi.files.length - 1; i++) {
+          
+                    const fsize = fi.files.item(i).size;
+                    const file = Math.round((fsize / 1024));
+                    // The size of the file.
+                    // if (file >= 4096) {
+                    // $('#error2').slideDown("slow");
+                    //   a = 0;
+                    // } 
+                      if (file < 2048) {
+                        $('#error3').slideDown("slow");
+                        a = 0;
+                    } else {
+                        a = 1;
+                      // $('#error2').slideUp("slow");
+                       $('#error3').slideUp("slow");
+                    }
+                    $('#error1').slideUp("slow");
+                   // $('#error2').slideDown("slow");
+                  //  $('#error3').slideDown("slow");
+                    if (a == 1) {
+                       $('input:submit').attr('disabled', false);
+                     }
+                }
+            }
+            // var picsize = (this.files[0].size);
+            // if (picsize >= 2048 && picsize < 4096){
+              
+            //     $('#error2').slideDown("slow");
+            //     a = 0;
+            // } else {
+                
+            //    a = 1;
+            //     $('#error2').slideUp("slow");
+            // }
+            // $('#error1').slideUp("slow");
+            // if (a == 1) {
+               
+            //     $('input:submit').attr('disabled', false);
+            // }
+        }
+    });
 </script>
