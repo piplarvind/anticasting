@@ -3,8 +3,9 @@
 namespace App\Modules\Actors\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\{User,State,UserProfile};
+use DB;
 
 class ActorsController extends Controller
 {
@@ -14,15 +15,22 @@ class ActorsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function listActors()
+    public function listActors(Request $request)
     {
-        $actors = User::where('user_type', '0')
-            ->with('images')
-            ->FilterName()
-            ->FilterStatus()
-            ->paginate(10);
-        // dd($actors);
-        return view("Actors::index", compact('actors'));
+       
+        
+          $actors = User::where('user_type', '0')
+             ->with('images')
+             ->paginate(10);
+          
+            $state = State::all();
+            if($request->ajax()){
+              //  dd($request->data);
+
+                $profile = DB::table('user_profiles')->whereIn('ethnicity',[$request->data])->get();
+                dd($profile);
+               }
+        return view("Actors::index", compact('actors','state'));
     }
 
 }

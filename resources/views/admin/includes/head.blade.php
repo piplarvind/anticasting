@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{csrf_token()}}">
 <title>Anticasting | @yield('title', 'Dashboard')</title>
 <!-- ================= Favicon ================== -->
 <!-- Standard -->
@@ -26,3 +26,6 @@
 <link href="{{ asset('assets/admin/css/lib/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/admin/css/lib/helper.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
+{{-- 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+ --}}

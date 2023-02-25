@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-between">
             <h3 class="h6">Headshot Images</h3>
             <div class="info" style="cursor: pointer;">
-                <a tabindex="0" data-bs-placement="top" data-bs-toggle="popover" data-bs-content-id="popover-content"
+                <a tbindex="0" data-bs-placement="top" data-bs-toggle="popover" data-bs-content-id="popover-content"
                     data-bs-trigger="focus" title="Headshot Image">
                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                 </a>
@@ -205,15 +205,17 @@
           
                     const fsize = fi.files.item(i).size;
                     const file = Math.round((fsize / 1024));
+                 
                     // The size of the file.
                     // if (file >= 4096) {
                     // $('#error2').slideDown("slow");
                     //   a = 0;
                     // } 
-                      if (file < 2048) {
+                    if (file >2048) {
                         $('#error3').slideDown("slow");
                         a = 0;
-                    } else {
+                    } 
+                    else {
                         a = 1;
                       // $('#error2').slideUp("slow");
                        $('#error3').slideUp("slow");

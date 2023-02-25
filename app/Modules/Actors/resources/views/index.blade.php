@@ -27,20 +27,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- /# row -->
             <section id="main-content">
-                {{-- <div class="container">
-                    <select multiple name="language" id="languages">
-                        <option value="js">JavaScript</option>
-                        <option value="html">HTML</option>
-                        <option value="css">CSS</option>
-                        ... more options here ...
-                      </select>
-                </div> --}}
-              
+                @include('Actors::index-filter')
                 <nav data-pagination>
                     <a href=# disabled><i class=ion-chevron-left></i></a>
                     <ul>
@@ -67,28 +58,15 @@
                                         <div class="product-image4">
                                             <a href="#">
                                                 @isset($item->images[0]->image)
-                                                    <img class="pic-1 actor-img"
-                                                        src="{{ $item->images[0]?->image }}" />
-                                                    <img class="pic-2 actor-img"
-                                                        src="{{ $item->images[0]?->image }}" />
+                                                    <img class="pic-1 actor-img" src="{{ $item->images[0]?->image }}" />
+                                                    <img class="pic-2 actor-img" src="{{ $item->images[0]?->image }}" />
                                                 @else
                                                     <img class="pic-1"
-                                                        src="https://source.unsplash.com/random/234x170/?nature" />
+                                                        src="https://source.unsplash.com/random/234x156/?nature" />
                                                     <img class="pic-2"
-                                                        src="https://source.unsplash.com/random/234x170/?nature" />
+                                                        src="https://source.unsplash.com/random/234x156/?nature" />
                                                 @endisset
                                             </a>
-                                            {{-- <ul class="social">
-                                                <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a>
-                                                </li>
-                                                <li><a href="#" data-tip="Add to Wishlist"><i
-                                                            class="fa fa-shopping-bag"></i></a></li>
-                                                <li><a href="#" data-tip="Add to Cart"><i
-                                                            class="fa fa-shopping-cart"></i></a>
-                                                </li>
-                                            </ul> --}}
-                                            {{-- <span class="product-new-label">New</span> --}}
-                                            {{-- <span class="product-discount-label">-10%</span> --}}
                                             <label class="product-discount-label check-container"
                                                 for="actor-{{ $item->id }}">
                                                 {{-- <span class="product-discount-label"> --}}
@@ -100,13 +78,19 @@
                                         </div>
                                         <div class="product-content">
                                             <h3 class="title"><a
-                                                    href="#">{{ $item?->first_name . ' ' . $item?->last_name }}</a></h3>
+                                                    href="#">{{ $item?->first_name . ' ' . $item?->last_name }}</a>
+                                            </h3>
                                             <div class="subtitle">Actor</div>
                                             <div class="subtitle">SELF-REPRESENTED</div>
                                             <div class="price">
-                                                <i class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+                                                <span style="cursor: pointer;"
+                                                    onclick="handleDetail('{{ $item->id }}');"
+                                                    id="popover-{{ $item->id }}">
+                                                    <i class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+                                                </span>
                                                 &nbsp;&nbsp;
                                                 <span><i class="fa fa-microphone fa-1x" aria-hidden="true"></i></span>
+
                                             </div>
                                             {{-- <a class="add-to-cart" href="">ADD TO CART</a> --}}
                                         </div>
@@ -114,122 +98,50 @@
                                 </div>
                             @endforeach
                         @endif
-                        {{-- <div class="col-md-3 col-sm-6">
-                            <div class="product-grid4">
-                                <div class="product-image4">
-                                    <a href="#">
-                                        <img class="pic-1" src="https://www.bootdey.com/image/280x300/20B2AA/000000">
-                                        <img class="pic-2" src="https://www.bootdey.com/image/280x300/FFB6C1/000000">
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#" data-tip="Add to Wishlist"><i
-                                                    class="fa fa-shopping-bag"></i></a></li>
-                                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </li>
-                                    </ul>
-                                    <span class="product-new-label">New</span>
-                                    <span class="product-discount-label">-10%</span>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                                    <div class="price">
-                                        $14.40
-                                        <span>$16.00</span>
-                                    </div>
-                                    <a class="add-to-cart" href="">ADD TO CART</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid4">
-                                <div class="product-image4">
-                                    <a href="#">
-                                        <img class="pic-1" src="https://www.bootdey.com/image/280x300/B0C4DE/000000">
-                                        <img class="pic-2" src="https://www.bootdey.com/image/280x300/FFB6C1/000000">
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#" data-tip="Add to Wishlist"><i
-                                                    class="fa fa-shopping-bag"></i></a></li>
-                                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </li>
-                                    </ul>
-                                    <span class="product-discount-label">-12%</span>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">Men's Blue Shirt</a></h3>
-                                    <div class="price">
-                                        $17.60
-                                        <span>$20.00</span>
-                                    </div>
-                                    <a class="add-to-cart" href="">ADD TO CART</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid4">
-                                <div class="product-image4">
-                                    <a href="#">
-                                        <img class="pic-1" src="https://www.bootdey.com/image/280x300/7B68EE/000000">
-                                        <img class="pic-2" src="https://www.bootdey.com/image/280x300/FFB6C1/000000">
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#" data-tip="Add to Wishlist"><i
-                                                    class="fa fa-shopping-bag"></i></a></li>
-                                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                                        </li>
-                                    </ul>
-                                    <span class="product-new-label">New</span>
-                                    <span class="product-discount-label">-10%</span>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                                    <div class="price">
-                                        $14.40
-                                        <span>$16.00</span>
-                                    </div>
-                                    <a class="add-to-cart" href="">ADD TO CART</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid4">
-                                <div class="product-image4">
-                                    <a href="#">
-                                        <img class="pic-1" src="https://www.bootdey.com/image/280x300/48D1CC/000000">
-                                        <img class="pic-2" src="https://www.bootdey.com/image/280x300/FFB6C1/000000">
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#" data-tip="Add to Wishlist"><i
-                                                    class="fa fa-shopping-bag"></i></a></li>
-                                        <li><a href="#" data-tip="Add to Cart"><i
-                                                    class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                    <span class="product-new-label">New</span>
-                                    <span class="product-discount-label">-10%</span>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                                    <div class="price">
-                                        $14.40
-                                        <span>$16.00</span>
-                                    </div>
-                                    <a class="add-to-cart" href="">ADD TO CART</a>
-                                </div>
-                            </div>
-                        </div> --}}
-
                     </div>
                 </div>
                 <hr>
             </section>
         </div>
     </div>
+@endsection
+@section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
     <script>
-    const languages = $('#languages').filterMultiSelect();
+        // var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+        //     trigger: 'focus'
+        // })
+        function handleDetail(id) {
+            $('#popover-' + id).popover({
+                placement: 'bottom',
+                container: 'body',
+                html: true,
+                content: function() {
+                    return $(this).next('.popper-content').html();
+                }
+            })
+        }
+        $(document).ready(function() {
+            $('#ethnicity').on('change', function() {
+                var ethnicity = $(this).val();
+                //alert(JSON.stringify(ethnicity));
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "/admin/actors",
+                    type: "GET",
+                    data: {
+                        "data": ethnicity
+                    },
+                    dataType: 'json',
+                  
+                    success: function(data) {
+                        alert(data)
+                    }
 
+                });
+            });
+        });
     </script>
 @endsection

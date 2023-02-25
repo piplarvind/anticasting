@@ -66,5 +66,9 @@ class User extends Authenticatable
             $query->where('status', $status);
         }
     }
+    // public function scopeFilterEthnicity($query){
+    //     $queryString = $_GET['ethnicity'];
+    //    dd($queryString);
+    // }
     
 }

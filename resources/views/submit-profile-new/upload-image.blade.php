@@ -21,7 +21,7 @@
                     </span>
                       -->
                     <span id="error3"  style="display:none; color:#FF0000;">
-                        please select a file greater than 2mb.
+                         Image should be more than 2 MB.
                     </span>
                 </div>
                 <div class="modal-footer">
