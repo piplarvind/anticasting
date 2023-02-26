@@ -19,17 +19,16 @@ class ActorsController extends Controller
     {
        
         
-          $actors = User::where('user_type', '0')
-             ->with('images')
-             ->paginate(10);
+          $actors = UserProfile::with('profileImage')
+             ->FilterAge()->FilterHeight()->paginate(10);
           
             $state = State::all();
-            if($request->ajax()){
-              //  dd($request->data);
+            // if($request->ajax()){
+            //   //  dd($request->data);
 
-                $profile = DB::table('user_profiles')->whereIn('ethnicity',[$request->data])->get();
-                dd($profile);
-               }
+            //     $profile = DB::table('user_profiles')->whereIn('ethnicity',[$request->data])->get();
+            //     dd($profile);
+            //    }
         return view("Actors::index", compact('actors','state'));
     }
 

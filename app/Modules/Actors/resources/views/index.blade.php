@@ -57,9 +57,9 @@
                                     <div class="product-grid4">
                                         <div class="product-image4">
                                             <a href="#">
-                                                @isset($item->images[0]->image)
-                                                    <img class="pic-1 actor-img" src="{{ $item->images[0]?->image }}" />
-                                                    <img class="pic-2 actor-img" src="{{ $item->images[0]?->image }}" />
+                                                @isset($item->profileImage[0]->image)
+                                                    <img class="pic-1 actor-img" src="{{ $item->profileImage[0]?->image }}" />
+                                                    <img class="pic-2 actor-img" src="{{ $item->profileImage[0]?->image }}" />
                                                 @else
                                                     <img class="pic-1"
                                                         src="https://source.unsplash.com/random/234x156/?nature" />
@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="product-content">
                                             <h3 class="title"><a
-                                                    href="#">{{ $item?->first_name . ' ' . $item?->last_name }}</a>
+                                                    href="#">{{ $item?->user?->first_name . ' ' . $item?->user?->last_name }}</a>
                                             </h3>
                                             <div class="subtitle">Actor</div>
                                             <div class="subtitle">SELF-REPRESENTED</div>

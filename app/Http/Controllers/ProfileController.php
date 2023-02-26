@@ -105,7 +105,7 @@ class ProfileController extends Controller
                 $user_profile = new UserProfile();
             }
             $user_profile->email = $request->email;
-            $user_profile->date_of_birth = $request->date_of_birth;
+            $user_profile->date_of_birth =  \Carbon\Carbon::parse($request->date_of_birth)->format('Y-m-d');
             $user_profile->ethnicity = $request->ethnicity;
             $user_profile->work_reel1 = GeneralHelper::getYoutubeEmbedUrl($request->work_reel1);
             $user_profile->work_reel2 = GeneralHelper::getYoutubeEmbedUrl($request->work_reel2);
