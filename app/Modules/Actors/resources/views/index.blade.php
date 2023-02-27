@@ -2,9 +2,28 @@
 @section('title')
     Manage Actors
 @endsection
+@push('style')
+    <style type="text/css">
+        .my-active span {
+            background-color: #909192 !important;
+            color: white !important;
+            border-color: #0f100f !important;
+        }
+
+        ul.pager>li {
+            display: inline-flex;
+            padding: 5px;
+        }
+
+        .popover {
+            max-width: 600px;
+        }
+    </style>
+@endpush
 @section('header')
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" /> --}}
     <link rel="stylesheet" href="{{ asset('assets/admin/css/actors.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 @endsection
 @section('content')
     <div class="main">
@@ -28,24 +47,24 @@
                     </div>
                 </div>
             </div>
-
             <!-- /# row -->
             <section id="main-content">
                 @include('Actors::index-filter')
                 <nav data-pagination>
-                    <a href=# disabled><i class=ion-chevron-left></i></a>
                     <ul>
-                        <li class=current><a href=#1>1</a>
-                        <li><a href=#2>2</a>
-                        <li><a href=#3>3</a>
-                        <li><a href=#4>4</a>
-                        <li><a href=#5>5</a>
-                        <li><a href=#6>6</a>
-                        <li><a href=#7>7</a>
-                        <li><a href=#8>8</a>
-                        <li><a href=#9>9</a>
-                        <li><a href=#10>…</a>
-                        <li><a href=#41>41</a>
+                        <li>
+                            {{ $actors->links('Actors::pagination') }}
+                        </li>
+                        {{-- <li><a href=#2>2</a></li>
+                    <li><a href=#3>3</a></li>
+                    <li><a href=#4>4</a></li>
+                    <li><a href=#5>5</a></li>
+                    <li><a href=#6>6</a></li>
+                    <li><a href=#7>7</a></li>
+                    <li><a href=#8>8</a></li>
+                    <li><a href=#9>9</a></li>
+                    <li><a href=#10>…</a></li>
+                    <li><a href=#41>41</a></li> --}}
                     </ul>
                     <a href=#2><i class=ion-chevron-right></i></a>
                 </nav>
@@ -83,14 +102,23 @@
                                             <div class="subtitle">Actor</div>
                                             <div class="subtitle">SELF-REPRESENTED</div>
                                             <div class="price">
-                                                <span style="cursor: pointer;"
+                                                {{-- <span style="cursor: pointer;"
                                                     onclick="handleDetail('{{ $item->id }}');"
                                                     id="popover-{{ $item->id }}">
+                                                    <i class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+                                                </span> --}}
+                                                <span style="cursor: pointer;" data-container="body"
+                                                    data-bs-toggle="popover"
+                                                    title="Actor Details" role="button"
+                                                    data-bs-content-id="popover-content"
+                                                    tabindex="0"
+                                                    data-toggle="popover" 
+                                                    >
+                                                    
                                                     <i class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
                                                 </span>
                                                 &nbsp;&nbsp;
                                                 <span><i class="fa fa-microphone fa-1x" aria-hidden="true"></i></span>
-
                                             </div>
                                             {{-- <a class="add-to-cart" href="">ADD TO CART</a> --}}
                                         </div>
@@ -101,6 +129,7 @@
                     </div>
                 </div>
                 <hr>
+                @include('Actors::details-page')
             </section>
         </div>
     </div>
@@ -109,39 +138,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
     <script>
         // var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
-        //     trigger: 'focus'
+        //     trigger: 'focus',
+        //     container: 'body'
         // })
-        function handleDetail(id) {
-            $('#popover-' + id).popover({
-                placement: 'bottom',
+        // function handleDetail(id) {
+        //     $('#popover-' + id).popover({
+        //         placement: 'bottom',
+        //         container: 'body',
+        //         html: true,
+        //         content: function() {
+        //             return $(this).next('.popper-content').html();
+        //         }
+        //     })
+        // }
+        // $(function() {
+        //     $('.example-popover').popover({
+        //         container: 'body'
+        //     })
+        // })
+        const PopOverlist = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        PopOverlist.map((el) => {
+            let opts = {
+                animation: true,
                 container: 'body',
-                html: true,
-                content: function() {
-                    return $(this).next('.popper-content').html();
-                }
-            })
-        }
-        $(document).ready(function() {
-            $('#ethnicity').on('change', function() {
-                var ethnicity = $(this).val();
-                //alert(JSON.stringify(ethnicity));
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "/admin/actors",
-                    type: "GET",
-                    data: {
-                        "data": ethnicity
-                    },
-                    dataType: 'json',
-                  
-                    success: function(data) {
-                        alert(data)
-                    }
-
-                });
-            });
+                placement: 'bottom',
+            }
+            if (el.hasAttribute('data-bs-content-id')) {
+                opts.content = document.getElementById(el.getAttribute('data-bs-content-id')).innerHTML;
+                opts.html = true;
+            }
+            new bootstrap.Popover(el, opts);
+        })
+        $('[data-toggle=popover]').each(function () {
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                (($(this).popover('hide').data('bs.popover')||{}).inState||{}).click = false;
+            }
         });
     </script>
 @endsection
