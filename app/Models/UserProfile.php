@@ -50,15 +50,25 @@ class UserProfile extends Model
             $query->whereBetween('height', [$minHeight,$maxHeight]);
         }
     }
-    // public function scopeFilterStatus($query)
-    // {
-    //     if (isset($_GET['status']) && !empty($_GET['status'])) {
-    //         if ($_GET['status'] == 1) {
-    //             $status = 1;
-    //         } else {
-    //             $status = 0;
-    //         }
-    //         $query->where('status', $status);
-    //     }
-    // }
+   public function scopeFilterEthnicty($query){
+    if (isset($_GET['ethnicity']) && !empty($_GET['ethnicity'])){
+        $Ethnicty=  $_GET['ethnicity'];
+       if(is_array( $Ethnicty)){
+             return $query->when(count($Ethnicty), function ($query) use ($Ethnicty) {
+                $query->whereIn('ethnicity', $Ethnicty);
+            });
+        }
+    }
+   }
+   public function scopeFilterGender($query){
+    if (isset($_GET['gender']) && !empty($_GET['gender'])){
+        $Gender =  $_GET['gender'];
+        if(is_array($Gender)){
+
+            return $query->when(count($Gender), function ($query) use ($Gender) {
+                $query->whereIn('gender',$Gender);
+            });
+        }
+    }
+   }
 }

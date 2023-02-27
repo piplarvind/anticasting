@@ -17,18 +17,11 @@ class ActorsController extends Controller
      */
     public function listActors(Request $request)
     {
-       
+    //    dd($request->all());
         
           $actors = UserProfile::with('profileImage')
-             ->FilterAge()->FilterHeight()->paginate(10);
-          
+             ->FilterAge()->FilterHeight()->FilterEthnicty()->FilterGender()->paginate(10);
             $state = State::all();
-            // if($request->ajax()){
-            //   //  dd($request->data);
-
-            //     $profile = DB::table('user_profiles')->whereIn('ethnicity',[$request->data])->get();
-            //     dd($profile);
-            //    }
         return view("Actors::index", compact('actors','state'));
     }
 
