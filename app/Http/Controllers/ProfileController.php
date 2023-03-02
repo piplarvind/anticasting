@@ -42,8 +42,6 @@ class ProfileController extends Controller
                 'current_location' => 'required',
                 'height' => 'required',
                 'weight' => 'required',
-                'complexions' => 'required',
-
                 'work_reel1' => [
                     'required',
                     'url',
@@ -80,7 +78,6 @@ class ProfileController extends Controller
                 'gender.required' => 'Please select  gender',
                 'height.required' => 'Please enter a height',
                 'weight.required' => 'Please enter a weight',
-                'complexions.required' => 'Please select a complexions',
                 'current_location.required' => 'Please enter a current location',
                 'intro_video_link.required' => 'Please enter a intro video url',
                 'work_reel1.required' => 'Please enter a one work reel',
@@ -112,7 +109,6 @@ class ProfileController extends Controller
             $user_profile->work_reel3 = GeneralHelper::getYoutubeEmbedUrl($request->work_reel3);
             $user_profile->gender = $request->gender;
             $user_profile->height = $request->height;
-            $user_profile->complexions = $request->complexions;
             $user_profile->current_location = $request->current_location;
             $user_profile->choose_language = $request->choose_language;
             $user_profile->weight = $request->weight;

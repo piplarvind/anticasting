@@ -55,19 +55,10 @@
                         <li>
                             {{ $actors->links('Actors::pagination') }}
                         </li>
-                        {{-- <li><a href=#2>2</a></li>
-                    <li><a href=#3>3</a></li>
-                    <li><a href=#4>4</a></li>
-                    <li><a href=#5>5</a></li>
-                    <li><a href=#6>6</a></li>
-                    <li><a href=#7>7</a></li>
-                    <li><a href=#8>8</a></li>
-                    <li><a href=#9>9</a></li>
-                    <li><a href=#10>…</a></li>
-                    <li><a href=#41>41</a></li> --}}
                     </ul>
                     <a href=#2><i class=ion-chevron-right></i></a>
                 </nav>
+                <hr />
                 <div class="container">
                     <div class="row">
                         @if (isset($actors))
@@ -90,7 +81,9 @@
                                                 for="actor-{{ $item->id }}">
                                                 {{-- <span class="product-discount-label"> --}}
                                                 <input type="checkbox" name="actor" id="actor-{{ $item->id }}"
-                                                    value="{{ $item->id }}" />
+                                                    value="{{ $item->id }}" class="actor-item"
+                                                    data-id="{{ $item->id }}"
+                                                    onclick="GetBucketId({{ $item->id }})" />
                                                 {{-- </span> --}}
                                                 <span class="mark"></span>
                                             </label>
@@ -102,19 +95,8 @@
                                             <div class="subtitle">Actor</div>
                                             <div class="subtitle">SELF-REPRESENTED</div>
                                             <div class="price">
-                                                {{-- <span style="cursor: pointer;"
-                                                    onclick="handleDetail('{{ $item->id }}');"
-                                                    id="popover-{{ $item->id }}">
-                                                    <i class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
-                                                </span> --}}
-                                                <span style="cursor: pointer;" data-container="body"
-                                                    data-bs-toggle="popover"
-                                                    title="Actor Details" role="button"
-                                                    data-bs-content-id="popover-content"
-                                                    tabindex="0"
-                                                    data-toggle="popover" 
-                                                    >
-                                                    
+                                                <span style="cursor: pointer;" data-toggle="popover"
+                                                    data-poload="{{ route('admin.actors.detail', $item->id) }}">
                                                     <i class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
                                                 </span>
                                                 &nbsp;&nbsp;
@@ -129,50 +111,73 @@
                     </div>
                 </div>
                 <hr>
-                @include('Actors::details-page')
+                {{-- Bucket Form --}}
+                @include('Actors::bucket')
             </section>
         </div>
     </div>
 @endsection
 @section('footer')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
     <script>
-        // var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
-        //     trigger: 'focus',
-        //     container: 'body'
-        // })
-        // function handleDetail(id) {
-        //     $('#popover-' + id).popover({
-        //         placement: 'bottom',
-        //         container: 'body',
-        //         html: true,
-        //         content: function() {
-        //             return $(this).next('.popper-content').html();
+        $('body').on('click', function(e) {
+            $('[data-toggle="popover"]').each(function() {
+                if (!$(this).is(e.target) &&
+                    $(this).has(e.target).length === 0 &&
+                    $('.popover').has(e.target).length === 0) {
+                    $(this).popover('hide');
+                }
+            });
+        });
+        // $('[data-toggle="popover"]').on('click', function(e) {
+        //     $('[data-toggle="popover"]').not(this).popover('hide');
+        // });
+        $('*[data-poload]').click(function() {
+            var e = $(this);
+            // e.off('click');
+            $.get(e.data('poload'), function(d) {
+                e.popover({
+                    html: true,
+                    placement: "bottom",
+                    container: 'body',
+                    trigger: 'focus',
+                    content: d
+                }).popover('show');
+            });
+        });
+        // $('.actor-detail').click(function(e) {
+        //     let id = e.target.parentElement.dataset.value;
+        //     $.ajax({
+        //         url: "{{ url('/admin/actor-detail/') }}/" + id,
+        //         type: 'get',
+        //         cache: false,
+        //         success: function(data) {
+        //             // $('#actor-data').html(data);
+        //             $('#' + e.target.parentElement.id).popover({
+        //                 content: data
+        //             }).popover('show');
         //         }
-        //     })
-        // }
-        // $(function() {
-        //     $('.example-popover').popover({
-        //         container: 'body'
-        //     })
-        // })
-        const PopOverlist = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-        PopOverlist.map((el) => {
-            let opts = {
-                animation: true,
-                container: 'body',
-                placement: 'bottom',
+        //     });
+        // });
+        /*Add a Actor Id for bucket list*/
+        var array = Array();
+
+        function GetBucketId(id) {
+            if (array.indexOf(id) === -1) {
+                array.push(id);
+                $('#bucket-form').show();
+            } else {
+                let index = array.indexOf(id);
+                array.splice(index, 1);
             }
-            if (el.hasAttribute('data-bs-content-id')) {
-                opts.content = document.getElementById(el.getAttribute('data-bs-content-id')).innerHTML;
-                opts.html = true;
+            document.getElementById('actor-ids').innerHTML = array.length;
+            document.querySelector('#bucket-item').value = array;
+            // alert(number)
+            if (array.length === 0) {
+                $('#bucket-form').hide();
             }
-            new bootstrap.Popover(el, opts);
-        })
-        $('[data-toggle=popover]').each(function () {
-            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                (($(this).popover('hide').data('bs.popover')||{}).inState||{}).click = false;
-            }
+        }
+        $("#selecter2").select2({
+            tags: true
         });
     </script>
 @endsection

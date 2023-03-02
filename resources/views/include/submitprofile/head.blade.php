@@ -12,3 +12,4 @@ rel="stylesheet"
 <link rel="stylesheet" href="{{ asset('assets/submitprofile/assets/css/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/submitprofile/assets/css/style.css') }}" />
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+

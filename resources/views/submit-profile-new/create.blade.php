@@ -120,8 +120,8 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Height</label>
-                                            <input type="text" class="form-control" placeholder="Height (CM)"
+                                            <label class="form-label">Height (CM)</label>
+                                            <input type="text" class="form-control" placeholder="Enter height"
                                                 name="height"
                                                 value="{{ old('height', isset($userProfile->height) ? $userProfile->height : ' ') }}" />
                                             @error('height')
@@ -133,8 +133,8 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Weight</label>
-                                            <input type="text" class="form-control" placeholder="Weight (KG)"
+                                            <label class="form-label">Weight (KG)</label>
+                                            <input type="text" class="form-control" placeholder="Enter weight"
                                                 name="weight"
                                                 value="{{ old('weight', isset($userProfile->weight) ? $userProfile->weight : ' ') }}" />
                                             @error('weight')
@@ -148,26 +148,11 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Complexions</label>
-                                            <select name="complexions" id="complexions" class="form-control">
-                                                <option value="" selected="selected" class="0">
-                                                    Select Complexions
-                                                </option>
-                                                <option value="fair" @if (isset($userProfile->complexions) && $userProfile->complexions == 'fair') selected @endif>
-                                                    Fair</option>
-                                                <option value="medium" @if (isset($userProfile->complexions) && $userProfile->complexions == 'medium') selected @endif>
-                                                    Medium</option>
-                                                <option value="olive"@if (isset($userProfile->complexions) && $userProfile->complexions == 'olive') selected @endif>
-                                                    Olive</option>
-                                                <option value="brown" @if (isset($userProfile->complexions) && $userProfile->complexions == 'brown') selected @endif>
-                                                    Brown</option>
-                                                <option value="black" @if (isset($userProfile->complexions) && $userProfile->complexions == 'black') selected @endif>
-                                                    Black</option>
-                                                <option value="extremely &amp; fair"
-                                                    @if (isset($userProfile->complexions) && $userProfile->complexions == 'extremely & fair') selected @endif>Extremely & Fair
-                                                </option>
-                                            </select>
-                                            @error('complexions')
+                                            <label class="form-label">Current Location</label>
+                                            <input type="text" class="form-control" name="current_location"
+                                                placeholder="Enter current location"
+                                                value="{{ old('current_location', isset($userProfile->current_location) ? $userProfile->current_location : ' ') }}" />
+                                            @error('current_location')
                                                 <span class="text-danger">
                                                     {{ $message }}
                                                 </span>
@@ -198,19 +183,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Current Location</label>
-                                            <input type="text" class="form-control" name="current_location"
-                                                placeholder="Current Location"
-                                                value="{{ old('current_location', isset($userProfile->current_location) ? $userProfile->current_location : ' ') }}" />
-                                            @error('current_location')
-                                                <span class="text-danger">
-                                                    {{ $message }}
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -266,7 +239,7 @@
                     </form>
                 </div>
                 <div class="col-lg-4 col-12">
-                    @include('submit-profile-new.left-section')
+                    @include('submit-profile-new.right-section')
                 </div>
             </div>
         </div>

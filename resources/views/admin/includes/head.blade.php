@@ -17,7 +17,7 @@
 <!-- Styles -->
 <link href="{{ asset('assets/admin/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/admin/css/lib/chartist/chartist.min.css') }}" rel="stylesheet">
-<link href="{{ asset('assets/admin/css/lib/font-awesome.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"  referrerpolicy="no-referrer" />
 <link href="{{ asset('assets/admin/css/lib/themify-icons.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/admin/css/lib/owl.carousel.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/admin/css/lib/owl.theme.default.min.css') }}" rel="stylesheet" />
@@ -26,6 +26,7 @@
 <link href="{{ asset('assets/admin/css/lib/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/admin/css/lib/helper.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {{-- 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
  --}}

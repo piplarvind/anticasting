@@ -1,10 +1,10 @@
 <div class="container">
     <form method="get">
         <div class="row">
-            <div class="col-md-6 col-lg-6 col-sm-3">
+            <div class="col-md-4 col-lg-4 col-sm-3">
                 <div class="form-group">
                     <label class="form-label"><b>Ethnicty</b></label>
-                    <select name="ethnicity[]" class="form-control-sm  w-50" id="ethnicity" multiple
+                    <select name="ethnicity[]" class="form-control-sm  w-75" id="ethnicity" multiple
                         multiselect-search="true">
                         @if (isset($state))
                             @foreach ($state as $item)
@@ -15,10 +15,10 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-6 col-sm-3">
+            <div class="col-md-4 col-lg-4 col-sm-3">
                 <div class="form-group">
                     <label class="form-label"><b>Gender</b></label>
-                    <select name="gender[]" class="form-control-sm  w-50" multiple multiselect-search="true">
+                    <select name="gender[]" class="form-control-sm  w-75" multiple multiselect-search="true">
                         <option value='Male' @if (isset(request()->gender) && in_array('Male', old('gender', request()->gender))) selected @endif>Male</option>
                         <option value='Female' @if (isset(request()->gender) && in_array('Female', old('gender', request()->gender))) selected @endif>Female</option>
                         <option value='prefernottosay' @if (isset(request()->gender) && in_array('prefernottosay', old('gender', request()->gender))) selected @endif>Prefer not to
