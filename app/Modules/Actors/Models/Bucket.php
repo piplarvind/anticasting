@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bucket extends Model
 {
     use HasFactory;
+    protected $table = "buckets";
+    protected $fillable = ['bucket_name','status'];
 }

@@ -124,7 +124,7 @@
         <div class="d-flex justify-content-between">
             <h3 class="h6">Sample Video</h3>
         </div>
-        <iframe style="width: 100%;" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+        <iframe style="width: 100%;" src="https://www.youtube.com/embed/XEajFMrxbVw">
         </iframe>
     </div>
 </div>

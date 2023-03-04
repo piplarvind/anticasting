@@ -20,18 +20,17 @@
                 <li><a href=" "><i class="ti-comment"></i>Testimonials</a></li>
                   --}}
                 {{-- <li class="label">Apps</li> --}}
-                {{-- <li><a class="sidebar-sub-toggle"><i class="ti-user"></i> Users <span
+                {{-- <li><a class="sidebar-sub-toggle"><i class="ti-user"></i> Manage Actors <span
                             class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li><a href="chart-flot.html">Admin</a></li>
-                        <li><a href="chart-morris.html">Users</a></li>
+                        <li><a href="{{ route('admin.actors.mange') }}">List Actors</a></li>
+                        <li><a href="{{ route('admin.actors') }}">Actors Profile</a></li>
                     </ul>
                 </li> --}}
-                <li><a href="{{ route('admin.message') }}"><i class="ti-user"></i>Message</a></li>
-                <li><a href="{{ route('admin.manageuser') }}"><i class="ti-user"></i>Manage User</a></li>
-                
-                <li><a href="{{ route('admin.actors') }}"><i class="ti-user"></i>Actor</a></li>
-                <li><a href="{{ route('admin.changePassword') }}"><i class="ti-user"></i> Change Password</a></li>
+                {{-- <li><a href="{{ route('admin.manageuser') }}"><i class="ti-user"></i>Manage User</a></li> --}}
+                <li><a href="{{ route('admin.actors.mange') }}"><i class="ti-user"></i>Manage Actors</a></li>
+                <li><a href="{{ route('admin.actors') }}"><i class="ti-user"></i>Actors Profiles</a></li>
+                {{-- <li><a href="{{ route('admin.changePassword') }}"><i class="ti-user"></i> Change Password</a></li> --}}
                 <li><a href="{{ route('admin.logout') }} "><i class="ti-close"></i> Logout</a></li>
             </ul>
         </div>

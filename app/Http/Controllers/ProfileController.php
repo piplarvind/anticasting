@@ -110,7 +110,6 @@ class ProfileController extends Controller
             $user_profile->gender = $request->gender;
             $user_profile->height = $request->height;
             $user_profile->current_location = $request->current_location;
-            $user_profile->choose_language = $request->choose_language;
             $user_profile->weight = $request->weight;
             $user_profile->user_id = $userId;
             $user_profile->save();

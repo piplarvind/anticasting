@@ -21,13 +21,10 @@ class CreateUserProfilesTable extends Migration
             $table->string('gender')->nullable();
             $table->string('height')->nullable();
             $table->string('weight')->nullable();
-            $table->string('complexions')->nullable();
             $table->text('current_location')->nullable();
-            $table->string('choose_language')->nullable();
             $table->string('work_reel1')->nullable();
             $table->string('work_reel2')->nullable();
             $table->string('work_reel3')->nullable();
-            $table->string('image')->nullable();
             $table
                 ->boolean('status')
                 ->default(0)

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\{UserProfileImage,UserProfile};
+use App\Models\{UserProfileImage,UserProfile,IntroVideo};
 
 class User extends Authenticatable
 {
@@ -44,31 +44,76 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne(UserProfile::class, 'user_id');
     }
-    public function scopeFilterName($query)
+    public function introVideo(){
+       
+        return $this->hasOne(IntroVideo::class, 'user_id');
+    }
+    public function scopeFilterAge($query)
     {
-        if (isset($_GET['q']) && !empty($_GET['q'])) {
-            $queryString = $_GET['q'];
-          $query->where('name', 'like', '%'.$queryString.'%');
-    //   $query->whereHas('user', function ($q) use ($queryString) {
-    //     $q->where('name', 'like', '%' . $queryString . '%');
-    //         });
+        if (isset($_GET['max_age']) && !empty($_GET['max_age']) && isset($_GET['min_age']) && !empty($_GET['min_age'])) {
+            $maxAge = (int)$_GET['max_age'];
+            $minAge = (int)$_GET['min_age'];
+            // prepare dates for comparison
+            // make sure to use Carbon\Carbon in the
+            // $dateOfBirth = '1990-08-17';
+            // $years = \Carbon\Carbon::parse($dateOfBirth)->age;
+           //  dd($years);
+            $minDate = \Carbon\Carbon::today()->subYears($maxAge);
+            $maxDate = \Carbon\Carbon::today()->subYears($minAge)->endOfDay();
+            $query->whereHas('profile',function($q) use( $minDate, $maxDate){
+                $q->whereBetween('date_of_birth', [$minDate,$maxDate]);
+            });
+            // $query->where('ethnicity', 'like', '%'.$queryString.'%');
+            // $query->whereHas('user', function ($q) use ($queryString) {
+            //$q->where('name', 'like', '%' . $queryString . '%');
+            // });
         }
     }
-
-    public function scopeFilterStatus($query)
-    {
-        if (isset($_GET['status']) && !empty($_GET['status'])) {
-            if ($_GET['status'] == 1) {
-                $status = 1;
-            } else {
-                $status = 0;
+    public function scopeFilterEthnicty($query){
+        if (isset($_GET['ethnicity']) && !empty($_GET['ethnicity'])){
+            $Ethnicty=  $_GET['ethnicity'];
+           if(is_array( $Ethnicty)){
+           return $query->whereHas('profile',function($q) use($Ethnicty){
+                $q->whereIn('ethnicity', $Ethnicty);
+            });
+                //  return $query->when(count($Ethnicty), function ($query) use ($Ethnicty) {
+                //     $query->whereIn('ethnicity', $Ethnicty);
+                // });
+           }
+        }
+       }
+       public function scopeFilterGender($query){
+        if (isset($_GET['gender']) && !empty($_GET['gender'])){
+            $Gender =  $_GET['gender'];
+            if(is_array($Gender)){
+              return $query->whereHas('profile',function($q) use($Gender){
+                    $q->whereIn('gender', $Gender);
+                });
             }
-            $query->where('status', $status);
+        }
+       }
+    public function scopeFilterHeight($query)
+    {
+        if (isset($_GET['max_height']) && !empty($_GET['max_height']) && isset($_GET['min_height']) && !empty($_GET['min_height'])) {
+            $maxHeight = (int) $_GET['max_height'];
+            $minHeight = (int) $_GET['min_height'];
+         // dd($maxHeight);
+          $query->whereHas('profile',function($q) use( $minHeight,  $maxHeight){
+            $q->whereBetween('height', [$minHeight,$maxHeight]);
+          });
         }
     }
-    // public function scopeFilterEthnicity($query){
-    //     $queryString = $_GET['ethnicity'];
-    //    dd($queryString);
+    // public function scopeFilterStatus($query)
+    // {
+    //     if (isset($_GET['status']) && !empty($_GET['status'])) {
+    //         if ($_GET['status'] == 1) {
+    //             $status = 1;
+    //         } else {
+    //             $status = 0;
+    //         }
+    //         $query->where('status', $status);
+    //     }
     // }
+    
     
 }
