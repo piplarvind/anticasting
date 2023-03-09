@@ -941,7 +941,7 @@ ol {
 }
 .breadcrumbs .breadcrumb-nav li span {
   /* padding-right: 15px; */
-  margin-right: 3px;
+  /* margin-right: 3px; */
   margin-bottom:70px;
   position: relative;
 }

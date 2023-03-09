@@ -5,9 +5,10 @@
 @push('style')
     <style type="text/css">
         .my-active span {
-            background-color: #909192 !important;
-            color: white !important;
+            /* background-color: #909192 !important; */
+            color: #0a11f1 !important;
             border-color: #0f100f !important;
+            font-weight: bold;
         }
 
         ul.pager>li {
@@ -16,22 +17,22 @@
         }
 
         .popover {
-            max-width: 600px;
+            max-width: 750px !important;
+            max-height: 500px !important;
         }
     </style>
 @endpush
 @section('header')
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" /> --}}
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/actors.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/actors.css') }}" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-  
 @endsection
 @section('content')
     <div class="main">
         <div class="container-fluid">
             @if (Session::has('success'))
                 <script>
-                   alert("{{Session::get('success')}}")
+                    alert("{{ Session::get('success') }}")
                 </script>
             @endif
             <div class="row">
@@ -78,9 +79,9 @@
                                                         <img class="pic-1 actor-img" src="{{ $item->images[0]?->image }}" />
                                                         <img class="pic-2 actor-img" src="{{ $item->images[0]?->image }}" />
                                                     @else
-                                                        <img class="pic-1"
+                                                        <img class="pic-1 actor-img"
                                                             src="https://source.unsplash.com/random/234x156/?nature" />
-                                                        <img class="pic-2"
+                                                        <img class="pic-2 actor-img"
                                                             src="https://source.unsplash.com/random/234x156/?nature" />
                                                     @endisset
                                                 </a>
@@ -95,19 +96,33 @@
                                                     <span class="mark"></span>
                                                 </label>
                                             </div>
+                                            @php
+                                                $dateOfBirth = $item?->profile?->date_of_birth;
+                                                $age = \Carbon\Carbon::parse($dateOfBirth)->age;
+                                            @endphp
                                             <div class="product-content">
-                                                <h3 class="title"><a
+                                                <h3 class="title text-truncate"><a
                                                         href="#">{{ $item?->first_name . ' ' . $item?->last_name }}</a>
                                                 </h3>
-                                                <div class="subtitle">Actor</div>
-                                                <div class="subtitle">SELF-REPRESENTED</div>
+                                                <div class="subtitle text-truncate">Mobile no : {{ $item?->mobile_no }}
+                                                </div>
+                                                <div class="subtitle">
+                                                    <span class="text-left text-truncate"> Age : {{ $age . ' ' }}</span>
+                                                    <span class="text-left text-truncate"> Height :
+                                                        {{ $item?->profile?->height . ' ' . ' ' }} cm</span>
+                                                    <span class="text-left text-truncate"> Weight :
+                                                        {{ $item?->profile?->weight . ' ' . ' ' }}kg</span>
+                                                </div>
                                                 <div class="price">
                                                     <span style="cursor: pointer;" data-toggle="popover"
-                                                        data-poload="{{ route('admin.actors.detail', $item->id) }}">
+                                                        data-poload="{{ route('admin.actors.video', $item->id) }}">
                                                         <i class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
                                                     </span>
                                                     &nbsp;&nbsp;
-                                                    <span><i class="fa fa-microphone fa-1x" aria-hidden="true"></i></span>
+                                                    <span style="cursor: pointer;" data-toggle="popover"
+                                                        data-poload="{{ route('admin.actors.detail', $item->id) }}">
+                                                        <i class="fa-solid fa-eye fa-1x" aria-hidden="true"></i>
+                                                    </span>
                                                 </div>
                                                 {{-- <a class="add-to-cart" href="">ADD TO CART</a> --}}
                                             </div>
@@ -152,6 +167,7 @@
             }).popover('show');
         });
     });
+    
     // $('.actor-detail').click(function(e) {
     //     let id = e.target.parentElement.dataset.value;
     //     $.ajax({
@@ -180,7 +196,7 @@
         document.getElementById('actor-ids').innerHTML = array.length;
         document.querySelector('#bucket-item').value = array.join(',');
 
-      //  alert(array.join(','))
+        //  alert(array.join(','))
         if (array.length === 0) {
             $('#bucket-form').hide();
         }
@@ -188,5 +204,12 @@
     $("#selecter2").select2({
         tags: true
     });
+
+    // $('#close-yt').on('click', function(e) {
+    //     alert("dsad")
+    //     if (!$(e.target).is('.bs-popover-top') && $(e.target).closest('.popover').length == 0) {
+    //         $(".bs-popover-top").popover('hide');
+    //     }
+    // });
 </script>
 @endsection

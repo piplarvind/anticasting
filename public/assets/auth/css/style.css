@@ -932,7 +932,7 @@ ol {
 
 .breadcrumbs .breadcrumb-nav li,
 .breadcrumbs .breadcrumb-nav li a {
-  color: #fff;
+  color: #c26969;
   font-size: 14px;
   font-weight: 500;
 }
@@ -942,7 +942,12 @@ ol {
   margin-right: 15px;
   position: relative;
 }
-
+.breadcrumbs .breadcrumb-nav li span{
+  padding-right: 15px;
+  margin-right: 15px;
+  position: relative;
+ 
+}
 .breadcrumbs .breadcrumb-nav li a:hover {
   color: #ff5b00;
 }
@@ -951,7 +956,7 @@ ol {
   content: '';
   height: 80%;
   width: 2px;
-  background-color: #fff;
+  background-color: #ffffff;
   position: absolute;
   top: 2px;
   right: 0;

@@ -14,9 +14,8 @@ class CreateIntroVideosTable extends Migration {
     {
         Schema::create('intro_videos', function (Blueprint $table) {
             $table->id();
-            $table->string('hindi_video')->nullable();
-            $table->string('english_video')->nullable();
-            $table
+            $table->string('intro_video_link')->nullable();
+           $table
                 ->unsignedBigInteger('user_id')
                 ->unsigned()
                 ->index()

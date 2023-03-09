@@ -86,7 +86,6 @@ class ProfileController extends Controller
                 'work_reel1.url' => 'The work reel one must be a valid URL.',
                 'work_reel2.url' => 'The work reel two must be a valid URL.',
                 'work_reel3.url' => 'The work reel three must be a valid URL.',
-                'intro_video_link.url' => 'The intro video link must be a valid URL.',
             ],
         );
         $userId = auth()->user()->id;
@@ -174,29 +173,21 @@ class ProfileController extends Controller
         }
     }
     public function IntroVideo(Request $request)
-    {
+    { 
+     
         $request->validate(
             [
-                'intro_video_hindi' => [
+                'intro_video_link' => [
                     'url',
                     function ($attribute, $requesturl, $failed) {
                         if (!preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $requesturl)) {
-                            $failed(trans('Intro hindi video link should be youtube url', ['name' => trans('general.url')]));
-                        }
-                    },
-                ],
-                'intro_video_english' => [
-                    'url',
-                    function ($attribute, $requesturl, $failed) {
-                        if (!preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $requesturl)) {
-                            $failed(trans('Intro english video link should be youtube url', ['name' => trans('general.url')]));
+                            $failed(trans('Intro  video link should be youtube url', ['name' => trans('general.url')]));
                         }
                     },
                 ],
             ],
             [
-                'intro_video_english.url' => 'The intro english video link must be a valid URL.',
-                'intro_video_hindi.url' => 'The intro hindi video link must be a valid URL.',
+                'intro_video_link.url' => 'The intro  video link must be a valid URL.',
             ],
         );
 
@@ -205,12 +196,8 @@ class ProfileController extends Controller
             $user_introvideo = new IntroVideo();
         }
         $user_introvideo->user_id = auth()->user()->id;
-        if ($request->has('intro_video_hindi')) {
-            $user_introvideo->hindi_video = GeneralHelper::getYoutubeEmbedUrl($request->intro_video_hindi);
-        }
-        $user_introvideo->user_id = auth()->user()->id;
-        if ($request->has('intro_video_english')) {
-            $user_introvideo->english_video = GeneralHelper::getYoutubeEmbedUrl($request->intro_video_english);
+        if ($request->has('intro_video_link')) {
+            $user_introvideo->intro_video_link = GeneralHelper::getYoutubeEmbedUrl($request->intro_video_link);
         }
         $user_introvideo->save();
         return redirect()

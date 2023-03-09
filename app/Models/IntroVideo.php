@@ -9,5 +9,5 @@ class IntroVideo extends Model
 {
     use HasFactory;
     protected $table = 'intro_videos';
-    protected $fillable=['hindi_video','english_video','user_id'];
+    protected $fillable=['intro_video_link','user_id'];
 }

@@ -28,6 +28,7 @@
 <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/intl-telephone/css/intlTelInput.css') }}">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet"> --}}
 {{-- 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
  --}}

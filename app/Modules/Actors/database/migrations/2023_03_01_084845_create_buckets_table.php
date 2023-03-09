@@ -17,6 +17,12 @@ class CreateBucketsTable extends Migration
             $table->id();
             $table->string('bucket_name')
             ->nullable();
+            $table->string('movie_name')->
+            nullable();
+            $table->string('movie_link')->
+            nullable();
+            $table->string('description')->
+            nullable();
             $table->boolean('status')
             ->default(0)
             ->comment('Active=>1,Inactive=>0');

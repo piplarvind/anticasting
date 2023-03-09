@@ -24,12 +24,25 @@
 	padding-bottom: 66.667%;
 	background-color: #ddd;
 }
-
+.feature {
+	width: 225px;
+	margin: auto;
+}
+.main-img {
+	height: 0;
+	border: 1px dotted #c5c5c5;
+	background-size: cover;
+	/* image-css */
+	height: 200px;
+	width: 225px;
+	background-size: 225px 200px;
+	background-repeat: no-repeat;
+}
 .image-holder {
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
-	border: 2px ridge  black;
+	/* border: 2px ridge  black; */
 }
 
 /* Main Styles */
@@ -37,6 +50,7 @@
 	position: relative;
 	overflow: hidden;
 	text-align: center;
+	margin-top: 50px;
 }
 
 .gallery {
@@ -50,9 +64,17 @@
 	width: 23%; /* arbitrary value */
 	display: inline-block;
 	background-color: white;
+	margin-right: 8px;
+    border: 1px dotted #c5c5c5;
 }
 
-.gallery-item { opacity: 0.5; }
+.gallery-item { 
+	opacity: 0.5;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	/* height: 58px;
+	width: 60px;
+	background-size: 60px 58px; */
+ }
 .gallery-item.active { opacity: 1; }
 
 .controls {

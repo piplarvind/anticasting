@@ -188,7 +188,7 @@
                                                 @endisset
                                             @empty
                                                 <tr>
-                                                    <td class="text-center">No Record</td>
+                                                    <td colspan="10" class="text-center">No Record</td>
                                                 </tr>
                                             @endforelse
 

@@ -29,7 +29,6 @@
                                 </b>
                             </label>
                             <select name="bucket_name" class="form-control" id="selecter2">
-                                <option>Select Bucket</option>
                                 <option value="actor">Actor</option>
                                 <option value="artist">Artist</option>
                             </select>

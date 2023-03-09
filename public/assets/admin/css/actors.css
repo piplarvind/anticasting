@@ -16,7 +16,8 @@ h3.h3 {
     border-radius: 5px;
     overflow: hidden;
     z-index: 1;
-    transition: all .3s ease 0s
+    transition: all .3s ease 0s;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .product-grid4:hover {
@@ -382,13 +383,14 @@ transform: rotate(45deg); */
 
 @media (min-width: 900px) {
     [data-pagination] {
-        font-size: 16pt;
+        font-size: 12pt;
     }
 }
 .actor-img{
     /* width:234px; */
     height:156px !important;
 }
+
 /*Details page css*/
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
@@ -418,11 +420,11 @@ transform: rotate(45deg); */
 .c-green {
     color: rgb(232, 108, 20);
 }
-.container .card {
+/* .container .card {
     width: 100%;
     background: #090909;
     border-radius: 1px;
-}
+} */
 
 .box {
     height: 40px;
@@ -430,7 +432,7 @@ transform: rotate(45deg); */
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ddd;
+    background-color: #958888;
 }
 .form__div {
     height: 50px;
@@ -438,8 +440,8 @@ transform: rotate(45deg); */
     margin-bottom: 24px;
 }
 .actor-details-img{
-     width:230px !important; 
-     height:240px !important;
+     width:200px !important; 
+     height:150px !important;
      border: 3px solid rgb(80, 78, 78);
      
 }

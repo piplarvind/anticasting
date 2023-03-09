@@ -36,4 +36,10 @@ class ActorsController extends Controller
        //dd($actor);
         return view('Actors::detail', compact(var_name: 'actor'))->render();
     }
+    public function actorVideo($id)
+    {
+       $actor = User::with('introVideo')->with('profile')->where('user_type','0')->where('id', $id)->first();
+       //dd($actor);
+        return view('Actors::show-video', compact(var_name: 'actor'))->render();
+    }
 }

@@ -28,6 +28,7 @@
                     </ul>
                 </li> --}}
                 {{-- <li><a href="{{ route('admin.manageuser') }}"><i class="ti-user"></i>Manage User</a></li> --}}
+                <li><a href="{{ route('admin.bucket.manage') }}"><i class="ti-user"></i>Manage Bucket</a></li>
                 <li><a href="{{ route('admin.actors.mange') }}"><i class="ti-user"></i>Manage Actors</a></li>
                 <li><a href="{{ route('admin.actors') }}"><i class="ti-user"></i>Actors Profiles</a></li>
                 {{-- <li><a href="{{ route('admin.changePassword') }}"><i class="ti-user"></i> Change Password</a></li> --}}

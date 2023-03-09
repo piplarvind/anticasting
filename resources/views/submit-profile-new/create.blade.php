@@ -182,6 +182,7 @@
                                         </div>
                                     </div>
                                 </div>
+                              
                                 <div class="row">
                                     
                                 </div>
@@ -291,5 +292,136 @@
                 }
             });
         });
+    </script>
+    <script>
+        //  $('#show-intro').on('click', function() {
+        //     $('#video-section').slideToggle();
+        // });
+        $('#intro_video').hide();
+        $('#hide').on('click', function() {
+            $('#intro_video').hide();
+        })
+        $('#show').on('click', function() {
+            $('#intro_video').show();
+        })
+        // to stop the ifram video
+        function stopVideo(element) {
+            // getting every iframe from the body
+            var iframes = element.querySelectorAll('iframe');
+            // reinitializing the values of the src attribute of every iframe to stop the YouTube video.
+            for (let i = 0; i < iframes.length; i++) {
+                if (iframes[i] !== null) {
+                    var temp = iframes[i].src;
+                    iframes[i].src = temp;
+                }
+            }
+        };
+        // $('#first').click(function(){
+        //     alert('Mahesh')
+        //     $('#content').viewbox();
+        // })
+        // $(function() {
+
+        //     $('.popperOpen').popover({
+        //         placement: 'bottom',
+        //         container: 'body',
+        //         html: true,
+        //         content: function() {
+        //             return $(this).next('#popover-content-head').html();
+        //         }
+        //     })
+        // });
+
+        //Popover Sample Headshot Image
+        // const Poplist = [].slice.call(document.querySelectorAll('[data-toggle="popover"]'))
+        // Poplist.map((el) => {
+        //     let opts = {
+        //         animation: false,
+        //         html:true,
+        //     }
+        //     if (el.hasAttribute('data-bs-content-id')) {
+        //         opts.content = document.getElementById(el.getAttribute('data-bs-content-id')).innerHTML;
+        //         opts.html = true;
+        //     }
+        //     new bootstrap.Popover(el, opts);
+        // })
+        //Popover Sample Image
+        const list = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        list.map((el) => {
+            let opts = {
+                animation: false,
+            }
+            if (el.hasAttribute('data-bs-content-id')) {
+                opts.content = document.getElementById(el.getAttribute('data-bs-content-id')).innerHTML;
+                opts.html = true;
+            }
+            new bootstrap.Popover(el, opts);
+        })
+        /*Image Size Validation*/
+        $('.pictureCls').prop("disabled", true);
+        var a = 0;
+        //binds to onchange event of your input field
+        $('.image').bind('change', function() {
+            if ($('.pictureCls').attr('disabled', false)) {
+                $('.pictureCls').attr('disabled', true);
+            }
+            var ext = $('#picture').val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', ]) == -1) {
+                $('#error1').slideDown("slow");
+                $('#error2').slideUp("slow");
+                a = 0;
+            } else {
+                const fi = document.getElementById('picture');
+                if (fi.files.length > 0) {
+                    for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                        const fsize = fi.files.item(i).size;
+                        const file = Math.round((fsize / 1024));
+
+                        // The size of the file.
+                        // if (file >= 4096) {
+                        // $('#error2').slideDown("slow");
+                        //   a = 0;
+                        // } 
+                        if (file > 2048) {
+                            $('#error3').slideDown("slow");
+                            a = 0;
+                        } else {
+                            a = 1;
+                            // $('#error2').slideUp("slow");
+                            $('#error3').slideUp("slow");
+                        }
+                        $('#error1').slideUp("slow");
+                        // $('#error2').slideDown("slow");
+                        //  $('#error3').slideDown("slow");
+                        if (a == 1) {
+                            $('.pictureCls').attr('disabled', false);
+                        }
+                    }
+                }
+                // var picsize = (this.files[0].size);
+                // if (picsize >= 2048 && picsize < 4096){
+
+                //     $('#error2').slideDown("slow");
+                //     a = 0;
+                // } else {
+
+                //    a = 1;
+                //     $('#error2').slideUp("slow");
+                // }
+                // $('#error1').slideUp("slow");
+                // if (a == 1) {
+
+                //     $('input:submit').attr('disabled', false);
+                // }
+            }
+        });
+        @if (count($userInfo?->images) == 0)
+            let defaultUpload = document.querySelector('#upload-default');
+            defaultUpload.addEventListener('click', () => {
+                $('#upload-image-modal').modal('show');
+                $('#upload-image-modal').appendTo('body');
+            })
+        @endif
     </script>
 @endsection

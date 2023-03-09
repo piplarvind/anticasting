@@ -84,7 +84,7 @@
   padding: 20px;
   border: 1px solid #e7e7e7;
   border-radius: 3px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); */
 }
 .card-subtitle {
   font-size: 12px;
