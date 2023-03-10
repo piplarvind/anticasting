@@ -1,7 +1,8 @@
 <style>
     .welcome-user {
-        background-color: rgb(239 101 3) !important;
-        box-shadow: 3px 4px #888888;
+        /* background-color: rgb(239 101 3) !important; */
+        background-color:rgb(121, 112, 125) !important;
+        box-shadow: 3px 4px #a98585;
         padding: 5px !important;
         font-size: 25px !important;
     }

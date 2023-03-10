@@ -17,8 +17,8 @@
         }
 
         .popover {
-            max-width: 750px !important;
-            max-height: 500px !important;
+            max-width: 600px !important;
+            max-height:550px !important;
         }
     </style>
 @endpush

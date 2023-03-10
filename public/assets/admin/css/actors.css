@@ -434,14 +434,22 @@ transform: rotate(45deg); */
     justify-content: center;
     background-color: #958888;
 }
-.form__div {
-    height: 50px;
-    position: relative;
-    margin-bottom: 24px;
-}
 .actor-details-img{
      width:200px !important; 
-     height:150px !important;
+     height:180px !important;
      border: 3px solid rgb(80, 78, 78);
+     margin-left:20px;
      
+}
+.card-details{
+    height: 460px !important;
+}
+.card-body{
+    height: 460px !important;
+}
+.btn-close{
+    padding-right: 10px !important;
+    padding-top: 2px !important;
+    position: relative;
+  
 }
