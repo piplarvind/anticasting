@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="form-label"><b>Movie Link</label>
                                         </b><span style="color:red;">*</span>
@@ -106,15 +106,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label"><b>Active</label>
-                                            </b><span style="color:red;">*</span>
-                                            <input type="checkbox"  name="status"
-                                                /> 
-                                        </div>
-                                    </div>
-                               
                             </div>
                                 <center>
                                     <input type="submit" class="btn btn-danger" value="Save" />

@@ -24,7 +24,7 @@ class BucketController extends Controller
     }
     public function store(Request $request)
     {
-        //dd($request->all());
+   
         $request->validate(
             [
                 'bucket_name' => 'required',
@@ -53,7 +53,6 @@ class BucketController extends Controller
         $bucket->movie_name = $request->movie_name;
         $bucket->movie_link = $request->movie_link;
         $bucket->description = $request->description;
-        $bucket->status = $request->status == true ? 1 : 0;
         $bucket->save();
         return redirect()->route('admin.bucket.manage');
     }
@@ -92,9 +91,13 @@ class BucketController extends Controller
         $bucket->movie_name = $request->movie_name;
         $bucket->movie_link = $request->movie_link;
         $bucket->description = $request->description;
-        $bucket->status = $request->status == true ? 1 : 0;
         $bucket->save();
         return redirect()->route('admin.bucket.manage');
+    }
+    public function details($id){
+        $item = Bucket::where('id',$id)->first();
+       // dd($item);
+        return view('Bucket::details',compact('item'));
     }
     public function delete($id)
     {

@@ -64,9 +64,9 @@
         margin: 14px 0
     }
 
-    .r4 {
+    /* .r4 {
         padding-left: 25px
-    }
+    } */
 
     .btn-outline-warning {
         border-radius: 0;
@@ -113,12 +113,15 @@
             margin: 0 auto;
             margin-right: 10px;
         }
-        .text{
-            padding-left:30px; 
+
+        .text {
+            padding-left: 30px;
         }
-        .content-list{
-            margin-left:50px;
+
+        .content-list {
+            margin-left: 50px;
         }
+
     }
 </style>
 
@@ -167,90 +170,168 @@
                         <div class="container py-4 my-4 mx-auto d-flex flex-column">
                             <div class="row r1">
                                 <div class="col-md-9 abc">
-                                    <h1 class="">Actor Information</h1>
+                                    <h1 class="text-muted">Actor Information</h1>
                                 </div>
                             </div>
 
                             <div class="container mt-4">
                                 <div class="row r3">
                                     <div class="col-md-7 p-0 klo">
-                                        <ul class="content-list">
-                                            <li>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <ul class="content-list">
+                                                    <li class="c-green text-break text-truncate">
 
-                                                <span class="fw-bold h6"><b> Name : </b></span>
-                                                <span
-                                                    class="c-green text-break text-truncate text">{{ $item->first_name . ' ' . $item->last_name }}
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="fw-bold h6"><b> email : </b></span>
-                                                <span
-                                                    class="c-green text-break text-truncate ps-5">{{ $item->email}}
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="fw-bold h6"><b> Phone No : </b></span>
-                                                <span
-                                                    class="c-green text-break text-truncate ps-5">{{ $item->countryCode . ' ' . $item->mobile_no }}
-                                                </span>
-                                            </li>
-                                            <li> 
-                                                <span class="fw-bold h6"><b> Date Of Birth : </b></span>
-                                                <span
-                                                    class="c-green text-break text-truncate ps-5">{{ $item?->profile?->date_of_birth }}
-                                                </span>
-                                            </li>
-                                            <li> 
-                                                <span class="fw-bold h6"><b>Current Location : </b></span>
-                                                <span
-                                                    class="c-green text-break text-truncate ps-5">{{ $item?->profile?->current_location }}
-                                                </span>
-                                            </li>
-                                            <li>
+                                                        <span class="fw-bold text-muted fs-1"><b> Name : </b></span>
+                                                        <span class="white-space fw-bold fs-1 text-secondary">
+                                                            {{ $item->first_name . ' ' . $item->last_name }}
+                                                        </span>
+                                                    </li>
+                                                    <li class="c-green text-break text-truncate">
+                                                        <span class="fw-bold text-muted fs-1"><b> email : </b></span>
+                                                        <span class="white-space fw-bold fs-1 text-secondary">
+                                                            {{ $item->email }}
+                                                        </span>
+                                                    </li>
+                                                    <li class="c-green text-break text-truncate">
+                                                        <span class="fw-bold text-muted fs-1"><b> Phone No : </b></span>
+                                                        <span class="white-space fw-bold fs-1 text-secondary">
+                                                            {{ $item->countryCode . ' ' . $item->mobile_no }}
+                                                        </span>
+                                                    </li>
+                                                    <li class="c-green text-break text-truncate">
+                                                        <span class="fw-bold text-muted fs-1"><b> Date Of Birth :
+                                                            </b></span>
+                                                        <span class="white-space fw-bold fs-1 text-secondary">
+                                                            {{ $item?->profile?->date_of_birth }}
+                                                        </span>
+                                                    </li>
+                                                    <li class="c-green text-break text-truncate">
+                                                        <span class="fw-bold text-muted fs-1"><b>Current Location :
+                                                            </b></span>
+                                                        <span class="white-space fw-bold fs-1 text-secondary">
+                                                            {{ $item?->profile?->current_location }}
+                                                        </span>
+                                                    </li>
 
-                                                <span class="fw-bold h6"><b> Ethnicity : </b></span>
-                                                <span
-                                                    class="c-green text-break text-truncate ps-5">{{ $item?->profile?->ethnicity}}
-                                                </span>
-                                            </li>
-                                           
-                                            <li>
-                                                <span class="fw-bold h6"><b> Gender : </b></span>
-                                                <span
-                                                    class="c-green text-break text-truncate ps-5">{{ $item?->profile?->gender }}
-                                                </span>
-                                            </li>
-                                            <li> 
-                                                <span class="fw-bold h6"><b> Height : </b></span>
-                                                <span
-                                                    class="c-green text-break text-truncate ps-5">{{$item?->profile?->height }}
-                                                </span>
-                                            </li>
-                                            <li> 
-                                                <span class="fw-bold h6"><b> Weight : </b></span>
-                                                <span
-                                                    class="c-green text-break text-truncate ps-5">{{$item?->profile?->weight }}
-                                                </span>
-                                            </li>
-                                          
-                                        </ul>
+
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul>
+                                                    <li class="c-green text-break text-truncate">
+
+                                                        <span class="fw-bold text-muted fs-1"><b> Ethnicity : </b></span>
+                                                        <span class="white-space fw-bold fs-1 text-secondary">
+                                                            {{ $item?->profile?->ethnicity }}
+                                                        </span>
+                                                    </li>
+
+                                                    <li class="c-green text-break text-truncate">
+                                                        <span class="fw-bold text-muted fs-1"><b> Gender : </b></span>
+                                                        <span class="white-space fw-bold fs-1 text-secondary">
+                                                            {{ $item?->profile?->gender }}
+                                                        </span>
+                                                    </li>
+                                                    <li class="c-green text-break text-truncate">
+                                                        <span class="fw-bold text-muted fs-1 "><b> Height : </b></span>
+                                                        <span
+                                                            class="white-space fw-bold fs-1 text-secondary">{{ $item?->profile?->height }}
+                                                        </span>
+                                                    </li>
+                                                    <li class="text-break text-truncate">
+                                                        <span class="fw-bold text-muted fs-1"><b> Weight : </b></span>
+                                                        <span class="white-space fw-bold fs-1 text-secondary">
+                                                            {{ $item?->profile?->weight }}
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div class="col-md-5"> <img src="{{ $item?->images[0]?->image }}" width="85%"
-                                            height="85%"> </div>
+                                    <div class="col-md-5">
+                                        @isset($item?->images[0]?->image)
+                                            <img class="d-flex rounded img-fluid img-thumbnail justify-content-between"
+                                                src="{{ $item?->images[0]?->image }}" width="90%" height="100%">
+                                        @else
+                                            <img class="d-flex rounded img-fluid img-thumbnail justify-content-between"
+                                                src="{{ asset('assets/images/default-user.jfif') }}" width="90%"
+                                                height="100%">
+                                        @endisset
+                                    </div>
+                                </div>
+                                <div class="footer d-flex flex-column mt-5">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <span class="d-flex justify-content-center fw-bold h6 text-muted fs-1">Work
+                                                Reels</span>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    @isset($item?->profile?->work_reel1)
+                                                        <iframe width="95%" height="95%"
+                                                            src="{{ $item?->profile?->work_reel1 }}"
+                                                            title="YouTube video player" frameborder="2"
+                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                            allowfullscreen></iframe>
+                                                    @else
+                                                        <img class="d-flex rounded img-fluid img-thumbnail justify-content-between"
+                                                          src="{{ asset('assets/images/video-thumb.png') }}" width="90%"
+                                                            height="95%">
+                                                    @endisset
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @isset($item?->profile?->work_reel2)
+                                                        <iframe width="95%" height="95%"
+                                                            src="{{ $item?->profile?->work_reel2 }}"
+                                                            title="YouTube video player" frameborder="2"
+                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                            allowfullscreen></iframe>
+                                                    @else
+                                                        <img class="d-flex rounded img-fluid img-thumbnail justify-content-between"
+                                                        src="{{ asset('assets/images/video-thumb.png') }}" width="90%"
+                                                            height="95%">
+                                                    @endisset
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @isset($item?->profile?->work_reel3)
+                                                        <iframe width="95%" height="95%"
+                                                            src="{{ $item?->profile?->work_reel3 }}"
+                                                            title="YouTube video player" frameborder="2"
+                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                            allowfullscreen></iframe>
+                                                    @else
+                                                        <img class="d-flex rounded img-fluid img-thumbnail justify-content-between"
+                                                            src="{{ asset('assets/images/video-thumb.png') }}"
+                                                            width="90%" height="95%">
+                                                    @endisset
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span class="d-flex justify-content-center fw-bold h6 text-muted fs-1">Intro
+                                                Video</span>
+                                            <div class="d-flex justify-content-center">
+                                                @isset($item?->introVideo?->intro_video_link)
+                                                    <iframe width="65%" height="65%"
+                                                        src="{{$item?->introVideo?->intro_video_link}}"
+                                                        title="YouTube video player" frameborder="2"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                        allowfullscreen>
+                                                    </iframe>
+                                                @else
+                                                    <img class="d-flex rounded img-fluid img-thumbnail justify-content-between"
+                                                       src="{{ asset('assets/images/video-thumb.png') }}" width="85%"
+                                                        height="85%">
+                                                @endisset
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            {{-- <div class="footer d-flex flex-column mt-5">
-                                <div class="row r4">
-                                    <div class="col-md-2 myt des"><a href="#">Description</a></div>
-                                    <div class="col-md-2 myt "><a href="#">Review</a></div>
-                                    <div class="col-md-2 mio offset-md-4"><a href="#">ADD TO CART</a></div>
-                                    <div class="col-md-2 myt "><button type="button" class="btn btn-outline-warning"><a href="#">BUY NOW</a></button></div>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 @endsection

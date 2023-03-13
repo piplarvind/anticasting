@@ -52,7 +52,6 @@
                                                 <th class="text-center">Movie</th>
                                                 <th class="text-center">Move Link</th>
                                                 <th class="text-center">Description</th>
-                                                <th class="text-center">Status</th>
                                                 <th class="text-center">Action</th>
                                               
                                                
@@ -72,10 +71,9 @@
                                                             {{ $item->movie_link }}
                                                         </td>
                                                         <td class="text-center">
-                                                        
-                                                            {{ $item->description }}
+                                                          {!! $item->description!!}
                                                         </td>
-                                                        @if (isset($item->status) && $item->status == 1)
+                                                        {{-- @if (isset($item->status) && $item->status == 1)
                                                             <td>
                                                                 <span class="badge badge-success text-center">
                                                                     Active
@@ -88,13 +86,15 @@
                                                                     Inactive
                                                                 </span>
                                                             </td>
-                                                        @endif
-
-                                                        <td class="text-center">
-                                                        
+                                                        @endif --}}
+                                                         <td class="text-center">
                                                             <a href="{{ route('admin.bucket.manage.edit', $item->id) }}"
                                                                 class="btn btn-success btn-sm">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
+                                                            </a>
+                                                            <a href="{{ route('admin.bucket.manage.details', $item->id) }}"
+                                                                class="btn btn-primary btn-sm">
+                                                                <i class="fa-solid fa-eye"></i>
                                                             </a>
                                                             <a href="{{ route('admin.bucket.manage.delete', $item->id) }}" class="btn btn-danger btn-sm">
                                                                 <i class="fa-solid fa-trash-arrow-up"></i>

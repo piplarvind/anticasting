@@ -179,26 +179,17 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-6 col-sm-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="height"><b>Height (CM)</b>&nbsp;<span
-                                                style="color:red;">*
-                                            </span></label>
+                                        <label class="form-label" for="height"><b>Height (CM)</b></label>
                                         <input type="text" name="height" class="form-control" id="height"
                                             value="{{ old('height') }}" placeholder="Enter height">
-                                            @error('height')
-                                            <span style="color:red;"><b>{{ $message }}</b></span>
-                                           @enderror
+                                        
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6 col-sm-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="weight"><b>Weight (KG)</b>&nbsp;<span
-                                                style="color:red;">*
-                                            </span></label>
+                                        <label class="form-label" for="weight"><b>Weight (KG)</b></label>
                                         <input type="text" name="weight" class="form-control" id="weight"
                                             value="{{ old('weight') }}" placeholder="Enter weight">
-                                            @error('weight')
-                                            <span style="color:red;"><b>{{ $message }}</b></span>
-                                           @enderror
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +206,7 @@
                                            @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-6 col-sm-6">
+                                {{-- <div class="col-md-6 col-lg-6 col-sm-6">
                                     <div class="form-group">
                                         <label class="form-label" for="status"><b>Active</b>&nbsp;<span
                                                 style="color:red;">*
@@ -224,7 +215,7 @@
                                         />
                         
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <center>
                                 <input type="submit" class="btn btn-danger" value="Save" />

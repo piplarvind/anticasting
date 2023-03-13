@@ -3670,7 +3670,7 @@ body {
   font-family: 'Roboto', sans-serif;
   background: rgba(88, 115, 254, 0.04);
   color: #868e96;
-  font-size: 14px;
+  font-size: 14px !important;
 }
 a,
 button {

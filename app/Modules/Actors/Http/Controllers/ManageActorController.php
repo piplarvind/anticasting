@@ -33,10 +33,7 @@ class ManageActorController extends Controller
                 'gender' => 'required',
                 'email' => 'required|unique:users,email',
                 'current_location' => 'required',
-                'height' => 'required',
-                'weight' => 'required',
                 'mobile_no' => 'required',
-                // 'images' => 'image|mimes:jpeg,jpg,png,gif',
             ],
             [
                 'first_name.required' => 'Please enter a firstname',
@@ -45,11 +42,9 @@ class ManageActorController extends Controller
                 'email.required' => 'Please enter a email',
                 'ethnicity.required' => 'Please select ethnicity',
                 'gender.required' => 'Please select  gender',
-                'height.required' => 'Please enter a height',
-                'weight.required' => 'Please enter a weight',
                 'current_location.required' => 'Please enter a current location',
                 'mobile_no.required' => 'Please enter a mobile number',
-                // 'images.image' => 'Image should be jpg,jpeg,png,gif',
+              
             ],
         );
         //  dd($request->all());
@@ -72,12 +67,11 @@ class ManageActorController extends Controller
         $user_profile->gender = $request->gender;
         $user_profile->height = $request->height;
         $user_profile->weight = $request->weight;
-        $user_profile->status = $request->status == true ? 1 : 0;
         $user_profile->user_id = $user->id;
         $user_profile->save();
 
         if ($request->file('images')) {
-            $allowedfileExtension = ['jpeg', 'jpg', 'png', 'gif'];
+            $allowedfileExtension = ['jpeg', 'jpg', 'png', 'gif','jfif'];
             $images = $request->file('images');
             foreach ($images as $image) {
                 $filename = $image->getClientOriginalName();
@@ -93,7 +87,7 @@ class ManageActorController extends Controller
                 } else {
                     return redirect()
                         ->back()
-                        ->with('error', 'image should be jpg,jpeg,png,gif');
+                        ->with('error', 'image should be jpg,jpeg,png,jfif,gif');
                 }
             }
         }
@@ -121,8 +115,6 @@ class ManageActorController extends Controller
                 'gender' => 'required',
                 'email' => 'required|unique:users,email,' . $user_id,
                 'current_location' => 'required',
-                'height' => 'required',
-                'weight' => 'required',
                 'mobile_number' => 'required',
             ],
             [
@@ -132,8 +124,6 @@ class ManageActorController extends Controller
                 'email.required' => 'Please enter a email',
                 'ethnicity.required' => 'Please select ethnicity',
                 'gender.required' => 'Please select  gender',
-                'height.required' => 'Please enter a height',
-                'weight.required' => 'Please enter a weight',
                 'current_location.required' => 'Please enter a current location',
                 'mobile_number.required' => 'Please enter a mobile number',
                 // 'mobile_number.max' => 'Mobile number should be 10 digit.',
@@ -146,7 +136,6 @@ class ManageActorController extends Controller
         $user->email = $request->email;
         $user->countryCode = $request->iso2;
         $user->mobile_no = $request->mobile_number;
-        $user->status = $request->status == true ? 1 : 0;
         $user->user_type = '0';
         $user->save();
 
@@ -162,7 +151,7 @@ class ManageActorController extends Controller
         $user_profile->save();
 
         if ($request->file('images')) {
-            $allowedfileExtension = ['jpeg', 'jpg', 'png', 'gif'];
+            $allowedfileExtension = ['jpeg', 'jpg', 'png', 'gif','jfif'];
             $images = $request->file('images');
 
             foreach ($images as $image) {
@@ -181,7 +170,7 @@ class ManageActorController extends Controller
                 } else {
                     return redirect()
                         ->back()
-                        ->with('error', 'image should be jpg,jpeg,png,gif');
+                        ->with('error', 'image should be jpg,jpeg,jfif,png,gif');
                 }
             }
         }
@@ -193,6 +182,7 @@ class ManageActorController extends Controller
         ->where('user_type', '0')
         ->with('profile')
         ->with('images')
+        ->with('introVideo')
         ->first();
         // dd($item);
        return view('Actors::ManageActor.details',compact('item'));

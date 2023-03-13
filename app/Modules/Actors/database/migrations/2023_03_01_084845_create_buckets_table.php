@@ -21,7 +21,7 @@ class CreateBucketsTable extends Migration
             nullable();
             $table->string('movie_link')->
             nullable();
-            $table->string('description')->
+            $table->longText('description')->
             nullable();
             $table->boolean('status')
             ->default(0)
