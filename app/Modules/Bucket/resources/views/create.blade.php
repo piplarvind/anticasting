@@ -136,50 +136,50 @@
     </section>
     <!-- Initialize Quill editor -->
     <script>
-        // $(document).ready(function() {
-        //     $('#description').summernote({
-        //         placeholder: 'Enter movie description goes here..',
-        //         // tabsize: 2,
-        //         height: 300,
-        //         // followingToolbar: true,
-        //         toolbar: [
-        //             ['style', ['style']],
-        //             ['font', ['bold', 'underline', 'clear']],
-        //             ['fontname', ['fontname']],
-        //             ['color', ['color']],
-        //             ['para', ['ul', 'ol', 'paragraph']],
-        //             ['table', ['table']],
-        //             ['insert', ['link', 'picture', 'video']],
-        //             ['view', ['fullscreen', 'codeview', 'help']],
-        //         ],
-        //         popover: {
-        //             image: [
-        //                 ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
-        //                 ['float', ['floatLeft', 'floatRight', 'floatNone']],
-        //                 ['remove', ['removeMedia']]
-        //             ],
-        //             link: [
-        //                 ['link', ['linkDialogShow', 'unlink']]
-        //             ],
-        //             table: [
-        //                 ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
-        //                 ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
-        //             ],
-        //             air: [
-        //                 ['color', ['color']],
-        //                 ['font', ['bold', 'underline', 'clear']],
-        //                 ['para', ['ul', 'paragraph']],
-        //                 ['table', ['table']],
-        //                 ['insert', ['link', 'picture']]
-        //             ]
-        //         }
+        $(document).ready(function() {
+            $('#description').summernote({
+                placeholder: 'Enter movie description goes here..',
+                // tabsize: 2,
+                height: 300,
+                // followingToolbar: true,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']],
+                ],
+                popover: {
+                    image: [
+                        ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                        ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                        ['remove', ['removeMedia']]
+                    ],
+                    link: [
+                        ['link', ['linkDialogShow', 'unlink']]
+                    ],
+                    table: [
+                        ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+                        ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+                    ],
+                    air: [
+                        ['color', ['color']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['para', ['ul', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture']]
+                    ]
+                }
 
-        //     })
-        //     //.summernote("code", '{!! old('policy', isset($item->policy) ? $item->policy : '') !!}');
+            })
+            //.summernote("code", '{!! old('policy', isset($item->policy) ? $item->policy : '') !!}');
 
-        //     // var postForm = function() {
-        //     //     var content = $('textarea[name="policy"]').html($('#policycontent').code());
-        //     // }
-        // });
+            // var postForm = function() {
+            //     var content = $('textarea[name="policy"]').html($('#policycontent').code());
+            // }
+        });
     </script>
 @endsection

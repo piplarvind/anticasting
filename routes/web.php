@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     AboutUsController, 
     ContactUsController,
     MessageController,
+    ImageController,
     
  };
 use App\Http\Controllers\Auth\LoginController;
@@ -75,7 +76,8 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'user']], function ()
     Route::post('/userimage', [\App\Http\Controllers\ProfileController::class,'uploadUserImage'])->name('users.uploadImages');
     Route::post('/userworkreel', [\App\Http\Controllers\ProfileController::class,'submitWorkReel'])->name('users.userworkreel');
     Route::post('/userintrovideo', [\App\Http\Controllers\ProfileController::class,'IntroVideo'])->name('users.introvideos');
-
+    Route::post('/delete/single/{id}/{user_id}/image', [ImageController::class,'deleteHeadShotImageSingle'])->name('user.single.image');
+    Route::get('/delete/all/{user_id}/image', [ImageController::class,'deleteHeadShotImageAll'])->name('user.delete-all-headshots');
 });
 
 /*

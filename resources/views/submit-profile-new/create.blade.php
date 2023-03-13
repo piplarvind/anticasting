@@ -2,13 +2,18 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/website/css/image-gallery.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/auth/toastr.min.css') }}" />
-    <link rel="stylesheet" href="{{asset('assets/website/css/alertbox.css')}}"/>
+    <link rel="stylesheet" href="{{ asset('assets/website/css/alertbox.css') }}" />
+    <style>
+        .btn {
+            color: #fff;
+        }
+    </style>
 @endsection
 @section('header')
     @include('include.submitprofile.image-header')
 @endsection
 @section('content')
- <section id="contact-us" class="contact-us section">
+    <section id="contact-us" class="contact-us section">
 
         @if (Session::has('message'))
             <div id="success" title="Success">
@@ -22,11 +27,16 @@
                         @csrf
                         <div class="card mb-4">
                             <div class="card-body">
-                                <h3 class="h6 mb-4">Personal Information</h3>
+                                <h3 class="h6 mb-4 fw-bold">Personal Information</h3>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">First name</label>
+                                            <label class="form-label">
+                                                <b>
+                                                    First name
+                                                 <span style="color:red;"><b>*</b></span>
+                                                </b>
+                                            </label>
                                             <input type="text" class="form-control" placeholder="First Name"
                                                 name="first_name" value="{{ old('first_name', $userInfo->first_name) }}" />
                                             @error('first_name')
@@ -39,7 +49,12 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Last name</label>
+                                            <label class="form-label">
+                                                <b>
+                                                    Last name
+                                                 <span style="color:red;"><b>*</b></span>
+                                                </b>
+                                            </label>
                                             <input type="text" class="form-control" placeholder="Last Name"
                                                 name="last_name" value="{{ old('last_name', $userInfo->last_name) }}" />
                                             @error('last_name')
@@ -54,7 +69,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Email</label>
+                                            <label class="form-label"><b>Email</b></label>
                                             <input type="email" class="form-control" placeholder="Email" name="email"
                                                 readonly value="{{ old('email', $userInfo->email) }}" />
 
@@ -62,11 +77,11 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Phone number</label>
+                                            <label class="form-label"><b>Phone number</b></label>
                                             <div class="input-group mb-3">
                                                 <!--
-                                                            <span class="input-group-text" style="width:10px;">+</span>
-                                                            -->
+                                                 <span class="input-group-text" style="width:10px;">+</span>
+                                                                -->
                                                 <input type="text" class="form-control" name="countryCode" readonly
                                                     style="width:15px;"
                                                     value="{{ old('countryCode', $userInfo->countryCode) }}" />
@@ -81,7 +96,12 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Date of Birth</label>
+                                            <label class="form-label">
+                                                <b>
+                                                 Date Of Birth
+                                                 <span style="color:red;"><b>*</b></span>
+                                                </b>
+                                            </label>
                                             <input type="date" class="form-control" placeholder="Date of Birth"
                                                 name="date_of_birth"
                                                 value="{{ old('date_of_birth', isset($userProfile->date_of_birth) ? $userProfile->date_of_birth : ' ') }}" />
@@ -96,7 +116,12 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Gender</label>
+                                            <label class="form-label">
+                                                <b>
+                                                    First name
+                                                 <span style="color:red;"><b>*</b></span>
+                                                </b>
+                                            </label>
                                             <select name="gender" id="gender" class="form-control">
                                                 <option value="" selected="selected" class="0">
                                                     Gender
@@ -120,7 +145,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Height (CM)</label>
+                                            <label class="form-label"><b>Height (CM)</b></label>
                                             <input type="text" class="form-control" placeholder="Enter height"
                                                 name="height"
                                                 value="{{ old('height', isset($userProfile->height) ? $userProfile->height : ' ') }}" />
@@ -133,7 +158,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Weight (KG)</label>
+                                            <label class="form-label"><b>Weight (KG)</b></label>
                                             <input type="text" class="form-control" placeholder="Enter weight"
                                                 name="weight"
                                                 value="{{ old('weight', isset($userProfile->weight) ? $userProfile->weight : ' ') }}" />
@@ -148,7 +173,12 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Current Location</label>
+                                            <label class="form-label">
+                                                <b>
+                                                    Current Location
+                                                 <span style="color:red;"><b>*</b></span>
+                                                </b>
+                                            </label>
                                             <input type="text" class="form-control" name="current_location"
                                                 placeholder="Enter current location"
                                                 value="{{ old('current_location', isset($userProfile->current_location) ? $userProfile->current_location : ' ') }}" />
@@ -161,7 +191,12 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Ethnicity</label>
+                                            <label class="form-label">
+                                                <b>
+                                                    Ethnicity
+                                                 <span style="color:red;"><b>*</b></span>
+                                                </b>
+                                            </label>
                                             <select name="ethnicity" id="ethnicity" class="form-control">
                                                 <option value="" selected="selected" class="0">
                                                     Select Ethnicity
@@ -182,15 +217,11 @@
                                         </div>
                                     </div>
                                 </div>
-                              
-                                <div class="row">
-                                    
-                                </div>
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <h3 class="h6 mb-4">Work Reels</h3>
+                                <h3 class="h6 mb-4 fw-bold">Work Reels</h3>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
@@ -235,11 +266,11 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" style="background-color: #ff5b00;" class="btn btn-sm" id="btn"
-                            value="Submit" tabindex="75">
+                        <input type="submit" style="background-color: #ff5b00; margin-bottom:10px;" class="btn btn-sm"
+                            id="btn" value="Submit" tabindex="75">
                     </form>
                 </div>
-                <div class="col-lg-4 col-12">
+                <div class="col-lg-4 col-12 mb-3">
                     @include('submit-profile-new.right-section')
                 </div>
             </div>
@@ -258,7 +289,7 @@
                 modal: true,
                 width: 350,
                 height: 150,
-                  buttons: [
+                buttons: [
                     // {
                     //     text: 'Yes, proceed!',
                     //     open: function() {
@@ -297,6 +328,7 @@
         //  $('#show-intro').on('click', function() {
         //     $('#video-section').slideToggle();
         // });
+        /*Sample Intro video js*/
         $('#intro_video').hide();
         $('#hide').on('click', function() {
             $('#intro_video').hide();
@@ -304,6 +336,18 @@
         $('#show').on('click', function() {
             $('#intro_video').show();
         })
+        /*Choose Intro video js*/
+        $('#hindi').on('click', function() {
+          
+            $('#intro_hindi').show();
+            $('#intro_english').hide();
+        })
+        $('#intro_english').hide();
+        $('#english').on('click', function() {
+          
+          $('#intro_hindi').hide();
+          $('#intro_english').show();
+      })
         // to stop the ifram video
         function stopVideo(element) {
             // getting every iframe from the body
@@ -366,7 +410,7 @@
                 $('.pictureCls').attr('disabled', true);
             }
             var ext = $('#picture').val().split('.').pop().toLowerCase();
-            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', ]) == -1) {
+            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif']) == -1) {
                 $('#error1').slideDown("slow");
                 $('#error2').slideUp("slow");
                 a = 0;
@@ -423,5 +467,10 @@
                 $('#upload-image-modal').appendTo('body');
             })
         @endif
+        function deleteAllHeadShotImages(url) {
+            if (confirm('Do you really want to delete all headshot images?')) {
+                document.location.href = url;
+            }
+        }
     </script>
 @endsection

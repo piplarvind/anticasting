@@ -45,6 +45,7 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 	/* border: 2px ridge  black; */
+	height: 98px;
 }
 
 /* Main Styles */
@@ -52,7 +53,8 @@
 	position: relative;
 	overflow: hidden;
 	text-align: center;
-	margin-top: 50px;
+	/* margin-top: 50px; */
+	margin-top: 25px;
 }
 
 .gallery {
@@ -61,13 +63,21 @@
 	font-size: 0;
 }
 
-.item-wrapper {
+/* .item-wrapper {
 	cursor: pointer;
-	width: 23%; /* arbitrary value */
+	width: 23%;
 	display: inline-block;
 	background-color: white;
 	margin-right: 8px;
     border: 1px dotted #c5c5c5;
+} */
+.item-wrapper {
+    cursor: pointer;
+    width: 30%;
+    display: inline-block;
+    background-color: white;
+    margin-right: 10px;
+    /* border: 1px dotted #c5c5c5; */
 }
 
 .gallery-item { 

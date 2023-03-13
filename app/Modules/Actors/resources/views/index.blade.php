@@ -211,5 +211,12 @@
     //         $(".bs-popover-top").popover('hide');
     //     }
     // });
+   
+  $(function () {
+    $('#ethnicity').fSelect();
+  });
+  $(function () {
+    $('#gender').fSelect();
+  });
 </script>
 @endsection

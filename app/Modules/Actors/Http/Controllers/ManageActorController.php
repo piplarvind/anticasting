@@ -187,6 +187,16 @@ class ManageActorController extends Controller
         }
         return redirect()->route('admin.actors.mange');
     }
+    public function ActorDetails($id){
+
+        $item = User::where('id', $id)
+        ->where('user_type', '0')
+        ->with('profile')
+        ->with('images')
+        ->first();
+        // dd($item);
+       return view('Actors::ManageActor.details',compact('item'));
+    }
     public function ActorDelete($id)
     {
         $user = User::findOrFail($id);

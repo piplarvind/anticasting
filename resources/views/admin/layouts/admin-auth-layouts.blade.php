@@ -33,9 +33,9 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-
+@yield('footer')
 {{-- 
     @include('includes.message')
      --}}

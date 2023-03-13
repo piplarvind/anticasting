@@ -1,6 +1,6 @@
 <style>
     .close-btn {
-        padding: .2rem .3rem;
+        padding: .2rem .6rem;
         position: absolute;
         /* You may need to change top and right. They depend on padding/widht of .badge */
         top: -10px;

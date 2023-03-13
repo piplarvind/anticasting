@@ -109,7 +109,6 @@
                                                 {{-- <th class="text-center">Intro Hindi</th> --}}
                                                 {{-- <th class="text-center">Intro English</th> --}}
                                                 {{-- <th class="text-center">Work reel</th> --}}
-                                                <th class="text-center">Status</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -160,29 +159,19 @@
                                                                 {{ $item?->profile?->work_reel1 }}
                                                             </a>
                                                         </td> --}}
-                                                        @if (isset($item?->profile?->status) && $item?->profile?->status == 1)
-                                                            <td>
-                                                                <span class="badge badge-success text-center">
-                                                                    Active
-                                                                </span>
-                                                            </td>
-                                                        @else
-                                                            <td>
-                                                                <span class="badge bg-danger text-center">
-                                                                    Inactive
-                                                                </span>
-                                                            </td>
-                                                        @endif
 
                                                         <td class="text-center">
-
                                                             <a href="{{ route('admin.actors.mange.edit', $item->id) }}"
                                                                 class="btn btn-success btn-sm mb-2">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                             </a>
-                                                            <a href="{{ route('admin.actors.mange.delete', $item->id) }}" class="btn btn-danger btn-sm">
+                                                            <a href="{{ route('admin.actors.mange.details', $item->id) }}" class="btn btn-primary btn-sm mb-2">
+                                                                <i class="fa-solid fa-eye"></i>
+                                                            </a>
+                                                            <a href="{{ route('admin.actors.mange.delete', $item->id) }}" class="btn btn-danger btn-sm mb-2">
                                                                 <i class="fa-solid fa-trash-arrow-up"></i>
                                                             </a>
+                                                           
                                                         </td>
                                                     </tr>
                                                 @endisset
