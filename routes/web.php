@@ -68,6 +68,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'user']], function ()
 
     Route::get('/submitProfile/edit/{id}', [\App\Http\Controllers\ProfileController::class, 'editProfile'])->name('users.submitProfile.edit');
     Route::put('submitProfile-update/{id}', [\App\Http\Controllers\ProfileController::class, 'updateProfile'])->name('users.submitProfile.update');
+    Route::get('/view-profile',[\App\Http\Controllers\ViewProfileController::class,'profileDetails'])->name('users.view.profile');
     /*Logout User */
     Route::get('/logout', [LoginController::class, 'logout'])->name('users.logout');
     /* Message*/

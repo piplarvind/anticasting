@@ -1,98 +1,51 @@
-<nav class="main-nav--bg">
-    <div class="container main-nav">
-        <div class="main-nav-start">
-            {{-- <div class="search-wrapper">
-                <i data-feather="search" aria-hidden="true"></i>
-                <input type="text" placeholder="Enter keywords ..." required>
-            </div> --}}
-        </div>
-        <div class="main-nav-end">
-             <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
-                <span class="sr-only">Toggle menu</span>
-                <span class="icon menu-toggle--gray" aria-hidden="true"></span>
-              </button>
-            <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">
-                <span class="sr-only">Switch theme</span>
-                <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
-                <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
-            </button>
-            {{-- <div class="notification-wrapper">
-                <button class="gray-circle-btn dropdown-btn" title="To messages" type="button">
-                    <span class="sr-only">To messages</span>
-                    <span class="icon notification active" aria-hidden="true"></span>
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Topbar Search -->
+    {{-- <form
+        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
                 </button>
-                <ul class="users-item-dropdown notification-dropdown dropdown">
-                    <li>
-                        <a href="##">
-                            <div class="notification-dropdown-icon info">
-                                <i data-feather="check"></i>
-                            </div>
-                            <div class="notification-dropdown-text">
-                                <span class="notification-dropdown__title">System just updated</span>
-                                <span class="notification-dropdown__subtitle">The system has been successfully
-                                    upgraded. Read more
-                                    here.</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="##">
-                            <div class="notification-dropdown-icon danger">
-                                <i data-feather="info" aria-hidden="true"></i>
-                            </div>
-                            <div class="notification-dropdown-text">
-                                <span class="notification-dropdown__title">The cache is full!</span>
-                                <span class="notification-dropdown__subtitle">Unnecessary caches take up a lot of
-                                    memory space and
-                                    interfere ...</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="##">
-                            <div class="notification-dropdown-icon info">
-                                <i data-feather="check" aria-hidden="true"></i>
-                            </div>
-                            <div class="notification-dropdown-text">
-                                <span class="notification-dropdown__title">New Subscriber here!</span>
-                                <span class="notification-dropdown__subtitle">A new subscriber has
-                                    subscribed.</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="link-to-page" href="##">Go to Notifications page</a>
-                    </li>
-                </ul>
-            </div> --}}
-            <div class="nav-user-wrapper">
-                <button  class="nav-user-btn dropdown-btn" title="My profile" type="button">
-                    <span class="sr-only">My profile</span>
-                    <span class="nav-user-img">
-                        <picture>
-                            <source srcset="{{ asset('assets/front-dashboard/img/user-icon.png') }}" type="image/webp"><img
-                                src="{{ asset('assets/front-dashboard/img/avatar/avatar-illustrated-02.png') }}" alt="User name">
-                        </picture>
-                    </span>
-                </button>
-                <ul class="users-item-dropdown nav-user-dropdown dropdown">
-                    <li><a href="{{route('users.submitProfile')}}">
-                            <i data-feather="user" aria-hidden="true"></i>
-                            <span>Profile</span>
-                        </a>
-                    </li>
-                    {{-- <li>
-                        <a href="##">
-                            <i data-feather="settings" aria-hidden="true"></i>
-                            <span>Account settings</span>
-                        </a>
-                    </li> --}}
-                    <li><a class="danger" href="{{route('users.logout')}}">
-                            <i data-feather="log-out" aria-hidden="true"></i>
-                            <span>Log out</span>
-                        </a></li>
-                </ul>
             </div>
         </div>
-    </div>
+    </form> --}}
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
+                <img class="img-profile rounded-circle"
+                    src="{{ asset('assets/front-dashboard/img/undraw_profile.svg') }}">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{{route('users.submitProfile')}}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('users.logout') }}">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+            </div>
+        </li>
+
+    </ul>
+
 </nav>
