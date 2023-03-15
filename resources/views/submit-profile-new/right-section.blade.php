@@ -83,19 +83,19 @@
 <div class="card mb-3">
     <div class="card-body ms-1">
         <div class="d-flex justify-content-between">
-            <span class="h6 fw-bold">Choose intro video language</span>
+            <span class="h6 fw-bold">Sample intro video</span>
         </div>
         <div id="video-section" class="mb-2 ms-3">
             <div class="radio-group">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="language" id="hindi" value="hindi" checked
                         onclick="stopVideo(body)" />
-                    <label class="form-check-label" for="hindi">In Hindi</label>
+                    <label class="form-check-label" for="hindi">Hindi</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="language" id="english" value="english"
                         onclick="stopVideo(body)" />
-                    <label class="form-check-label" for="english">In English</label>
+                    <label class="form-check-label" for="english">English</label>
                 </div>
             </div>
          
@@ -114,7 +114,7 @@
                     </div>
                 </div>
             </div>     
-        <div class="d-flex justify-content-between">
+        {{-- <div class="d-flex justify-content-between">
             <span class="h6 fw-bold">Sample intro video</span>
         </div>
 
@@ -138,7 +138,7 @@
                     </iframe>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="row" style="margin-top:20px;">
             <form action="{{ route('users.introvideos') }}" method="post">
