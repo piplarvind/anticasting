@@ -119,69 +119,51 @@
         .content-list {
             margin-left: 50px;
         }
-
-        .steps {
-            position: relative;
-        }
-
+}
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+ .image-container {
+        width: 300px;
+        height: 300px;
+        background-color: #fff;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 10px;
+        gap: 10px;
     }
 
-    /* Core Styles */
-    #slider {
-        width: 250px;
+    img {
+        width: 100%;
+        display: block;
+    }
+
+    .card-left {
+        width: 226px !important;
         overflow: hidden;
-        border: 0px solid #363535;
-        height: 250px;
-        position: relative;
-        margin: auto;
     }
 
-    #slider ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
+    .main-image {
         display: flex;
+        transition: all 0.5s ease;
+       
     }
-
-    #slider ul li img{
-        display: block;
-        width: 250px !important;
-        height:250px !important;
-      }
-    #slider ul li img:hover{
-        opacity: 0.4;
-    }
-    /* Control Styles */
-    #links {
-        width: 250px !important;
-        height:50px !important;
+   
+    .img-select {
         display: flex;
-        margin: 2 auto;
+        margin-top: 2px;
     }
 
-    #links a {
-        display: block;
-        width: 210px;
-        background-color: #cec8c8;
-        height: 50px;
-        line-height: 50px;
-        color: #221d1d;
-        text-decoration: none;
-        text-align: center;
+    .img-select-container {
+        border: 2px solid white;
     }
 
-    #links a:hover {
-        background: #c96869;
-        color: #fff;
-    }
+    .active {
+        border-color: black;
 
+    }
 </style>
 @section('content')
     <section>
-      
+
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="card m-1">
@@ -191,10 +173,11 @@
                     <div class="card-body">
                         <div class="container py-4 my-4 mx-auto d-flex flex-column">
                             {{-- <div class="row r1">
-                    <div class="col-md-9">
+                               <div class="col-md-9">
                       
-                    </div>
-                </div> --}}
+                              </div>
+                               </div> 
+                               --}}
                             <div class="container mt-4">
                                 <div class="row">
                                     <div class="col-md-7  col-xs-12 col-sm-12 p-0 klo">
@@ -272,77 +255,56 @@
 
                                     </div>
                                     <div class="col-md-5  col-xs-5 col-sm-5">
-                                        {{-- <div class="row steps">
-                                            <div class="col-md-4 col-xs-4 col-sm-4 col-md-offset-1">
-                                                @isset($item?->images[0]?->image)
-                                                    <img class="d-flex rounded  justify-content-between"
-                                                        src="{{ $item?->images[0]?->image }}"
-                                                        style="width:120px; height:150px; border:1px solid black;">
-                                                @else
-                                                    <img class="d-flex justify-content-between"
-                                                        src="{{ asset('assets/images/default-user.jfif') }}" width="120"
-                                                        height="150">
-                                                @endisset
-                                            </div>
-                                            <div class="col-md-4 col-xs-4 col-sm-4 col-md-offset-1">
-                                                @isset($item?->images[1]?->image)
-                                                    <img class="d-flex rounded  justify-content-between"
-                                                        src="{{ $item?->images[1]?->image }}"
-                                                        style="width:120px; height:150px; border:1px solid black;">
-                                                @else
-                                                    <img class="d-flex rounded justify-content-between"
-                                                        src="{{ asset('assets/images/default-user.jfif') }}" width="120"
-                                                        height="150">
-                                                @endisset
-                                            </div>
-                                            <div class="col-md-4  col-xs-4 col-sm-4 col-md-offset-1">
-                                                @isset($item?->images[2]?->image)
-                                                    <img class="d-flex rounded  justify-content-between"
-                                                        src="{{ $item?->images[2]?->image }}"
-                                                        style="width:120px; height:150px; border:1px solid black;">
-                                                @else
-                                                    <img class="d-flex rounded justify-content-between"
-                                                        src="{{ asset('assets/images/default-user.jfif') }}" width="120"
-                                                        height="150">
-                                                @endisset
-                                            </div>
-
-                                        </div> --}}
-                                        <div id="slider" class="shadow-lg p-1 mb-3 bg-body rounded">
-                                            <ul>
-                                                <li>
+                                        <div class="image-container">
+                                            <div class="card-left">
+                                                <div class="main-image">
                                                     @isset($item?->images[0]?->image)
-                                                        <img  src="{{ $item?->images[0]?->image }}"
-                                                           />
+                                                        <img src="{{ $item?->images[0]?->image }}" />
                                                     @else
-                                                        <img src="{{ asset('assets/images/default-user.jfif') }}"
-                                                        />
+                                                        <img src="{{ asset('assets/images/default-user.jfif') }}" />
                                                     @endisset
-                                                </li>
-                                                <li>
                                                     @isset($item?->images[1]?->image)
-                                                        <img  src="{{ $item?->images[1]?->image }}"
-                                                        />
+                                                        <img src="{{ $item?->images[1]?->image }}" />
                                                     @else
-                                                        <img  src="{{ asset('assets/images/default-user.jfif') }}"
-                                                           />
+                                                        <img src="{{ asset('assets/images/default-user.jfif') }}" />
                                                     @endisset
-                                                </li>
-                                                <li>
                                                     @isset($item?->images[2]?->image)
-                                                        <img src="{{ $item?->images[2]?->image }}"
-                                                       />
+                                                        <img src="{{ $item?->images[2]?->image }}" />
                                                     @else
-                                                        <img  src="{{ asset('assets/images/default-user.jfif') }}"
-                                                           >
+                                                        <img src="{{ asset('assets/images/default-user.jfif') }}" />
                                                     @endisset
-                                                </li>
-                                
-                                            </ul>
-                                        </div>
-                                        <div id="links">
-                                            <a href="#" id="previous">Prev</a>
-                                            <a href="#" id="next">Next</a>
+
+                                                </div>
+                                                <div class="img-select">
+                                                    <div class="img-select-container active">
+                                                        <a href="#" data-id="1">
+                                                            @isset($item?->images[0]?->image)
+                                                                <img src="{{ $item?->images[0]?->image }}" />
+                                                            @else
+                                                                <img src="{{ asset('assets/images/default-user.jfif') }}" />
+                                                            @endisset
+                                                        </a>
+                                                    </div>
+                                                    <div class="img-select-container">
+                                                        <a href="#" data-id="2">
+                                                            @isset($item?->images[1]?->image)
+                                                                <img src="{{ $item?->images[1]?->image }}" />
+                                                            @else
+                                                                <img src="{{ asset('assets/images/default-user.jfif') }}" />
+                                                            @endisset
+                                                        </a>
+                                                    </div>
+                                                    <div class="img-select-container">
+                                                        <a href="#" data-id="3">
+                                                            @isset($item?->images[2]?->image)
+                                                                <img src="{{ $item?->images[2]?->image }}" />
+                                                            @else
+                                                                <img src="{{ asset('assets/images/default-user.jfif') }}" />
+                                                            @endisset
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -423,64 +385,31 @@
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
-        $(window).on('load', function() {
+        const imgs = document.querySelectorAll('.img-select-container a');
+        let imgId = 1;
 
-            const imageCount = $('#slider ul li').length;
-            const imageWidth = $('#slider ul li img').first().width();
-            const totalWidth = (imageWidth * imageCount) + 'px';
-            let leftPosition = 0;
-            let counter = 0;
-            $('#slider ul').css('width', totalWidth);
+        const imgDiv = document.querySelectorAll('.img-select-container');
 
-            // next button
-            $('#next').click(function() {
-                counter++;
-                if (counter === imageCount) {
-                    $('#slider ul').clone().appendTo('#slider');
-                    $('#slider ul').last().css('left', imageWidth + 'px');
+        imgs.forEach((img) => {
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                imgId = img.dataset.id;
 
-                    leftPosition = `-${totalWidth}`;
+                imgDiv.forEach((img) => {
+                    img.classList.remove('active');
+                });
 
-                    $('#slider ul').last().animate({
-                        left: 0
-                    }, 700, 'easeInQuad');
-                    $('#slider ul').first().animate({
-                        left: leftPosition
-                    }, 700, 'easeInQuad', function() {
-                        $('#slider ul').first().remove();
-                    });
-                    counter = 0;
-                } else {
-                    leftPosition = `-${counter * imageWidth}px`;
-                    $('#slider ul').animate({
-                        left: leftPosition
-                    }, 700, 'easeInQuad');
-                }
-            });
+                img.parentElement.classList.add('active');
 
-            // previous button
-            $('#previous').click(function() {
-                counter--;
-                if (counter < 0) {
-                    counter = imageCount - 1;
-                    $('#slider ul').clone().appendTo('#slider');
-                    $('#slider ul').last().css('left', `-${totalWidth}`);
-                    leftPosition = `-${counter * imageWidth}px`;
-                    $('#slider ul').last().animate({
-                        left: leftPosition
-                    }, 700, 'easeInQuad');
-                    $('#slider ul').first().animate({
-                        left: imageWidth + 'px'
-                    }, 700, 'easeInQuad', function() {
-                        $('#slider ul').first().remove();
-                    });
-                } else {
-                    leftPosition = `-${counter * imageWidth}px`;
-                    $('#slider ul').animate({
-                        left: leftPosition
-                    }, 700, 'easeInQuad');
-                }
+                moveImage();
             });
         });
+        function moveImage() {
+            const imgWidth = document.querySelector('.main-image img:first-child').clientWidth;
+        
+            let width = (imgId - 1) * imgWidth;
+            document.querySelector('.main-image').style.transform = `translateX(${-width}px)`;
+
+        }
     </script>
 @endsection

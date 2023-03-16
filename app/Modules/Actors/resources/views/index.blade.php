@@ -18,7 +18,7 @@
 
         .popover {
             max-width: 600px !important;
-            max-height:550px !important;
+            max-height:600px !important;
         }
     </style>
 @endpush
@@ -218,5 +218,6 @@
   $(function () {
     $('#gender').fSelect();
   });
+  
 </script>
 @endsection

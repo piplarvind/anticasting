@@ -437,15 +437,14 @@ transform: rotate(45deg); */
 .actor-details-img{
      width:200px !important; 
      height:180px !important;
-     border: 3px solid rgb(80, 78, 78);
-     margin-left:20px;
+  
      
 }
 .card-details{
-    height: 460px !important;
+    height: 540px !important;
 }
 .card-body{
-    height: 460px !important;
+    height: 540px !important;
 }
 .btn-close{
     padding-right: 10px !important;
