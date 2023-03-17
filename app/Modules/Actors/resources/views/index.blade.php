@@ -18,7 +18,7 @@
 
         .popover {
             max-width: 600px !important;
-            max-height:600px !important;
+            max-height: 600px !important;
         }
     </style>
 @endpush
@@ -167,7 +167,7 @@
             }).popover('show');
         });
     });
-    
+
     // $('.actor-detail').click(function(e) {
     //     let id = e.target.parentElement.dataset.value;
     //     $.ajax({
@@ -211,13 +211,37 @@
     //         $(".bs-popover-top").popover('hide');
     //     }
     // });
-   
-  $(function () {
-    $('#ethnicity').fSelect();
-  });
-  $(function () {
-    $('#gender').fSelect();
-  });
-  
+
+    $(function() {
+        $('#ethnicity').fSelect();
+    });
+    $(function() {
+        $('#gender').fSelect();
+    });
+    $(function() {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 60,
+            values: [5, 100],
+            slide: function(event, ui) {
+                $(".age").html(ui.values[0] + " " + "-" + " " + ui.values[1]);
+                document.querySelector('#max_age').value = ui.values[1];
+                document.querySelector('#min_age').value = ui.values[0];
+
+            }
+        });
+        $(".age").html($("#slider-range").slider("values", 0) + " " + "-" + " " + $("#slider-range").slider(
+            "values", 1));
+        document.querySelector('#max_age').value = $("#slider-range").slider("values", 1);
+        document.querySelector('#min_age').value = $("#slider-range").slider("values", 0);
+        });
+        $('.filter-age-show').hide()
+        $("#slider-range").on('click',function(){
+            $('.filter-age-show').show()
+        })
+        $(".close-filter-btn").on('click',function(){
+            $('.filter-age-show').hide()
+        })
 </script>
 @endsection
