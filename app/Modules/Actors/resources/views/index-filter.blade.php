@@ -9,20 +9,44 @@
     .ui-slider {
         width: 160px;
     }
-    .filter-age-show{
-        background-color:#42404024;
-        width:215px !important;
+
+    /*age card css*/
+    .filter-age-show {
+        background-color: #42404024;
+        width: 215px !important;
         height: 30px !important;
         border-radius: 30px;
     }
-    .filter-age-show label{
-      padding:5px;
-      padding-left:15px;
+
+    .filter-age-show label {
+        padding: 5px;
+        padding-left: 15px;
     }
-    .filter-age-show .close-filter-btn{
-        padding-left:20px;
-        font-size:18px; 
+
+    .filter-age-show .close-filter-btn {
+        padding-left: 20px;
+        font-size: 18px;
         position: relative;
+    }
+
+    /*gender card css*/
+    .filter-gender-show {
+        background-color: #42404024;
+        width: 300px !important;
+        height: 30px !important;
+        border-radius: 30px;
+        margin-top: 10px;
+    }
+
+    .filter-gender-show label {
+        padding: 5px;
+        padding-left: 15px;
+    }
+
+    .filter-gender-show .close-filter-btn {
+        padding-left: 20px;
+        font-size: 18px;
+      
     }
 </style>
 <div class="container">
@@ -33,7 +57,7 @@
                     <div style="margin-right:20px;">
                         <label class="form-label"><b>Gender</b></label>
                         <div class="form-group">
-                            <select name="gender[]" class="form-control" id="gender" multiple="multiple">
+                            <select name="gender[]" class="form-control gender" multiple="multiple">
                                 <optgroup label="Gender">
                                     <option value='Male' @if (isset(request()->gender) && in_array('Male', old('gender', request()->gender))) selected @endif>Male
                                     </option>
@@ -76,7 +100,7 @@
                         <span class="age"></span>
                         <span>years old</span>
                         <div id="slider-range"></div>
-                         
+
                     </div>
                 </div>
             </div>
@@ -98,6 +122,16 @@
             <span>years old</span>
             <span class="close-filter-btn">X</span>
         </div>
+        <div class="filter-gender-show">
+            <label class="form-label" for=""><b>Gender : </b></label>
+            <span class="gender-value-text text-truncate"></span>
+            <span class="close-filter-btn">X</span>
+        </div>
+        {{-- <div class="filter-ethnicity-show">
+            <label class="form-label" for=""><b>Ethnicity : </b></label>
+            <span class="ethnicity-value-text"></span>
+            <span class="close-filter-btn">X</span>
+        </div> --}}
     </form>
 </div>
 {{-- <div class="row">

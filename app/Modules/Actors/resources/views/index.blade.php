@@ -216,7 +216,7 @@
         $('#ethnicity').fSelect();
     });
     $(function() {
-        $('#gender').fSelect();
+        $('.gender').fSelect();
     });
     $(function() {
         $("#slider-range").slider({
@@ -235,13 +235,33 @@
             "values", 1));
         document.querySelector('#max_age').value = $("#slider-range").slider("values", 1);
         document.querySelector('#min_age').value = $("#slider-range").slider("values", 0);
-        });
+    });
+    //age slider filter js
+    $('.filter-age-show').hide()
+    $("#slider-range").on('click', function() {
+        $('.filter-age-show').show()
+    })
+    $(".close-filter-btn").on('click', function() {
         $('.filter-age-show').hide()
-        $("#slider-range").on('click',function(){
-            $('.filter-age-show').show()
-        })
-        $(".close-filter-btn").on('click',function(){
-            $('.filter-age-show').hide()
-        })
+        $('.filter-gender-show').hide()
+    })
+    //gender filter js
+    $('.filter-gender-show').hide()
+    $(".gender").on("change", function() {
+        //Getting Value
+        var selValue = $(".gender").val();
+        console.log(selValue);
+        //Setting Value
+        $(".gender-value-text").text(selValue);
+        $(".filter-gender-show").show();
+    });
+   //ethnicity filter js
+    $("#ethnicity").on("change", function() {
+        //Getting Value
+        var selValue = $("#ethnicity").val();
+        console.log(selValue);
+        //Setting Value
+        $(".ethnicity-value-text").text(selValue);
+    });
 </script>
 @endsection
