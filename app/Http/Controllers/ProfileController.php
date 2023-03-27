@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\{User, UserProfile, UserProfileImage, IntroVideo, State};
 use App\Helpers\GeneralHelper;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 class ProfileController extends Controller
 {
     public function submitProfile()
@@ -142,15 +143,7 @@ class ProfileController extends Controller
 
     public function uploadUserImage(Request $request)
     {
-        // $request->validate(
-        //     [
-        //         'picture' => 'required',
-        //     ],
-        //     [
-        //         'picture.required' => 'Please select an image.',
-        //     ],
-        // );
-        // dd($request->all());
+      
         $userId = auth()->user()->id;
         if ($request->file('picture')) {
             $profile_image = new UserProfileImage();
@@ -162,11 +155,15 @@ class ProfileController extends Controller
                     ->first();
             }
             $images = $request->file('picture');
+           
+         //dd($images);
             $filename = $images->getClientOriginalName();
             $image_name = time() . '-' . str_replace(' ', '-', $filename);
             $image_name = str_replace(['(', ')'], '', $image_name);
-            $profile_image->image = $image_name;
             $ImagePath = $images->move('upload/profile', $image_name);
+            //  Image::make($request->file('picture'))
+            // ->resize(200, 200)->save($image_name);
+            $profile_image->image = $image_name;
             $profile_image->user_id = $userId;
             $profile_image->save();
             return redirect()->back();

@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 //use App\Http\Requests\LoginRequest;
-
 class LoginController extends Controller
 {
     //

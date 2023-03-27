@@ -1,4 +1,4 @@
-<header class="header">
+{{-- <header class="header">
     <div class="navbar-area shadow-sm bg-body rounded">
         <div class="container">
         <nav class="navbar navbar-expand-lg">
@@ -44,4 +44,4 @@
          </nav>
         </div>
      </div>
-</header>
+</header> --}}

@@ -3,113 +3,128 @@
 @section('header')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" rel="stylesheet" />
 @endsection
-
 @section('content')
-    <section id="contact-us" class="contact-us section">
-        <div class="container">
-            <div class="row justify-content-center mt-5">
-               <div class="col-lg-7 col-lg-5 col-md-5 col-sm-5 ">
-                   <div class="card shadow-lg border-0 rounded-lg mt-5">
-                      <div class="card-body">
-                            <h3 class="text-center font-weight-light my-4 text-danger">Create Your Account</h3>
-                            <form method="post" id="frm_register" action="{{ route('users.registerpost') }}">
-                                @csrf
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class=" mb-3 mb-md-0">
-                                            <label for="inputFirstName">First name</label>
-                                            <input class="form-control" name="first_name" id="inputFirstName" type="text"
-                                                placeholder="Enter your first name" />
-
-                                            @error('first_name')
-                                                <span class="text-danger"><b>{{ $message }}</b></span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class=" mb-3 mb-md-0">
-                                            <label for="inputLastName">Last name</label>
-                                            <input class="form-control" name="last_name" id="inputLastName" type="text"
-                                                placeholder="Enter your last name" />
-                                            @error('last_name')
-                                                <span class="text-danger"><b>{{ $message }}</b></span>
-                                            @enderror
-                                        </div>
-                                    </div>
+    <section class="contact-us section register-card">
+        <main class="d-flex align-items-center w-auto main-container">
+            <div class="container">
+                <div class="card login-card">
+                    <div class="row no-gutters">
+                        <div class="col-md-5">
+                            <div class="card-body">
+                                <div class="brand-wrapper">
+                                    <a href="{{ route('users.home') }}">
+                                        <img src="{{ asset('assets/website/images/anticasting-logo.png') }}" alt="logo"
+                                            class="logo" width="100" height="100">
+                                    </a>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-6 mb-3">
-                                        <label for="email">Email address</label>
-                                        <input class="form-control" id="inputEmail" name="email" type="email"
-                                            placeholder="Enter email address" />
-                                        @error('email')
-                                            <span class="text-danger"><b>{{ $message }}</b></span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-6 col-lg-6 mb-3">
-                                        <label for="inputmobileNumber">Moblile Number</label>
-                                        <div class="input-group input-span mb-3">
-                                            <input type="hidden" id="code" name="countryCode" />
-                                            <input type="text" class="form-control" id="mobile_number" name="mobile_no"
-                                                placeholder="Mobile number" />
-                                        </div>
-                                        <input type="hidden" name="iso2" id="phone_country_code" value="+91" />
-                                        {{-- <span id="phone-error" style="display: none;" for="phone" class="text-danger"></span> --}}
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class="mb-3 mb-md-0">
-                                            <label for="inputPassword">Password</label>
-                                            {{-- <input class="form-control" name="password" id="password" type="password"
-                                        placeholder="Enter a password" /> --}}
-                                            <div class="input-group">
-                                                <input class="form-control password" id="password"
-                                                    class="block mt-1 w-full" type="password" name="password"
-                                                    placeholder="Enter a password" />
-                                                {{-- <span class="input-group-text togglePassword" id="">
-                                            <i data-feather="eye" style="cursor: pointer"></i>
-                                        </span> --}}
-                                            </div>
-                                            @error('password')
-                                                <span class="text-danger"><b>{{ $message }}</b></span>
-                                            @enderror
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Confirm Password</label>
-                                            <div class="input-group">
-                                                <input class="form-control password" id="confirm_password"
-                                                    class="block mt-1 w-full" type="password" name="confirm_password"
-                                                    placeholder="Enter confirm password" />
-                                                <span class="input-group-text toggleConfirmPassword" id="">
-                                                    <i data-feather="eye" style="cursor: pointer"></i>
-                                                </span>
+                                <p class="d-flex justify-content-center fs-4">Register into your account</p>
+                                <form method="post" id="frm_register" action="{{ route('users.registerpost') }}">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputFirstName" class="form-label text-muted"><b>First
+                                                    name</b>&nbsp;<span style="color:red;"><b>*</b></span>
+                                                </label>
+                                                <input type="text" name="first_name" id="inputFirstName"
+                                                    class="form-control" placeholder="First name">
+                                                @error('first_name')
+                                                    <span class="text-danger"><b>{{ $message }}</b></span>
+                                                @enderror
                                             </div>
                                         </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group  mb-1">
+                                                <label for="inputLastName" class="form-label text-muted"><b>Last
+                                                    name</b>&nbsp;<span style="color:red;"><b>*</b></span>
+                                                </label>
+                                                <input type="text" name="last_name" id="inputLastName"
+                                                    class="form-control" placeholder="Last name">
+                                                @error('last_name')
+                                                    <span class="text-danger"><b>{{ $message }}</b></span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-1">
+                                                <label for="email" class="form-label text-muted"><b>Email</b>&nbsp;<span
+                                                        style="color:red;"><b>*</b></span>
+                                                </label>
+                                                <input type="email" name="email" id="email" class="form-control"
+                                                    placeholder="Email address">
+                                                @error('email')
+                                                    <span class="text-danger"><b>{{ $message }}</b></span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group  mb-1">
+                                                <label for="password" class="form-label text-muted"><b>Password</b>&nbsp;<span
+                                                        style="color:red;"><b>*</b></span>
+                                                </label>
+                                                <input class="form-control" id="password" class="block mt-1 w-full"
+                                                    type="password" name="password" placeholder="Enter a password" />
+                                                @error('password')
+                                                    <span class="text-danger"><b>{{ $message }}</b></span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-1">
+                                                <label for="confirm_password" class="form-label text-muted"><b>Confiram
+                                                    Password</b>&nbsp;<span style="color:red;"><b>*</b></span></label>
+                                                <div class="input-group">
+                                                    <input class="form-control password" id="confirm_password"
+                                                        class="block mt-1 w-full" type="password" name="confirm_password"
+                                                        placeholder="Enter confirm password" />
+                                                    <span class="input-group-text toggleConfirmPassword" id="">
+                                                        <i data-feather="eye" style="cursor: pointer"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group  mb-1">
+                                                <label for="inputmobileNumber" class="form-label text-muted"><b>Moblile
+                                                    Number</b>&nbsp;<span style="color:red;"><b>*</b></span></label>
+                                                <div class="input-group input-span mb-3">
+                                                    <input type="hidden" id="code" name="countryCode" />
+                                                    <input type="text" class="form-control" id="mobile_number"
+                                                        name="mobile_no" placeholder="Mobile number" />
+                                                </div>
+                                                <input type="hidden" name="iso2" id="phone_country_code"
+                                                    value="+91" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                        <input type="submit" class="btn btn-dark form-control" type="button"
+                                            value="Register" />
                                     </div>
 
+                                </form>
+                                <div class="d-flex justify-content-center mt-2">
+                                    <p class="login-card-footer-text"><b>Have an account?</b><a
+                                            href="{{ route('users.login') }}" class="text-reset">Login here</a></p>
                                 </div>
-
-                                <div class="mt-4 mb-3">
-                                    <div class="d-grid"><button type="submit" class="btn btn-danger btn-block">Register
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="small"><a class="text-danger" href="{{ route('users.login') }}">
-                                    <b>Have an account? Go to login</b> </a>
                             </div>
                         </div>
+                        <div class="col-md-7">
+                            <img src="{{ asset('assets/website/images/banner.jpg') }}" alt="login"
+                                class="login-card-img">
+                            {{-- <p
+                                class="text-white font-weight-medium text-center flex-grow align-self-end footer-link text-small">
+                                Free <a href="https://wordpress-923989-3206731.cloudwaysapps.com/" target="_blank"
+                                    class="text-white">Bootstrap dashboard templates</a> from Bootstrapdash
+                            </p> --}}
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </section>
 @endsection
 @section('footer')

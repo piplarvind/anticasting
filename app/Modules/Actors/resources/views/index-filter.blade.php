@@ -46,7 +46,7 @@
     .filter-gender-show .close-filter-btn {
         padding-left: 20px;
         font-size: 18px;
-      
+
     }
 </style>
 <div class="container">
@@ -116,7 +116,41 @@
             </div>
         </div>
         <br />
-        <div class="filter-age-show">
+        <div id="selected-filters" class="d-flex">
+            @if (request()->has('min_age') && request()->has('max_age'))
+                <div class="filters-selected">
+                    <label class="form-label" for=""><b>Age:</b></label>
+                    <span class="">
+                        {{ request()->min_age }} - {{ request()->max_age }}
+                    </span>
+                    <span>Yr</span>
+                    <span class="close-filter-btn">X</span>
+                </div>
+            @endif
+            @if (isset(request()->gender) && request()->gender != '')
+                @foreach (request()->gender as $gender)
+                    <div class="filters-selected">
+                        <label class="form-label" for=""><b>Gender:</b></label>
+                        <span class="">
+                            {{$gender}}
+                        </span>
+                        <span class="close-filter-btn">X</span>
+                    </div>
+                @endforeach
+            @endif
+            @if (isset(request()->ethnicity) && request()->ethnicity != '')
+                @foreach (request()->ethnicity as $ethnicity)
+                    <div class="filters-selected">
+                        <label class="form-label" for=""><b>Location:</b></label>
+                        <span class="">
+                            {{$ethnicity}}
+                        </span>
+                        <span class="close-filter-btn">X</span>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+        {{-- <div class="filter-age-show">
             <label class="form-label" for=""><b>Age : </b></label>
             <span class="age"></span>
             <span>years old</span>
@@ -127,7 +161,7 @@
             <span class="gender-value-text text-truncate"></span>
             <span class="close-filter-btn">X</span>
         </div>
-        {{-- <div class="filter-ethnicity-show">
+        <div class="filter-ethnicity-show">
             <label class="form-label" for=""><b>Ethnicity : </b></label>
             <span class="ethnicity-value-text"></span>
             <span class="close-filter-btn">X</span>

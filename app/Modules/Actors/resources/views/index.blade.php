@@ -242,8 +242,8 @@
         $('.filter-age-show').show()
     })
     $(".close-filter-btn").on('click', function() {
-        $('.filter-age-show').hide()
-        $('.filter-gender-show').hide()
+        $('.filters-selected').hide()
+   
     })
     //gender filter js
     $('.filter-gender-show').hide()

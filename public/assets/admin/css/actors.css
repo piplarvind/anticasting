@@ -452,3 +452,30 @@ transform: rotate(45deg); */
     position: relative;
   
 }
+
+/**
+* Filter
+*/
+
+/*age card css*/
+.filters-selected {
+    background-color: #42404024;
+    /* width: 215px !important; */
+    height: 30px !important;
+    border-radius: 30px;
+    padding: 0px 8px 0 0;
+    margin-right: 5px;
+}
+
+.filters-selected label {
+    padding: 5px;
+}
+
+.filters-selected .close-filter-btn {
+    padding: 6px 0 6px 6px;
+    position: relative;
+    border-left: 1px solid #bba8a1;
+    margin: 4px;
+    color: #ef4909;
+    cursor: pointer;
+}

@@ -54,7 +54,7 @@ class ForgotPasswordController extends Controller
     }
     public function submitResetPassword(Request $request)
     {
-        dd($request->all());
+      
         $request->validate(
             [
                 'password' => 'required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',

@@ -1,8 +1,7 @@
 @extends('layouts.auth')
 @section('content')
-    <section id="contact-us" class="contact-us section">
+    <section class="contact-us section">
         @if (Session::has('message'))
-
             <div id="success" title="Success">
                 <p>{{ Session::get('message') }}</p>
             </div>
@@ -11,80 +10,86 @@
                 <p>{{ Session::get('error') }}</p>
             </div>
         @endif
-        <div class="container">
-            <div class="row justify-content-center mt-5">
-                <div class="col-lg-5 col-md-5 col-sm-5">
-                    <div class="card shadow-lg border-0 rounded-lg mt-5">
-                        <div class="card-body">
-                            <h3 class="text-center font-weight-light my-3 text-danger">Login</h3>
-                            <form action="{{ route('users.loginpost') }}" method="post">
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="inputEmail">Email address</label>
-                                    <input class="form-control" id="inputEmail" name="email" type="email"
-                                        placeholder="Enter a email" />
-
-                                    @error('email')
-                                        <span class="text-danger"><b>{{ $message }}</b></span>
-                                    @enderror
+        <main class="d-flex align-items-center w-auto main-container">
+            <div class="container">
+                <div class="card login-card">
+                    <div class="row no-gutters">
+                        <div class="col-md-5">
+                            <div class="card-body">
+                                <div class="brand-wrapper">
+                                    <a href="{{ route('users.home') }}">
+                                        <img src="{{ asset('assets/website/images/anticasting-logo.png') }}" alt="logo"
+                                            class="logo" width="100" height="100">
+                                    </a>
                                 </div>
-                                <div class=" mb-3">
+                                <p class="d-flex justify-content-center fs-4">Login into your account</p>
+                                <form action="{{ route('users.loginpost') }}" method="post">
+                                    @csrf
                                     <div class="form-group">
-                                        <label>Password</label>
-                                        <div class="input-group" id="show_hide_password">
+                                        <label for="email" class="form-label text-muted">
+                                            <b>Email</b>&nbsp;<span style="color:red;"><b>*</b></span>
+                                        </label>
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            placeholder="Email address">
+                                        @error('email')
+                                            <span class="text-danger"><b>{{ $message }}</b></span>
+                                        @enderror
 
-                                            <input class="form-control  password block mt-0 w-full"
-                                                placeholder="Enter  password" type="password" name="password">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="password" class="form-label text-muted">
+                                            <b>Password</b>&nbsp;<span style="color:red;"><b>*</b></span>
+                                        </label>
+                                        <div class="input-group">
+                                            <input class="form-control password" id="password" class="block mt-1 w-full"
+                                                type="password" name="password" placeholder="Enter  password" />
                                             <span class="input-group-text togglePassword" id="">
                                                 <i data-feather="eye" style="cursor: pointer"></i>
                                             </span>
                                         </div>
+                                        @error('password')
+                                            <span class="text-danger"><b>{{ $message }}</b></span>
+                                        @enderror
                                     </div>
-                                    @error('password')
-                                        <span class="text-danger"><b>{{ $message }}</b></span>
-                                    @enderror
-                                </div>
+                                    <div class="form-group mb-3">
 
-                                <div class="form-floating mb-3">
+                                        <input type="checkbox" name="remeber_me" id="rember-me" />
+                                        <label for="rember-me" class="form-label text-muted">&nbsp;<b>Remember
+                                                Me</b></label>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remeber_me">
-                                        <label class="form-check-label" for="gridCheck">
-                                            Remember Me
-                                        </label>
                                     </div>
 
+                                    <div class="d-grid gap-2 mb-1 mt-3 col-6 mx-auto">
+                                        <input type="submit" class="btn btn-dark form-control" type="button"
+                                            value="Login">
+                                    </div>
+                                </form>
+                                <div class="mt-3">
+                                    <a href="{{ route('users.forgot-password') }}" class="forgot-password-link"><b>Forgot
+                                            password?</b></a>
+                                    <p class="login-card-footer-text"><b>Don't have an account?</b><a
+                                            href="{{ route('users.register') }}" class="text-reset text-muted">Register
+                                            here</a></p>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <img src="{{ asset('assets/website/images/banner.jpg') }}" alt="login"
+                                class="login-card-img">
+                            {{-- <p
+                                class="text-white font-weight-medium text-center flex-grow align-self-end footer-link text-small">
+                                Free <a href="https://wordpress-923989-3206731.cloudwaysapps.com/" target="_blank"
+                                    class="text-white">Bootstrap dashboard templates</a> from Bootstrapdash
+                            </p> --}}
+                        </div>
 
-                                    <button type="submit" class=" form-control btn btn-danger">Contune</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-5 col-md-4 col-sm-2  mb-1  ms-3">
-                                <a class="small text-danger" href="{{ route('users.forgot-password') }}"><b>Forgot
-                                        Password?</b></a>
-                            </div>
-                            <div class="col-md-6 mb-5 ms-3">
-                                <a class="small text-danger" href="{{ route('users.register') }}"><b>Need an
-                                        account? Sign up!</b></a>
-                            </div>
-                           
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-
+        </main>
     </section>
 @endsection
 @section('footer')
-    <script src="{{ asset('assets/website/js/jquery.validate.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
-    </script>
     <script type="text/javascript">
         $(function() {
             $("#error").dialog({
@@ -128,8 +133,7 @@
             $("#success").dialog({
                 autoOpen: true,
                 modal: true,
-                buttons: [
-                    {
+                buttons: [{
                         text: 'Yes, proceed!',
                         open: function() {
                             $(this).addClass('yescls')
@@ -138,7 +142,7 @@
                             $(this).dialog("close")
                         }
                     },
-                   
+
                 ],
                 show: {
                     effect: "bounce",

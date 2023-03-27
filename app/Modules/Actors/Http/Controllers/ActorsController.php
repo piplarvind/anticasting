@@ -24,7 +24,7 @@ class ActorsController extends Controller
             ->FilterHeight()
             ->FilterEthnicty()
             ->FilterGender()
-            ->paginate(6);
+            ->paginate(8);
 
         // dd($actors);
         $state = State::all();

@@ -61,7 +61,7 @@
                                             </div>
                                            
                                            
-                                            <div style="margin-left:330px;" class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                            <div style="margin-left:290px;" class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                              
                                                 <button type="submit" class="btn-sm btn btn-primary active">Verify Otp</button>
                                             </div>
